@@ -63,3 +63,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # seeds.rb でbulk insertを使用する
 gem 'activerecord-import'
+
+# graphqlを使う
+gem 'graphql'
+gem 'graphiql-rails', group: :development
