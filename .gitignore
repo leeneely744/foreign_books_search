@@ -60,3 +60,7 @@ yarn-debug.log*
 # Ignore uploaded files in development
 /storage/*
 !/storage/.keep
+
+
+# データアップロード用のCSVファイルはgit管理しない
+/db/csv/*
