@@ -67,3 +67,5 @@ gem 'activerecord-import'
 # graphqlを使う
 gem 'graphql'
 gem 'graphiql-rails', group: :development
+
+gem 'bootswatch-rails'
