@@ -14,7 +14,7 @@ class StaticPagesControllerTest < ActionDispatch::IntegrationTest
   test "should get home" do
     get static_pages_home_url
     # assert_select 特定のHTMLタグが存在するか
-    assert_select "title", "Home | #{@base_title}"
+    assert_select "title", 'Ruby on Rails Tutorial Sample App'
   end
 
   test "should get help" do
