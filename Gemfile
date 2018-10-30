@@ -68,4 +68,4 @@ gem 'activerecord-import'
 gem 'graphql'
 gem 'graphiql-rails', group: :development
 
-gem 'bootswatch-rails'
+gem 'bootstrap-sass', '3.3.7'
