@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
   root 'static_pages#home'
   
-  get '/help', to: 'static_pages#help'
+  get '/help',  to: 'static_pages#help'
   get '/about', to: 'static_pages#about' # static_pages_about_url
+  
+  get '/search', to: 'books#search'
   
   if Rails.env.development?
     mount GraphiQL::Rails::Engine, at: "/graphiql", graphql_path: "/graphql"
