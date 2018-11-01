@@ -1,6 +1,14 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+.left-box {
+  float:left;
+  background-color: $gray-light;
+}
+
+.right-box {
+  float:left;
+}
 
 /* mixins, variables, etc. */
 
