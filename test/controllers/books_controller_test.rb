@@ -10,5 +10,7 @@ class BooksControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
     
     assert_select "input[id=?]", "q_title_cont"
+    assert_select "input[id=?]", "q_page_lteq"
+    assert_select "input[id=?]", "q_page_gteq"
   end
 end
