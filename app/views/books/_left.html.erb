@@ -4,8 +4,10 @@
     <%# どこに向けたフォームなのか（actionに入る要素）をurlで
         指定しないと、'xx_path'エラーが出る %>
     <%= search_form_for @q, url: search_path do |f| %>
-      <%= f.label :title, "タイトル" %>
-      <%= f.search_field :title %>
+      <%# attrの後ろに'_cont'をつけると部分一致になる %>
+      <%# https://github.com/activerecord-hackery/ransack#search-matchers %>
+      <%= f.label :title_cont, "タイトル" %>
+      <%= f.search_field :title_cont %>
       
       <%= f.submit "検索", class: "btn btn-primary" %>
     <% end %>
