@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
-    <%= form_tag("/search", method: "get") do %>
-      <%= label_tag :title, "タイトル" %>
-      <%= text_field_tag :title %>
+    <%# どこに向けたフォームなのか（actionに入る要素）をurlで
+        指定しないと、'xx_path'エラーが出る %>
+    <%= search_form_for @q, url: search_path do |f| %>
+      <%= f.label :title, "タイトル" %>
+      <%= f.search_field :title %>
       
-      <%= submit_tag "検索", class: "btn btn-primary" %>
+      <%= f.submit "検索", class: "btn btn-primary" %>
     <% end %>
   </div>
 </div>

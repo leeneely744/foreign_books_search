@@ -39,6 +39,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'bullet'
 end
 
 group :development do
@@ -72,3 +73,5 @@ gem 'bootstrap-sass', '3.3.7'
 
 # assert_templateがrails5では非推奨
 gem 'rails-controller-testing'
+
+gem 'ransack'

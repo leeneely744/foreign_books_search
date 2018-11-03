@@ -1,5 +1,8 @@
 class BooksController < ApplicationController
     def search
-        puts params[:title]
+        @q = Book.ransack(params[:q])
+        @books = @q.result(distinct: true)
     end
+    
+    private
 end
