@@ -8,5 +8,7 @@ class BooksControllerTest < ActionDispatch::IntegrationTest
   test "should get search" do
     get search_path
     assert_response :success
+    
+    assert_select "input[id=?]", "q_title_cont"
   end
 end
