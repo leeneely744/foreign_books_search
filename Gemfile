@@ -75,3 +75,6 @@ gem 'bootstrap-sass', '3.3.7'
 gem 'rails-controller-testing'
 
 gem 'ransack'
+
+# 環境変数を扱う
+gem 'dotenv-rails'
