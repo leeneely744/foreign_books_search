@@ -1,4 +1,14 @@
 <!DOCTYPE html>
-<p>
-    the right box
-</p>
+<ul class="books">
+    <% @books.each do |book| %>
+    <li>
+        タイトル：<%= book.title %>
+    </li>
+    <li>
+        ページ数：<%= book.page %>
+    </li>
+    <li>
+        <%= link_to '公式サイト', book.official_url %>
+    </li>
+    <% end %>
+</ul>
