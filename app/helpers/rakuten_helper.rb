@@ -9,7 +9,7 @@ module RakutenHelper
     '&applicationId=' + ENV["RAKUTEN_APPLY_ID"]
     
     res = open(url)
-    return JSON.parse(res.read)
+    JSON.parse(res.read)
   end
   
   # 楽天APIからのレスポンスに何件の書籍情報があるか
@@ -19,6 +19,6 @@ module RakutenHelper
   
   # 1件の書籍情報を取得
   def getItemInfo(json)
-    return json['Items'][0]["Item"]
+    json['Items'][0]["Item"]
   end
 end
