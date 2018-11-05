@@ -8,8 +8,8 @@ module RakutenHelper
     '&affiliateId=' + ENV["RAKUTEN_AFFILIATE_ID"] +
     '&applicationId=' + ENV["RAKUTEN_APPLY_ID"]
     
-    res = open(url)
-    JSON.parse(res.read)
+    # 'code, message = res.status'でstatusCodeを確認してから処理すること
+    open(url)
   end
   
   # 楽天APIからのレスポンスに何件の書籍情報があるか
