@@ -1,5 +1,17 @@
 module RakutenHelper
-  # 楽天ブックス総合検索APIに問い合わせする
+  # JsonデータからBookエンティティを作成する
+  def createBookEntity(bookJson)
+    newBook = Book.new
+    for key, value in bookJson do
+      if Book.has_attribute?(key.underscore)
+        newBook[key.underscore] = value
+      end
+    end
+    return newBook
+  end
+  
+  # 楽天ブックス総合検索APIに問い合わせた結果を文字列で得る
+  # JSON.parse(res.read) でパースする必要がある
   # RBOSApi : Rakuten Books Overall Search Api
   def requestToRBOSApiByIsbn(isbn)
     url = 'https://app.rakuten.co.jp/services/api/BooksTotal/Search/20170404' +
