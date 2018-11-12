@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_07_150227) do
+ActiveRecord::Schema.define(version: 2018_11_12_142541) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,9 +26,9 @@ ActiveRecord::Schema.define(version: 2018_10_07_150227) do
     t.date "sales_date_converted"
     t.string "item_url"
     t.string "affiliate_url"
-    t.string "small_image_url"
-    t.string "medium_image_url"
-    t.string "large_image_url"
+    t.string "small_image_url", default: "no_image_small.png"
+    t.string "medium_image_url", default: "no_image_medium.png"
+    t.string "large_image_url", default: "no_image_large.png"
     t.integer "review_count"
     t.string "review_average"
     t.string "books_genre_id"
