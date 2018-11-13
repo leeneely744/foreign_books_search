@@ -2,6 +2,9 @@
 <ul class="books">
     <% @books.each do |book| %>
     <li>
+        <%= image_tag book.medium_image_url %>
+    </li>
+    <li>
         タイトル：<%= book.title %>
     </li>
     <li>
