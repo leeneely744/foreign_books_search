@@ -1,12 +1,13 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-.left-box {
-  float:left;
+.search-forms-panel {
+  float: left;
+  max-width: 30%;
 }
 
-.right-box {
-  float:left;
+.results-panel {
+  
 }
 
 /* mixins, variables, etc. */
