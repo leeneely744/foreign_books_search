@@ -6,7 +6,7 @@ include RakutenHelper
 # バルクインサートはPostgres9.5+ でしか使えないので、そのうちバージョンアップする
 # 最初の一行はヘッダー行
 bookArray = []
-outputCsv = CSV.open("outputCsv.csv", 'w')
+outputCsv = CSV.open("db/csv/outputCsv.csv", 'w')
 CSV.foreach('db/csv/bookData.csv', headers: true) do |data|
     sleep(2)
     puts ($.).to_s + "番目の要素です: #{data["isbn"]}"
@@ -41,6 +41,11 @@ CSV.foreach('db/csv/bookData.csv', headers: true) do |data|
         puts 'isbnかtitleが空なのでスキップします'
         next
     end
+    
+    # CSVに入れておいたデータを入れる
+    newBook["vocabulary"] = data["vocabulary"]
+    newBook["page"] = data['page']
+    newBook['official_url'] = data['official_url']
     
     bookArray << newBook
 end
