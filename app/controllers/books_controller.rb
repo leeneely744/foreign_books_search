@@ -4,5 +4,10 @@ class BooksController < ApplicationController
         @books = @q.result(distinct: true)
     end
     
+    def show
+        @isbn = params[:id]
+        # @book = Book.find_by(isbn: @isbn)
+    end
+    
     private
 end
