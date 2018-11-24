@@ -1,4 +1,28 @@
 module RakutenHelper
+
+  @@foreignBookGenreId = '005'
+  
+  def getCheldren(apiRes)
+    apiRes['children']
+  end
+  
+  def getChild(children)
+    children['child']
+  end
+  
+  # 楽天ブックスジャンル検索APIから、
+  # 指定されたジャンルID以下のジャンル情報を全て取得する。
+  # genreIdに何も指定されなければ「洋書」以下を取得する。
+  # JSON.parse(res.read) でパースする必要がある
+  def requestToGSApiByGenreId(genreId = @@foreignBookGenreId)
+    url = 'https://app.rakuten.co.jp/services/api/BooksGenre/Search/20121128' +
+    '?format=json' +
+    '&booksGenreId=' + genreId +
+    '&applicationId=' + ENV["RAKUTEN_APPLY_ID"]
+    
+    open(url)
+  end
+  
   # JsonデータからBookエンティティを作成する
   def createBookEntity(bookJson)
     newBook = Book.new
