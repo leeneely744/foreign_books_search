@@ -3,6 +3,7 @@ require "open-uri"
 
 include RakutenHelper
 include GenresHelper
+include BooksHelper
 
 def codeIs200?(code, message)
     if code == '200'
