@@ -1,2 +1,0 @@
-class Jenre < ApplicationRecord
-end
