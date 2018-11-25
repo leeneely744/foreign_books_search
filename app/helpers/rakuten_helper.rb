@@ -23,6 +23,31 @@ module RakutenHelper
     open(url)
   end
   
+  # 指定されたURLから「ページ数」を取得する
+  # URLは楽天APIのitem_urlにのみ対応
+  def getPageNumFromRakuten(url)
+    doc = Nokogiri::HTML(open(url))
+    doc.xpath('//li[@class="productInfo"]').each do |info|
+      if info.css('span[@class="category"]').text == 'ページ数'
+        return info.css('span[@class="categoryValue"]').text
+      end
+    end
+  end
+  
+  # 楽天ブックス洋書検索APIに問い合わせる
+  # 一度に30件までのデータしか取れない
+  # genreId:ジャンルID
+  def requestToRBFBApi(genreId, applicationId, affiliateId)
+    url = "https://app.rakuten.co.jp/services/api/BooksForeignBook/Search/20170404" +
+    "?format=json" +
+    "&booksGenreId=" + genreId +
+    "&applicationId=" + applicationId +
+    "&affiliateId=" + affiliateId
+    
+    # 'code, message = res.status'でstatusCodeを確認してから処理すること
+    open(url)
+  end
+  
   # 楽天ブックス総合検索APIに問い合わせた結果を文字列で得る
   # JSON.parse(res.read) でパースする必要がある
   # RBOSApi : Rakuten Books Overall Search Api
@@ -42,8 +67,26 @@ module RakutenHelper
     json['count']
   end
   
-  # 1件の書籍情報を取得
+  # Itemsの中身を取得(↓データ構造)
+  # "Items": [
+  #   {
+  #     "Item": {
+  #       "title": "Harry Potter",
+  #       "other": "other data"
+  #     }
+  #   },
+  #   {
+  #     "Item": {
+  #       ...
+  #     }
+  #   }
+  # ]
+  def getItems(json)
+    json["Items"]
+  end
+  
+  # 1件の情報を取得
   def getItemInfo(json)
-    json['Items'][0]["Item"]
+    json["Item"]
   end
 end
