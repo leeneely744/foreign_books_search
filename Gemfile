@@ -80,4 +80,4 @@ gem 'ransack'
 gem 'dotenv-rails'
 
 gem 'nokogiri'
-gem 'ox'
+gem 'oga'
