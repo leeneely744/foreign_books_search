@@ -38,10 +38,11 @@ module RakutenHelper
   # 楽天ブックス洋書検索APIに問い合わせる
   # 一度に30件までのデータしか取れない
   # genreId:ジャンルID
-  def requestToRBFBApi(genreId, applicationId, affiliateId)
+  def requestToRBFBApi(genreId, sort, applicationId, affiliateId)
     url = "https://app.rakuten.co.jp/services/api/BooksForeignBook/Search/20170404" +
     "?format=json" +
     "&booksGenreId=" + genreId +
+    "&sort=" + sort +
     "&applicationId=" + applicationId +
     "&affiliateId=" + affiliateId
     
