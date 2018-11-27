@@ -1,15 +1,14 @@
 <!DOCTYPE html>
-<% @books.each do |book| %>
-<li>
-  <%= image_tag book.medium_image_url %>
-</li>
-<li>
-  タイトル：<%= book.title %>
-</li>
-<li>
-  ページ数：<%= book.page %>
-</li>
-<li>
-  <%= link_to '公式サイト', book.official_url %>
-</li>
-<% end %>
+<ul class="books">
+    <% @books.each do |book| %>
+    <li>
+        <%= image_tag book.medium_image_url %>
+    </li>
+    <li>
+        タイトル：<%= book.title %>
+    </li>
+    <li>
+        レビュー数：<%= book.review_count %>
+    </li>
+    <% end %>
+</ul>
