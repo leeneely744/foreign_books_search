@@ -1,5 +1,7 @@
 module RakutenHelper
 
+  require 'open-uri'
+    
   @@foreignBookGenreId = '005'
   
   def getCheldren(apiRes)
