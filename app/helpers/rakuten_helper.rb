@@ -28,6 +28,7 @@ module RakutenHelper
   # 指定されたURLから「ページ数」を取得する
   # URLは楽天APIのitem_urlにのみ対応
   # パース速度が遅すぎてseeds.rbでは使えないが、一応残しておく。
+  # TODO Oga,もしくはOxをNokogiriの代わりに使う
   def getPageNumFromRakuten(url)
     doc = Nokogiri::HTML(open(url))
     doc.xpath('//li[@class="productInfo"]').each do |info|
