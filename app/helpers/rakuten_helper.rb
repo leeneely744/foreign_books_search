@@ -26,6 +26,7 @@ module RakutenHelper
   end
   
   # 指定されたURLから「ページ数」を取得する
+  # ページ数が見当たらなければ0を返す
   # URLは楽天APIのitem_urlにのみ対応
   # パース速度が遅すぎてseeds.rbでは使えないが、一応残しておく。
   # TODO Oga,もしくはOxをNokogiriの代わりに使う
@@ -36,6 +37,7 @@ module RakutenHelper
         return info.css('span[@class="categoryValue"]').text
       end
     end
+    return 0
   end
   
   # 楽天ブックス洋書検索APIに問い合わせる
