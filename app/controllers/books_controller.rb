@@ -5,8 +5,8 @@ class BooksController < ApplicationController
     end
     
     def show
-        @isbn = params[:id]
-        # @book = Book.find_by(isbn: @isbn)
+        @id = params[:id]
+        @book = Book.find(@id)
     end
     
     private
