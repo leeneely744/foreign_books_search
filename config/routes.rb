@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   get '/home',  to: 'static_pages#home'
   root 'books#search'
   
+  # rake routes コマンドでルート一覧を確認すると、
+  # '/books/:id'でbooks#showにアクセスできることがわかる
   resources :books
   
   if Rails.env.development?
