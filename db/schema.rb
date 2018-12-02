@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_24_092218) do
+ActiveRecord::Schema.define(version: 2018_12_02_043302) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 2018_11_24_092218) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.text "title_kana"
-    t.text "japanes_title"
+    t.text "japanese_title"
     t.string "author_kana"
   end
 
