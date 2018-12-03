@@ -2,51 +2,51 @@
 
 one:
   id: 1
-  title: MyText
-  author: MyString
-  publisher_name: MyString
+  title: First Title
+  author: First Author
+  publisher_name: First Publisher Name
   isbn: 1
-  item_caption: MyText
+  item_caption: This is the first book.
   seles_date: 2018-10-07
   sales_date_converted: 2018-10-07
-  item_url: MyString
-  affiliate_url: MyString
-  small_image_url: http://test_small_image.com
-  medium_image_url: http://test_medium_image.com
-  large_image_url: http://test_large_image.com
+  item_url: http://first_item_url.com
+  affiliate_url: http://first_affiliate_url.com
+  small_image_url: http://first_small_image.com
+  medium_image_url: http://first_medium_image.com
+  large_image_url: http://first_large_image.com
   review_count: 1
-  review_average: MyString
+  review_average: 1.1
   books_genre_id: 005407001
   vocabulary: 1
-  official_url: MyString
+  official_url: http://first_official_url.com
   page: 1
   tags: MyText
   other: MyText
-  title_kana: MyString
-  japanese_title: MyString
-  author_kana: MyString
+  title_kana: First Title Kana
+  japanese_title: First Japanese Title
+  author_kana: First Author Kana
 
 two:
   id: 2
-  title: MyText
-  title_kana: MyText
-  japanese_title: MyText
-  author: MyString
-  author_kana: MyString
-  publisher_name: MyString
-  isbn: 1
-  item_caption: MyText
+  title: Second Title
+  title_kana: Second Title Kana
+  japanese_title: Second Japanese Title
+  author: Second Author
+  author_kana: Second Author Kana
+  publisher_name: Second Publisher Name
+  isbn: 2
+  item_caption: This is the second book.
   seles_date: 2018-10-07
-  item_url: MyString
-  affiliate_url: MyString
-  small_image_url: http://test_small_image.com
-  medium_image_url: http://test_medium_image.com
-  large_image_url: http://test_large_image.com
-  review_count: 1
-  review_average: MyString
-  books_genre_id: MyString
-  vocabulary: 1
-  official_url: MyString
-  page: 1
+  item_url: http://second_item_url.com
+  affiliate_url: http://second_affiliate_url.com
+  small_image_url: http://second_small_image.com
+  medium_image_url: http://second_medium_image.com
+  large_image_url: http://second_large_image.com
+  review_count: 2
+  review_average: 2.2
+  books_genre_id: 005407002
+  vocabulary: 2
+  official_url: http://second_official_url.com
+  page: 2
   tags: MyText
   other: MyText
