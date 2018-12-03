@@ -1,0 +1,52 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  id: 1
+  title: MyText
+  author: MyString
+  publisher_name: MyString
+  isbn: 1
+  item_caption: MyText
+  seles_date: 2018-10-07
+  sales_date_converted: 2018-10-07
+  item_url: MyString
+  affiliate_url: MyString
+  small_image_url: http://test_small_image.com
+  medium_image_url: http://test_medium_image.com
+  large_image_url: http://test_large_image.com
+  review_count: 1
+  review_average: MyString
+  books_genre_id: 005407001
+  vocabulary: 1
+  official_url: MyString
+  page: 1
+  tags: MyText
+  other: MyText
+  title_kana: MyString
+  japanese_title: MyString
+  author_kana: MyString
+
+two:
+  id: 2
+  title: MyText
+  title_kana: MyText
+  japanese_title: MyText
+  author: MyString
+  author_kana: MyString
+  publisher_name: MyString
+  isbn: 1
+  item_caption: MyText
+  seles_date: 2018-10-07
+  item_url: MyString
+  affiliate_url: MyString
+  small_image_url: http://test_small_image.com
+  medium_image_url: http://test_medium_image.com
+  large_image_url: http://test_large_image.com
+  review_count: 1
+  review_average: MyString
+  books_genre_id: MyString
+  vocabulary: 1
+  official_url: MyString
+  page: 1
+  tags: MyText
+  other: MyText
