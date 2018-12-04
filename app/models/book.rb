@@ -1,3 +1,3 @@
 class Book < ApplicationRecord
-    validates :isbn,        presence: true
+  validates :isbn, presence: true
 end
