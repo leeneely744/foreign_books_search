@@ -1,6 +1,8 @@
 require "rails_helper"
 
 describe BooksController, type: :request do
+  fixtures :all
+  
   describe 'get #search' do
     it "exists seaech page" do
       get search_path
