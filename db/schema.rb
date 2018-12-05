@@ -57,7 +57,7 @@ ActiveRecord::Schema.define(version: 2018_12_05_134122) do
     t.integer "genre_level"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "genre_groups_id"
+    t.integer "genre_group_id"
   end
 
 end
