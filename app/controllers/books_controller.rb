@@ -1,7 +1,7 @@
 class BooksController < ApplicationController
     def search
         @q = Book.ransack(params[:q])
-        @genres = Genre.where(genre_level: "3")
+        @genreGroups = GenreGroup.all
         @books = @q.result(distinct: true)
     end
     

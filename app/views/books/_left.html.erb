@@ -14,8 +14,15 @@
     <%= f.label :page_lteq, "最大ページ数" %>
     <%= f.search_field :page_lteq %>
     
-    <%= f.label :books_genre_id_in, 'ジャンル' %>
-    <%= f.collection_check_boxes :books_genre_id_in, @genres, :books_genre_id, :books_genre_name %>
+    <%= f.label :books_genre_id, 'ジャンル' %>
+    <%= f.grouped_collection_select(
+    :books_genre_id,
+    @genreGroups,
+    :genres,
+    :books_genre_name,
+    :books_genre_id,
+    :books_genre_name
+    )%>
     
     <%= f.submit "検索", class: "btn btn-primary" %>
   <% end %>
