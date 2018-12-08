@@ -1,16 +1,10 @@
 <!DOCTYPE html>
-<ul class="books">
+<div class="book">
   <% @books.each do |book| %>
-  <%= link_to (book_path(book.id)), {:class => "one_book"} do %>
-    <li>
-    <%= image_tag book.medium_image_url %>
-    </li>
-    <li>
-    タイトル：<%= book.title %>
-    </li>
-    <li>
-    レビュー数：<%= book.review_count %>
-    </li>
+    <%= link_to (book_path(book.id)), {:class => "one-book"} do %>
+      <%= image_tag book.medium_image_url, :class => 'book-image' %>
+      <div class='title'>タイトル：<%= book.title %></div>
+      <div class='review-num'>レビュー数：<%= book.review_count %></div>
+    <% end %>
   <% end %>
-  <% end %>
-</ul>
+</div>
