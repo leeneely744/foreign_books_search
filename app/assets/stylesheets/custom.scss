@@ -1,7 +1,7 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-@media only screen and (min-width: 767px) {
+@media (width > 767px) {
   .main-contents {
     display: grid; /* グリッドレイアウト */
     // grid-template-rows: 100px 50px; 今回は行は指定しない
