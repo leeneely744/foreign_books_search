@@ -1,20 +1,22 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-.main-contents {
-  display: grid; /* グリッドレイアウト */
-  // grid-template-rows: 100px 50px; 今回は行は指定しない
-  grid-template-columns: 300px 1fr;
-}
-
-.search-forms-panel {
-  grid-column: 1 / 2;
-  // background: #8f8;
-}
-
-.results-panel {
-  grid-column: 2 / 3;
-  // background: #88f;
+@media only screen and (min-width: 767px) {
+  .main-contents {
+    display: grid; /* グリッドレイアウト */
+    // grid-template-rows: 100px 50px; 今回は行は指定しない
+    grid-template-columns: 300px 1fr;
+  }
+  
+  .search-forms-panel {
+    grid-column: 1 / 2;
+    // background: #8f8;
+  }
+  
+  .results-panel {
+    grid-column: 2 / 3;
+    // background: #88f;
+  }
 }
 
 /* mixins, variables, etc. */
