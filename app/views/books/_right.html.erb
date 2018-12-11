@@ -3,7 +3,7 @@
   <% @books.each do |book| %>
   <li class: "book">
     <%= link_to(
-      image_tag(book.medium_image_url),
+      image_tag(book.large_image_url),
       book_path(book.id),
       :class => 'book-image'
     )%>
