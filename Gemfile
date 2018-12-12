@@ -86,3 +86,5 @@ gem 'dotenv-rails'
 gem 'nokogiri'
 gem 'ox'
 gem 'oga'
+
+gem 'will_paginate', '~> 3.1.0'

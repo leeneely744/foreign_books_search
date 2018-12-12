@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<%= will_paginate @book %>
 <ul class="books">
   <% @books.each do |book| %>
   <li class: "book">
@@ -12,3 +13,4 @@
   </li>
   <% end %>
 </ul>
+<%= will_paginate @book %>
