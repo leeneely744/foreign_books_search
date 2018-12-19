@@ -29,6 +29,10 @@ li {
   text-overflow: ellipsis;
 }
 
+.pagination {
+  display: contents;
+}
+
 /* mixins, variables, etc. */
 
 $gray-medium-light: #eaeaea;
