@@ -88,3 +88,7 @@ gem 'ox'
 gem 'oga'
 
 gem 'will_paginate', '~> 3.1.0'
+
+gem 'select2-rails'
+gem 'jquery-turbolinks'
+gem 'jquery-rails'
