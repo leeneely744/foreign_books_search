@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<%= will_paginate @book %>
+<%= will_paginate @book, renderer: BootstrapPagination::Rails %>
 <ul class="books">
   <% @books.each do |book| %>
   <li class: "book">
@@ -13,4 +13,4 @@
   </li>
   <% end %>
 </ul>
-<%= will_paginate @book %>
+<%= will_paginate @book, renderer: BootstrapPagination::Rails %>
