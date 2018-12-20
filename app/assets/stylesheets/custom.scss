@@ -30,8 +30,34 @@ li {
 }
 
 .pagination {
-  display: contents;
+  display: inline;
 }
+
+///////////////////////////////
+// start grid for pagination
+///////////////////////////////
+
+.results-panel {
+  display: grid;
+  grid-template-rows: 5% auto 5%;
+}
+
+.top {
+  grid-row: 1 / 2;
+  // background: red;
+}
+.books {
+  grid-row: 2 / 3;
+  // background: blue;
+}
+.under {
+  grid-row: 3 / 4;
+  // background: green;
+}
+
+///////////////////////////////
+// end grid for pagination
+///////////////////////////////
 
 /* mixins, variables, etc. */
 
