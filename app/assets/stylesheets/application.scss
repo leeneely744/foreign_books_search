@@ -1,5 +1,8 @@
 @import 'bootstrap';
 
+//*= require select2
+//*= require select2-bootstrap
+
 @import "united.scss";
 
 @import "custom.scss";
@@ -7,6 +10,3 @@
 @import "static_pages.scss";
 
 @import "books.scss";
-
-//*= require select2
-//*= require select2-bootstrap
