@@ -104,6 +104,32 @@ textarea {
 
 /* forms */
 
+///////////////////////////////
+// start grid for min-max form
+///////////////////////////////
+
+.range-namber {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-template-rows: auto auto;
+  grid-template-areas:
+    "left-label   right-label"
+    "left-form right-form";
+}
+
+.left-label { grid-area: left-label; }
+.left-form { grid-area: left-form; }
+
+.right-label{ grid-area: right-label; }
+.right-form {
+  grid-area: right-form;
+  margin-left: 5%;
+}
+
+///////////////////////////////
+// end grid for min-max form
+///////////////////////////////
+
 input, textarea, select, .uneditable-input, .select2-container--bootstrap {
   border: 1px solid #bbb;
   width: 100%;

@@ -5,16 +5,18 @@
   <%= search_form_for @q, url: search_path do |f| %>
     <%# attrの後ろに'_cont'をつけると部分一致になる %>
     <%# https://github.com/activerecord-hackery/ransack#search-matchers %>
-    <%= f.label :title_cont, "タイトル" %>
-    <%= f.search_field :title_cont %>
+    <%= f.label :title_cont, "タイトル", id: 'title-label' %>
+    <%= f.search_field :title_cont, id: 'title-form' %>
     
-    <%= f.label :page_gteq, "最小ページ数" %>
-    <%= f.search_field :page_gteq, type: "number" %>
-    
-    <%= f.label :page_lteq, "最大ページ数" %>
-    <%= f.search_field :page_lteq, type: "number" %>
-    
-    <%= f.label :books_genre_id, 'ジャンル' %>
+    <div class="range-namber">
+      <%= f.label :page_gteq, "最小ページ数", class: 'left-label' %>
+      <%= f.search_field :page_gteq, type: "number", class: "left-form" %>
+      
+      <%= f.label :page_lteq, "最大ページ数", class: 'right-label' %>
+      <%= f.search_field :page_lteq, type: "number", class: "right-form" %>
+    </div>
+
+    <%= f.label :books_genre_id, 'ジャンル', id: 'genre-label' %>
     <%= f.grouped_collection_select(
     :books_genre_id_in,
     @genreGroups,
@@ -23,10 +25,10 @@
     :books_genre_id,
     :books_genre_name,
     {},
-    {:multiple => true, :class => "grouped-multi-select-box"}
+    {:multiple => true, :class => "grouped-multi-select-box", id: 'genre-form'}
     )%>
     
-    <%= f.submit "検索", class: "btn btn-primary" %>
+    <%= f.submit "検索", class: "btn btn-primary", id: 'submit-button' %>
   <% end %>
   
   <%= button_to(
