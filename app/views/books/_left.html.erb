@@ -9,10 +9,10 @@
     <%= f.search_field :title_cont %>
     
     <%= f.label :page_gteq, "最小ページ数" %>
-    <%= f.search_field :page_gteq %>
+    <%= f.search_field :page_gteq, type: "number" %>
     
     <%= f.label :page_lteq, "最大ページ数" %>
-    <%= f.search_field :page_lteq %>
+    <%= f.search_field :page_lteq, type: "number" %>
     
     <%= f.label :books_genre_id, 'ジャンル' %>
     <%= f.grouped_collection_select(
