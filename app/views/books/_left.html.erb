@@ -5,8 +5,8 @@
   <%= search_form_for @q, url: search_path do |f| %>
     <%# attrの後ろに'_cont'をつけると部分一致になる %>
     <%# https://github.com/activerecord-hackery/ransack#search-matchers %>
-    <%= f.label :title_cont, "タイトル", id: 'title-label' %>
-    <%= f.search_field :title_cont, id: 'title-form' %>
+    <%= f.label :title_cont, "タイトル" %>
+    <%= f.search_field :title_cont %>
     
     <div class="range-namber">
       <%= f.label :page_gteq, "最小ページ数", class: 'left-label' %>
@@ -25,16 +25,16 @@
     :books_genre_id,
     :books_genre_name,
     {},
-    {:multiple => true, :class => "grouped-multi-select-box", id: 'genre-form'}
+    {multiple: true, class: "grouped-multi-select-box"}
     )%>
     
-    <%= f.submit "検索", class: "btn btn-primary", id: 'submit-button' %>
+    <%= f.submit "検索", class: "btn btn-primary" %>
   <% end %>
   
   <%= button_to(
   "ランダム検索",
-  {:action => "show", :id => @randomId},
-  :method => :get,
-  :class => "btn btn-secondary"
+  {action: "show", id: @randomId},
+  method: :get,
+  class: "btn btn-secondary"
   )%>
 </div>
