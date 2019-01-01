@@ -28,7 +28,8 @@
     {multiple: true, class: "grouped-multi-select-box"}
     )%>
     
-    <table>
+    <label for='sort-link-table' id='label-sort-link-table'>並べ替え</label>
+    <table id='sort-link-table'>
       <tr>
         <th><%= sort_link @q, :page, 'ページ数' %></th>
         <th><%= sort_link @q, :vocabulary, '語彙数' %></th>
