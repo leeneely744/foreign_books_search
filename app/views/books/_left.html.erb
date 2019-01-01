@@ -28,15 +28,13 @@
     {multiple: true, class: "grouped-multi-select-box"}
     )%>
     
-    <label for='sort-link-table' id='label-sort-link-table'>並べ替え</label>
-    <table id='sort-link-table'>
-      <tr>
-        <th><%= sort_link @q, :page, 'ページ数' %></th>
-        <th><%= sort_link @q, :vocabulary, '語彙数' %></th>
-        <th><%= sort_link @q, :review_average, 'レビュー' %></th>
-        <th><%= sort_link @q, :review_count, 'レビュー数' %></th>
-      </tr>
-    </table>
+    <label for='sort-links' id='label-sort-links'>並べ替え</label>
+    <div id='sort-links'>
+      <%= sort_link @q, :page, 'ページ数' %>
+      <%= sort_link @q, :vocabulary, '語彙数' %>
+      <%= sort_link @q, :review_average, 'レビュー' %>
+      <%= sort_link @q, :review_count, 'レビュー数' %>
+    </div>
     
     <%= f.submit "検索", class: "btn btn-primary" %>
   <% end %>

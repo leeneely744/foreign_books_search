@@ -140,11 +140,15 @@ input {
   height: auto !important;
 }
 
-.btn, #label-sort-link-table {
+.btn, label[for=sort-links] {
   margin-top: 15px;
 }
 
 .col-md-6 {
   max-width: 80%;
   margin: 0 auto;
+}
+
+.sort_link {
+  margin-right: 5px;
 }
