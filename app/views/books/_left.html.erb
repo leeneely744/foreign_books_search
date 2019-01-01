@@ -28,6 +28,15 @@
     {multiple: true, class: "grouped-multi-select-box"}
     )%>
     
+    <table>
+      <tr>
+        <th><%= sort_link @q, :page, 'ページ数' %></th>
+        <th><%= sort_link @q, :vocabulary, '語彙数' %></th>
+        <th><%= sort_link @q, :review_average, 'レビュー' %></th>
+        <th><%= sort_link @q, :review_count, 'レビュー数' %></th>
+      </tr>
+    </table>
+    
     <%= f.submit "検索", class: "btn btn-primary" %>
   <% end %>
   
