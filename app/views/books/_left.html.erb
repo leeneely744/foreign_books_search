@@ -30,10 +30,10 @@
     
     <label for='sort-links' id='label-sort-links'>並べ替え</label>
     <div id='sort-links'>
-      <%= sort_link @q, :page, 'ページ数' %>
-      <%= sort_link @q, :vocabulary, '語彙数' %>
-      <%= sort_link @q, :review_average, 'レビュー' %>
-      <%= sort_link @q, :review_count, 'レビュー数' %>
+      <%= sort_link @q, :page, 'ページ数', hide_indicator: true %>
+      <%= sort_link @q, :vocabulary, '語彙数', hide_indicator: true %>
+      <%= sort_link @q, :review_average, 'レビュー', hide_indicator: true %>
+      <%= sort_link @q, :review_count, 'レビュー数', hide_indicator: true %>
     </div>
     
     <%= f.submit "検索", class: "btn btn-primary" %>
