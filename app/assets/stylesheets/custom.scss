@@ -152,3 +152,9 @@ input {
 .sort_link {
   margin-right: 5px;
 }
+
+// if device is smart phone, display of sort_link is 'inline'.
+a.sort_link {display: inline;}
+@media (width > 767px) {
+  a.sort_link {display: block;}
+}
