@@ -22,7 +22,6 @@ ActiveRecord::Schema.define(version: 2018_12_07_032332) do
     t.string "isbn"
     t.text "item_caption"
     t.date "seles_date"
-    t.date "sales_date_converted"
     t.string "item_url"
     t.string "affiliate_url"
     t.string "small_image_url", default: "no_image_small.png"
