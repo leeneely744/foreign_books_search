@@ -1,4 +1,26 @@
+.navbar { height: 60;}
+.navbar-collapse { margin-left: 15px;}
+.container {display: inherit;}
+
+#logo {
+  float: left;
+  margin-right: 10px;
+  font-size: 1.7em;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  padding-top: 9px;
+  font-weight: bold;
+  // CSSではelseが使えないので、下のメディアクエリ内で必要に応じて書き換える
+  visibility: collapse;
+  &:hover {
+    color: white;
+    text-decoration: none;
+  }
+}
+
 @media (width > 767px) {
+  #logo { visibility: visible;}
   .main-contents {
     display: grid; /* グリッドレイアウト */
     // grid-template-rows: 100px 50px; 今回は行は指定しない
@@ -84,25 +106,6 @@ textarea {
     margin-bottom: 10px;
   }
 }
-
-/* header */
-
-#logo {
-  float: left;
-  margin-right: 10px;
-  font-size: 1.7em;
-  color: white;
-  text-transform: uppercase;
-  letter-spacing: -1px;
-  padding-top: 9px;
-  font-weight: bold;
-  &:hover {
-    color: white;
-    text-decoration: none;
-  }
-}
-
-/* forms */
 
 ///////////////////////////////
 // start grid for min-max form
