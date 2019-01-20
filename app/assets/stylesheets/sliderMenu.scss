@@ -1,5 +1,4 @@
 #panel-btn{
-  // display: inline-block;
   position: relative;
   width: 40px;
   height: 40px;
@@ -10,6 +9,11 @@
 // マウスを載せたとき、若干グレーにする
 #panel-btn:hover{
   background: #fafafa;
+}
+
+// スマホ版の画面でしか見えないようにする
+@media (width > 767px) {
+  #panel-btn {visibility: collapse;}
 }
 
 // 真ん中の線
