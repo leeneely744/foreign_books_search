@@ -1,0 +1,65 @@
+#panel-btn{
+  // display: inline-block;
+  position: relative;
+  width: 40px;
+  height: 40px;
+  margin: 20px 0 10px;
+  border-radius: 5px;
+  float: right;
+}
+// マウスを載せたとき、若干グレーにする
+#panel-btn:hover{
+  background: #fafafa;
+}
+
+// 真ん中の線
+#panel-btn-icon{
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 14px;
+  height: 2px;
+  margin: -1px 0 0 -7px;
+  background: #ffffff;
+  transition: .2s;
+}
+
+// 上と下の線
+#panel-btn-icon:before, #panel-btn-icon:after{
+  display: block;
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 14px;
+  height: 2px;
+  background: #ffffff;
+  transition: .3s;
+}
+#panel-btn-icon:before{ // 上の線
+  margin-top: -6px;
+}
+#panel-btn-icon:after{ // 下の線
+  margin-top: 4px;
+}
+
+///////////////////////////////
+// 以下、メニューを開いたとき
+///////////////////////////////
+
+// jQuery で .close を追加する
+#panel-btn .close{
+  background: transparent;
+}
+#panel-btn .close:before, #panel-btn .close:after{
+  margin-top: 0;
+}
+#panel-btn .close:before{
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+}
+#panel-btn .close:after{
+  transform: rotate(-135deg);
+  -webkit-transform: rotate(-135deg);
+}
