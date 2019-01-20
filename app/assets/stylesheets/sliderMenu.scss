@@ -52,18 +52,18 @@
 // 以下、メニューを開いたとき
 ///////////////////////////////
 
-// jQuery で .close を追加する
-#panel-btn .close{
+// jQuery で .open を追加する
+#panel-btn .open{
   background: transparent;
 }
-#panel-btn .close:before, #panel-btn .close:after{
+#panel-btn .open:before, #panel-btn .open:after{
   margin-top: 0;
 }
-#panel-btn .close:before{
+#panel-btn .open:before{
   transform: rotate(-45deg);
   -webkit-transform: rotate(-45deg);
 }
-#panel-btn .close:after{
+#panel-btn .open:after{
   transform: rotate(-135deg);
   -webkit-transform: rotate(-135deg);
 }
