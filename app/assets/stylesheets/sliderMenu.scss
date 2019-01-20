@@ -16,6 +16,10 @@
   #panel-btn {visibility: collapse;}
 }
 
+///////////////////////////////
+// 「三」マークの作成
+///////////////////////////////
+
 // 真ん中の線
 #panel-btn-icon{
   display: block;
@@ -66,4 +70,13 @@
 #panel-btn .open:after{
   transform: rotate(-135deg);
   -webkit-transform: rotate(-135deg);
+}
+
+///////////////////////////////
+// メニューの開閉
+///////////////////////////////
+
+form#book_search {display: none;}
+form#book_search.open {
+  display: inline-grid;
 }
