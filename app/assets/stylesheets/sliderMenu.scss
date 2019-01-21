@@ -76,7 +76,16 @@
 // メニューの開閉
 ///////////////////////////////
 
-form#book_search {display: none;}
-form#book_search.open {
-  display: inline-grid;
+// 分けて書かないと機能しない
+div.search-forms-panel {
+  position: relative;
+  bottom: 100%;
+  opacity: 0;
+  transition: all 0.5s 0s ease;
+}
+div.search-forms-panel.open {
+  position: relative;
+  bottom: 0%;
+  opacity: 1;
+  transition: all 0.5s 0s ease-in;
 }
