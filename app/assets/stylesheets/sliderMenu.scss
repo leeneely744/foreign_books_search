@@ -76,16 +76,18 @@
 // メニューの開閉
 ///////////////////////////////
 
-// 分けて書かないと機能しない
-div.search-forms-panel {
-  position: relative;
-  bottom: 100%;
-  opacity: 0;
-  transition: all 0.5s 0s ease;
-}
-div.search-forms-panel.open {
-  position: relative;
-  bottom: 0%;
-  opacity: 1;
-  transition: all 0.5s 0s ease-in;
+@media (width <= 767px) {
+  // 分けて書かないと機能しない
+  div.search-forms-panel {
+    position: relative;
+    bottom: 100%;
+    opacity: 0;
+    transition: all 0.5s 0s ease;
+  }
+  div.search-forms-panel.open {
+    position: relative;
+    bottom: 0%;
+    opacity: 1;
+    transition: all 0.5s 0s ease-in;
+  }
 }
