@@ -19,6 +19,10 @@
   }
 }
 
+.results-panel {
+  position: absolute;
+  top: 10%;
+}
 @media (width > 767px) {
   #logo { visibility: visible;}
   .main-contents {
@@ -33,6 +37,7 @@
   }
   
   .results-panel {
+    position: static; // スマホ版の画面でabsolute にしてたのを戻す
     grid-column: 2 / 3;
     // background: #88f;
   }
