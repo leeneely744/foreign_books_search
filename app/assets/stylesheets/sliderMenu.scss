@@ -1,0 +1,93 @@
+#panel-btn{
+  position: relative;
+  width: 40px;
+  height: 40px;
+  margin: 20px 0 10px;
+  border-radius: 5px;
+  float: right;
+}
+// マウスを載せたとき、若干グレーにする
+#panel-btn:hover{
+  background: #fafafa;
+}
+
+// スマホ版の画面でしか見えないようにする
+@media (width > 767px) {
+  #panel-btn {visibility: collapse;}
+}
+
+///////////////////////////////
+// 「三」マークの作成
+///////////////////////////////
+
+// 真ん中の線
+#panel-btn-icon{
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 14px;
+  height: 2px;
+  margin: -1px 0 0 -7px;
+  background: #ffffff;
+  transition: .2s;
+}
+
+// 上と下の線
+#panel-btn-icon:before, #panel-btn-icon:after{
+  display: block;
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 14px;
+  height: 2px;
+  background: #ffffff;
+  transition: .3s;
+}
+#panel-btn-icon:before{ // 上の線
+  margin-top: -6px;
+}
+#panel-btn-icon:after{ // 下の線
+  margin-top: 4px;
+}
+
+///////////////////////////////
+// 以下、メニューを開いたとき
+///////////////////////////////
+
+// jQuery で .open を追加する
+#panel-btn .open{
+  background: transparent;
+}
+#panel-btn .open:before, #panel-btn .open:after{
+  margin-top: 0;
+}
+#panel-btn .open:before{
+  transform: rotate(-45deg);
+  -webkit-transform: rotate(-45deg);
+}
+#panel-btn .open:after{
+  transform: rotate(-135deg);
+  -webkit-transform: rotate(-135deg);
+}
+
+///////////////////////////////
+// メニューの開閉
+///////////////////////////////
+
+@media (width <= 767px) {
+  // 分けて書かないと機能しない
+  div.search-forms-panel {
+    position: relative;
+    bottom: 100%;
+    opacity: 0;
+    transition: all 0.5s 0s ease;
+  }
+  div.search-forms-panel.open {
+    position: relative;
+    bottom: 0%;
+    opacity: 1;
+    transition: all 0.5s 0s ease-in;
+  }
+}
