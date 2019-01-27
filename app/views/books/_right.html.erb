@@ -2,15 +2,13 @@
 <%= will_paginate @book, class: 'top', renderer: BootstrapPagination::Rails %>
 <ul class="books">
   <% @books.each do |book| %>
+  <%= link_to book_path(book.id) do %>
   <li class="book">
-    <%= link_to(
-      image_tag(book.large_image_url),
-      book_path(book.id),
-      class: 'book-image'
-    )%>
+    <%= image_tag book.large_image_url, class: 'book-image' %>
     <div class='title-name'><%= book.title %></div>
     <div class='review-num'>レビュー数：<%= book.review_count %></div>
   </li>
+  <% end %>
   <% end %>
 </ul>
 <%= will_paginate @book, class: 'under', renderer: BootstrapPagination::Rails %>
