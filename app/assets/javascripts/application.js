@@ -14,7 +14,6 @@
 //= require jquery_ujs
 //= require jquery.turbolinks
 //= require activestorage
-//= require turbolinks
 //= require_tree .
 //= require select2
 //= require_self
