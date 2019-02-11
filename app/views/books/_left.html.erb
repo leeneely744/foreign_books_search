@@ -18,14 +18,14 @@
 
     <%= f.label :books_genre_id, 'ジャンル', id: 'genre-label' %>
     <%= f.grouped_collection_select(
-    :books_genre_id,
-    @genreGroups,
-    :genres,
-    :books_genre_name,
-    :books_genre_id,
-    :books_genre_name,
-    {:prompt => "指定しない"},
-    {class: "grouped-select-box"}
+      :books_genre_id_eq,
+      @genreGroups,
+      :genres,
+      :books_genre_name,
+      :books_genre_id,
+      :books_genre_name,
+      {:prompt => "指定しない"},
+      {class: "grouped-select-box"}
     )%>
     
     <label for='sort-links' id='label-sort-links'>並べ替え</label>
