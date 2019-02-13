@@ -3,11 +3,6 @@
 
 (function($){
     $(document).on('turbolinks:load', function() {
-        // apply select2 to genre multi-select-box
-       $(".grouped-multi-select-box").select2({
-           theme: "bootstrap"
-       });
-
         /* 
         to sort-links.
         if involve 'asc' class, add ' の低い順' to text
