@@ -27,7 +27,12 @@ class BooksController < ApplicationController
     private
         def read_param
             if params[:q]
-                return params[:q]
+                return params.require(:q).permit(
+                    :title_cont,
+                    :page_gteq,
+                    :page_lteq,
+                    :books_genre_id_eq
+                )
             elsif @@queryParam.class == ActionController::Parameters
                 return @@queryParam
             else
