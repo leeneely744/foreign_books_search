@@ -28,6 +28,7 @@ class BooksController < ApplicationController
         def read_param
             if params[:q]
                 return params.require(:q).permit(
+                    :s, # sort_link のパラメータ
                     :title_cont,
                     :page_gteq,
                     :page_lteq,
