@@ -44,6 +44,9 @@ group :development, :test do
   gem 'capybara', '>= 2.15'
   gem 'selenium-webdriver'
   gem 'spring-commands-rspec'
+  gem 'guard-rspec', require: false
+  gem 'terminal-notifier'
+  gem 'terminal-notifier-guard'
 end
 
 group :development do
