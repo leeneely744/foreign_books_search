@@ -70,7 +70,7 @@ gem 'activerecord-import'
 gem 'graphql'
 gem 'graphiql-rails', group: :development
 
-gem 'bootstrap-sass', '3.3.7'
+gem 'bootstrap-sass', '~> 3.4.1'
 
 # assert_templateがrails5では非推奨
 gem 'rails-controller-testing'
