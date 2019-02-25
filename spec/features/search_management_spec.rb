@@ -1,9 +1,9 @@
 require "rails_helper"
 
-RSpec.feature "Search management", type: :feature do
+feature "Search management" do
   fixtures :all
   
-  before do
+  background do
     @firstBook = books(:one)
   end
 
@@ -13,7 +13,7 @@ RSpec.feature "Search management", type: :feature do
     expect(current_path).to match("/books/")
   end
 
-  scenario "Return to home" do
+  scenario "Return to search page from show page" do
     visit book_path(@firstBook.id)
     click_link '検索画面へ戻る'
     expect(page).to have_title '検索'
