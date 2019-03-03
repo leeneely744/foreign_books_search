@@ -1,0 +1,9 @@
+firstGenre:
+  books_genre_id: 005407001
+  books_genre_name: first genre
+  genre_group: firstGroup
+
+secondGenre:
+  books_genre_id: 005407002
+  books_genre_name: second genre
+  genre_group: secondGroup
