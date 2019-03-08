@@ -1,6 +1,6 @@
 require "rails_helper"
 
-feature "Search management" do
+feature "search function" do
   fixtures :all
   
   background do
