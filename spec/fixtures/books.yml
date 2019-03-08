@@ -19,7 +19,7 @@ one:
   books_genre_id: 005407001
   vocabulary: 1
   official_url: http://first_official_url.com
-  page: 1
+  page: 10
   tags: MyText
   other: MyText
   title_kana: First Title Kana
@@ -47,6 +47,31 @@ two:
   books_genre_id: 005407002
   vocabulary: 2
   official_url: http://second_official_url.com
-  page: 2
+  page: 20
+  tags: MyText
+  other: MyText
+
+two:
+  id: 3
+  title: Third Title
+  title_kana: Third Title Kana
+  japanese_title: Third Japanese Title
+  author: Third Author
+  author_kana: Third Author Kana
+  publisher_name: Third Publisher Name
+  isbn: 3
+  item_caption: This is the third book.
+  seles_date: 2018-10-07
+  item_url: http://third_item_url.com
+  affiliate_url: http://third_affiliate_url.com
+  small_image_url: http://third_small_image.com
+  medium_image_url: http://third_medium_image.com
+  large_image_url: http://third_large_image.com
+  review_count: 3
+  review_average: 3.3
+  books_genre_id: 005407002
+  vocabulary: 30
+  official_url: http://third_official_url.com
+  page: 9
   tags: MyText
   other: MyText
