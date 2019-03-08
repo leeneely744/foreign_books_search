@@ -5,23 +5,16 @@ feature "search function" do
   
   background do
     @firstBook = books(:one)
+    visit search_path
   end
 
   it "move to a book show page when click a random button" do
-    visit search_path
     click_button "ランダム検索"
     expect(current_path).to match("/books/")
   end
 
-  it "move to search page when click a return button" do
-    visit book_path(@firstBook.id)
-    click_link '検索画面へ戻る'
-    expect(page).to have_title '検索'
-  end
-
   feature 'page num form test' do
     before do
-      visit search_path
       fill_in '最小ページ数', with: 10
       fill_in '最大ページ数', with: 19
       click_button '検索'
@@ -42,7 +35,6 @@ feature "search function" do
 
   feature 'genre form test' do
     before do
-      visit search_path
       select 'first genre', from: 'q[books_genre_id_eq]'
       click_button '検索'
     end
@@ -58,7 +50,6 @@ feature "search function" do
 
   feature 'title form test' do
     before do
-      visit search_path
       fill_in 'タイトル', with: 'First'
     end
 
