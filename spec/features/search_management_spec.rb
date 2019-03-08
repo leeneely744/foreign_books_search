@@ -7,13 +7,13 @@ feature "Search management" do
     @firstBook = books(:one)
   end
 
-  scenario "Click a random button" do
+  it "move to a book show page when click a random button" do
     visit search_path
     click_button "ランダム検索"
     expect(current_path).to match("/books/")
   end
 
-  scenario "Return to search page from show page" do
+  it "move to search page when click a return button" do
     visit book_path(@firstBook.id)
     click_link '検索画面へ戻る'
     expect(page).to have_title '検索'
