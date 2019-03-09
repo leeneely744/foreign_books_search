@@ -25,15 +25,20 @@ class BooksController < ApplicationController
     end
     
     private
+        def strong_parameter(params_q)
+            params_q.require(:q).permit(
+                :s, # sort_link のパラメータ
+                :title_cont,
+                :page_gteq,
+                :page_lteq,
+                :books_genre_id_eq
+            )
+        end
+
         def read_param
             if params[:q]
-                return params.require(:q).permit(
-                    :s, # sort_link のパラメータ
-                    :title_cont,
-                    :page_gteq,
-                    :page_lteq,
-                    :books_genre_id_eq
-                )
+                test = strong_parameter(params)
+                return test
             elsif @@queryParam.class == ActionController::Parameters
                 return @@queryParam
             else
