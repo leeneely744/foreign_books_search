@@ -1,0 +1,9 @@
+firstGroup:
+  books_genre_id: 1
+  books_genre_name: first group
+  genre_level: 1
+
+secondGroup:
+  books_genre_id: 2
+  books_genre_name: second group
+  genre_level: 1
