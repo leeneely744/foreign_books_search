@@ -12,6 +12,17 @@ feature "search form test" do
     select 'first genre', from: 'q[books_genre_id_eq]'
   end
 
+  feature 'genre form' do
+    it 'exists "no select" selection' do
+      expect(page).to have_select('q[books_genre_id_eq]', 
+        options: [
+          "指定しない",
+          "first genre",
+          "second genre"
+        ])
+    end
+  end
+
   feature 'memory search condition' do
     it 'should be filled in previous search condition' do
       click_button '検索'
