@@ -41,7 +41,7 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'bullet'
   gem 'rspec-rails', '~> 3.8'
-  gem 'capybara', '>= 2.15'
+  gem 'capybara', '>= 3.14.0'
   gem 'selenium-webdriver'
   gem 'spring-commands-rspec'
   gem 'guard-rspec', require: false
@@ -93,3 +93,5 @@ gem 'will_paginate-bootstrap', '~> 1.0.1'
 gem 'select2-rails'
 gem 'jquery-turbolinks'
 gem 'jquery-rails'
+
+gem "actionview", ">= 5.2.2.1"
