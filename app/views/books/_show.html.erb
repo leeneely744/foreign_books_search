@@ -1,4 +1,25 @@
-<%= image_tag @book.large_image_url %>
-<%= link_to @book.title, @book.item_url %>
-<%= @book.item_caption %>
-<%= link_to '検索画面へ戻る', search_path %>
+<%= stylesheet_link_tag 'show' %>
+
+<div class='show-page-outer'>
+  <div class='show-page-left'>
+    <%= image_tag @book.large_image_url, class: 'book-image' %>
+    <%= link_to '検索画面へ戻る', search_path, class: 'return-button' %>
+  </div>
+
+  <div class='show-page-right'>
+    <h1 id='book-title'>
+    タイトル: <%= @book.title %>
+    </h1>
+    <h3 id='book-title-kana'>
+    日本語タイトル: <%= @book.title_kana %>
+    </h3>
+
+    <h3 id='book-author'>
+    著者名: <%= @book.author %> ( <%= @book.author_kana %> )
+    </h3>
+
+    <div id='book-item-caption'>
+    <%= @book.item_caption %>
+    </div>
+  </div>
+</div>

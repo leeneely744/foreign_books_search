@@ -1,0 +1,26 @@
+.show-page-outer {
+  margin-top: 5%;
+  margin-left: 20px;
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: 300px 1fr;
+}
+
+.show-page-left {
+  grid-column: 1 / 2;
+}
+
+.show-page-right {
+  grid-column: 2 / 3;
+}
+
+.book-image {
+  display: block;
+  margin: auto;
+}
+
+.return-button {
+  margin-top: 20px;
+  display: block;
+  text-align: center;
+}
