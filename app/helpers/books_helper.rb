@@ -14,7 +14,7 @@ module BooksHelper
     if jaAuthor.nil?
       return "著者名: " + enAuthor
     end
-    return "著者名: " + enAuthor + " ( " + jaAuthor + " )"
+    return "著者名: " + enAuthor + " ( 日本名: " + jaAuthor + " )"
   end
 
   def getJaTitle(jaTitle)
