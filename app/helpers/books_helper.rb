@@ -16,4 +16,11 @@ module BooksHelper
     end
     return "著者名: " + enAuthor + " ( " + jaAuthor + " )"
   end
+
+  def getJaTitle(jaTitle)
+    if jaTitle == ''
+      return ''
+    end
+    return "日本語タイトル: " + jaTitle
+  end
 end

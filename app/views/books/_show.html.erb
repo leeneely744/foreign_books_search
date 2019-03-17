@@ -11,7 +11,7 @@
     タイトル: <%= @book.title %>
     </h1>
     <h3 id='book-title-kana'>
-    日本語タイトル: <%= @book.title_kana %>
+    <%= getJaTitle @book.title_kana %>
     </h3>
 
     <h3 id='book-author'>
