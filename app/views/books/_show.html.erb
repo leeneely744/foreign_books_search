@@ -15,7 +15,7 @@
     </h3>
 
     <h3 id='book-author'>
-    著者名: <%= @book.author %> ( <%= @book.author_kana %> )
+    <%= createAuthorString @book.author, @book.author_kana %>
     </h3>
 
     <div id='book-item-caption'>

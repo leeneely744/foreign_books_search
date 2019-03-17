@@ -9,4 +9,11 @@ module BooksHelper
     end
     return newBook
   end
+
+  def createAuthorString(enAuthor, jaAuthor=nil)
+    if jaAuthor.nil?
+      return "著者名: " + enAuthor
+    end
+    return "著者名: " + enAuthor + " ( " + jaAuthor + " )"
+  end
 end
