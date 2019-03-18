@@ -30,4 +30,11 @@ module BooksHelper
     end
     return "ジャンル: " + genre + " / " + group
   end
+
+  def getPageNum(pageNum)
+    if pageNum.nil?
+      return "ページ数: 不明"
+    end
+    return "ページ数: " + pageNum.to_s + "p"
+  end
 end
