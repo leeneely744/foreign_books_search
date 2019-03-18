@@ -23,4 +23,11 @@ module BooksHelper
     end
     return "日本語タイトル: " + jaTitle
   end
+
+  def getGenre(genre, group)
+    if genre.nil? || group.nil?
+      return "ジャンル不明"
+    end
+    return "ジャンル: " + genre + " / " + group
+  end
 end

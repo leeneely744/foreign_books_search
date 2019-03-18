@@ -22,6 +22,11 @@ class BooksController < ApplicationController
   def show
     @id = params[:id]
     @book = Book.find(@id)
+
+    genreId = @book.books_genre_id.to_s
+    groupId = genreId[0..5]
+    @genreName = Genre.find_by(books_genre_id: genreId).books_genre_name
+    @groupName = GenreGroup.find_by(books_genre_id: groupId).books_genre_name
   end
   
   private
