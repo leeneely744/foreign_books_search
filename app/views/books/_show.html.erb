@@ -22,6 +22,9 @@
     <%= @book.item_caption %>
     </div>
 
+    <div id='update-date'>
+      <%= getUpdatedAt @book.created_at, @book.updated_at %>
+    </div>
     <ul>
       <li><%= getGenre @genreName, @groupName %></li>
       <li><%= getPageNum @book.page %></li>

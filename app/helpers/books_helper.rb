@@ -51,4 +51,11 @@ module BooksHelper
     end
     return "レビュー数: " + reviewNum.to_s
   end
+
+  def getUpdatedAt(createdAt, updatedAt)
+    if updatedAt.nil?
+      return '書籍情報更新日: ' + createdAt.to_s
+    end
+    return '書籍情報更新日: ' + updatedAt.to_s
+  end
 end
