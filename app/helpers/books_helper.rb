@@ -37,4 +37,11 @@ module BooksHelper
     end
     return "ページ数: " + pageNum.to_s + "p"
   end
+
+  def getReviewAve(reviewAve)
+    if reviewAve.nil?
+      return "レビュー平均: 不明"
+    end
+    return "レビュー平均: " + reviewAve
+  end
 end
