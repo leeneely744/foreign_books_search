@@ -44,4 +44,11 @@ module BooksHelper
     end
     return "レビュー平均: " + reviewAve
   end
+
+  def getReviewNum(reviewNum)
+    if reviewNum.nil?
+      return "レビューなし"
+    end
+    return "レビュー数: " + reviewNum.to_s
+  end
 end
