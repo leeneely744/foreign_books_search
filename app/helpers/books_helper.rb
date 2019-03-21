@@ -53,9 +53,10 @@ module BooksHelper
   end
 
   def getUpdatedAt(createdAt, updatedAt)
+    format = '%Y-%m-%d'
     if updatedAt.nil?
-      return '書籍情報更新日: ' + createdAt.to_s
+      return '書籍情報更新日: ' + createdAt.strftime(format)
     end
-    return '書籍情報更新日: ' + updatedAt.to_s
+    return '書籍情報更新日: ' + updatedAt.strftime(format)
   end
 end
