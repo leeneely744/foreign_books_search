@@ -1,3 +1,5 @@
+$right-max-width: 500px;
+
 .show-page-outer {
   margin-top: 5%;
   margin-left: 20px;
@@ -28,7 +30,7 @@
 #book-item-caption {
   margin-top: 40px;
   margin-bottom: 10%;
-  max-width: 500px;
+  max-width: $right-max-width;
 }
 
 #update-date {
@@ -39,6 +41,7 @@ ul {
   padding: 0%;
   padding-top: 5px;
   border: 1px solid;
+  max-width: $right-max-width;
 }
 
 li {
