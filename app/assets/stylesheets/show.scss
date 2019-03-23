@@ -1,28 +1,41 @@
-$right-max-width: 500px;
 $button-width: 150px;
+$sphone-width: 767px;
+
+$right-max-width: 700px;
+@media (width > $sphone-width) {
+  $right-max-width: 500px;
+}
 
 /////////////////////////////////
 // start of grid-layout
 /////////////////////////////////
-.show-page-outer {
-  margin-top: 5%;
-  margin-left: 20px;
-  display: grid;
-  grid-gap: 10px;
-  grid-template-columns: 300px 1fr;
-}
-
-.show-page-left {
-  grid-column: 1 / 2;
-  text-align: center;
-}
-
-.show-page-right {
-  grid-column: 2 / 3;
+@media (width > $sphone-width) {
+  .show-page-outer {
+    margin-left: 20px;
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: 300px 1fr;
+  }
+  
+  .show-page-left {
+    grid-column: 1 / 2;
+  }
+  
+  .show-page-right {
+    grid-column: 2 / 3;
+  }
 }
 /////////////////////////////////
 // end of grid-layout
 /////////////////////////////////
+
+.show-page-outer {
+  margin-top: 5%;
+}
+
+.show-page-left {
+  text-align: center;
+}
 
 .book-image {
   display: block;
