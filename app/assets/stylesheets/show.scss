@@ -1,5 +1,8 @@
 $right-max-width: 500px;
 
+/////////////////////////////////
+// start of grid-layout
+/////////////////////////////////
 .show-page-outer {
   margin-top: 5%;
   margin-left: 20px;
@@ -16,6 +19,9 @@ $right-max-width: 500px;
 .show-page-right {
   grid-column: 2 / 3;
 }
+/////////////////////////////////
+// end of grid-layout
+/////////////////////////////////
 
 .book-image {
   display: block;
