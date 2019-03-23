@@ -8,6 +8,7 @@ feature "search function" do
     visit search_path
   end
 
+  # なぜか通るときと通らないときがある
   it "move to a book show page when click a random button" do
     click_button "ランダム検索"
     expect(current_path).to match("/books/")

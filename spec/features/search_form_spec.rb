@@ -27,7 +27,7 @@ feature "search form test" do
     it 'should be filled in previous search condition' do
       click_button '検索'
       visit book_path(@firstBook.id)
-      click_link '検索画面へ戻る'
+      click_button '検索画面へ戻る'
       expect(page).to have_field 'タイトル', with: 'First'
       expect(page).to have_field '最小ページ数', with: 10
       expect(page).to have_field '最大ページ数', with: 19

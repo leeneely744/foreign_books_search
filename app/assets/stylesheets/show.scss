@@ -1,0 +1,79 @@
+$button-width: 150px;
+$sphone-width: 767px;
+
+$right-max-width: 700px;
+@media (width > $sphone-width) {
+  $right-max-width: 500px;
+}
+
+/////////////////////////////////
+// start of grid-layout
+/////////////////////////////////
+@media (width > $sphone-width) {
+  .show-page-outer {
+    margin-left: 20px;
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: 300px 1fr;
+  }
+  
+  .show-page-left {
+    grid-column: 1 / 2;
+  }
+  
+  .show-page-right {
+    grid-column: 2 / 3;
+  }
+}
+/////////////////////////////////
+// end of grid-layout
+/////////////////////////////////
+
+.show-page-outer {
+  margin-top: 5%;
+}
+
+.show-page-left {
+  text-align: center;
+}
+
+.book-image {
+  display: block;
+  margin: auto;
+}
+
+.return-button {
+  margin-top: 20px;
+  display: block;
+  text-align: center;
+}
+
+#book-item-caption {
+  margin-top: 40px;
+  margin-bottom: 10%;
+  max-width: $right-max-width;
+}
+
+#update-date {
+  margin-bottom: 15px;
+}
+
+#return-button {
+  width: $button-width;
+}
+
+#rakuten-button {
+  width: $button-width;
+}
+
+ul {
+  padding: 0%;
+  padding-top: 5px;
+  border: 1px solid;
+  max-width: $right-max-width;
+}
+
+li {
+  float: none;
+  margin-left: 10px;
+}

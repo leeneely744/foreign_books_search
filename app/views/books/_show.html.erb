@@ -1,4 +1,50 @@
-<%= image_tag @book.large_image_url %>
-<%= link_to @book.title, @book.item_url %>
-<%= @book.item_caption %>
-<%= link_to '検索画面へ戻る', search_path %>
+<%= stylesheet_link_tag 'show' %>
+
+<div class='show-page-outer'>
+  <div class='show-page-left'>
+    <%= image_tag @book.large_image_url, class: 'book-image' %>
+    <% if @existsItemUrl %>
+      <%= button_to(
+        "楽天で見る",
+        @book.item_url,
+        method: :get,
+        class: "btn btn-primary",
+        id: "rakuten-button"
+      )%>
+    <% end %>
+    <%= button_to(
+      "検索画面へ戻る",
+      search_path,
+      method: :get,
+      class: "btn btn-secondary",
+      id: "return-button"
+    ) %>
+  </div>
+
+  <div class='show-page-right'>
+    <h1 id='book-title'>
+    タイトル: <%= @book.title %>
+    </h1>
+    <h3 id='book-title-kana'>
+    <%= getJaTitle @book.title_kana %>
+    </h3>
+
+    <h3 id='book-author'>
+    <%= createAuthorString @book.author, @book.author_kana %>
+    </h3>
+
+    <div id='book-item-caption'>
+    <%= @book.item_caption %>
+    </div>
+
+    <div id='update-date'>
+      <%= getUpdatedAt @book.created_at, @book.updated_at %>
+    </div>
+    <ul>
+      <li><%= getGenre @genreName, @groupName %></li>
+      <li><%= getPageNum @book.page %></li>
+      <li><%= getReviewAve @book.review_average %></li>
+      <li><%= getReviewNum @book.review_count %></li>
+    </ul>
+  </div>
+</div>

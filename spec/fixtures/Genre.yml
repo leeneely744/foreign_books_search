@@ -1,9 +1,13 @@
 firstGenre:
-  books_genre_id: 005407001
+  id: 1
+  books_genre_id: "005407001"
   books_genre_name: first genre
-  genre_group: firstGroup
+  genre_level: 3
+  genre_group_id: 1
 
 secondGenre:
-  books_genre_id: 005407002
+  id: 2
+  books_genre_id: "005408002"
   books_genre_name: second genre
-  genre_group: secondGroup
+  genre_level: 3
+  genre_group_id: 2

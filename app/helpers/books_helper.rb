@@ -9,4 +9,54 @@ module BooksHelper
     end
     return newBook
   end
+
+  def createAuthorString(enAuthor, jaAuthor=nil)
+    if jaAuthor.nil?
+      return "著者名: " + enAuthor
+    end
+    return "著者名: " + enAuthor + " ( 日本名: " + jaAuthor + " )"
+  end
+
+  def getJaTitle(jaTitle)
+    if jaTitle == ''
+      return ''
+    end
+    return "日本語タイトル: " + jaTitle
+  end
+
+  def getGenre(genre, group)
+    if genre.nil? || group.nil?
+      return "ジャンル不明"
+    end
+    return "ジャンル: " + genre + " / " + group
+  end
+
+  def getPageNum(pageNum)
+    if pageNum.nil?
+      return "ページ数: 不明"
+    end
+    return "ページ数: " + pageNum.to_s + "p"
+  end
+
+  def getReviewAve(reviewAve)
+    if reviewAve.nil?
+      return "レビュー平均: 不明"
+    end
+    return "レビュー平均: " + reviewAve
+  end
+
+  def getReviewNum(reviewNum)
+    if reviewNum.nil?
+      return "レビューなし"
+    end
+    return "レビュー数: " + reviewNum.to_s
+  end
+
+  def getUpdatedAt(createdAt, updatedAt)
+    format = '%Y-%m-%d'
+    if updatedAt.nil?
+      return '書籍情報更新日: ' + createdAt.strftime(format)
+    end
+    return '書籍情報更新日: ' + updatedAt.strftime(format)
+  end
 end
