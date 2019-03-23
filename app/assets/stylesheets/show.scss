@@ -1,4 +1,5 @@
 $right-max-width: 500px;
+$button-width: 150px;
 
 /////////////////////////////////
 // start of grid-layout
@@ -45,8 +46,13 @@ $right-max-width: 500px;
 }
 
 #return-button {
-  width: 150px;
+  width: $button-width;
 }
+
+#rakuten-button {
+  width: $button-width;
+}
+
 ul {
   padding: 0%;
   padding-top: 5px;

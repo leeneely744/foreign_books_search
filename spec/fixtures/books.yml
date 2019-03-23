@@ -37,14 +37,14 @@ two:
   isbn: 2
   item_caption: This is the second book.
   seles_date: 2018-10-07
-  item_url: http://second_item_url.com
+  item_url: ''
   affiliate_url: http://second_affiliate_url.com
   small_image_url: http://second_small_image.com
   medium_image_url: http://second_medium_image.com
   large_image_url: http://second_large_image.com
   review_count: 2
   review_average: 2.2
-  books_genre_id: "005407002"
+  books_genre_id: "005407001"
   vocabulary: 2
   official_url: http://second_official_url.com
   page: 20

@@ -3,6 +3,15 @@
 <div class='show-page-outer'>
   <div class='show-page-left'>
     <%= image_tag @book.large_image_url, class: 'book-image' %>
+    <% if @existsItemUrl %>
+      <%= button_to(
+        "楽天で見る",
+        @book.item_url,
+        method: :get,
+        class: "btn btn-primary",
+        id: "rakuten-button"
+      )%>
+    <% end %>
     <%= button_to(
       "検索画面へ戻る",
       search_path,
