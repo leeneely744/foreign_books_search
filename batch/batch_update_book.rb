@@ -1,9 +1,4 @@
-include RakutenHelper
-
 =begin
-楽天ブックス総合検索APIから最新の書籍情報を取得する。
-まとめて取得するAPIは存在しない。
-
 データを更新しなければならない頻度
 https://webservice.faq.rakuten.co.jp/app/answers/detail/a_id/15555/related/1
 
@@ -38,3 +33,22 @@ https://webservice.faq.rakuten.co.jp/app/answers/detail/a_id/15555/related/1
 その商品の販売に適用されます。」 
 =end
 
+require 'date'
+
+include RakutenHelper
+
+=begin
+楽天ブックス総合検索APIから最新の書籍情報を取得する。
+1度の起動で100件の書籍情報の更新を行う。
+まとめて取得するAPIは存在しないので、1件ずつ情報を更新する。
+楽天APIの負荷を考慮して、2秒に1件のペースで問い合わせを行う。
+=end
+
+updateLimit = 3.months.ago
+books = Book
+.where("created_at = ? or updated_at < ?", nil, updateLimit)
+.limit(100)
+
+books.each do |book|
+  puts "isbn = #{book.isbn} の更新日: #{book.updated_at}"
+end
