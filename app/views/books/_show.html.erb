@@ -3,10 +3,10 @@
 <div class='show-page-outer'>
   <div class='show-page-left'>
     <%= image_tag @book.large_image_url, class: 'book-image' %>
-    <% if @existsItemUrl %>
+    <% if @existsAffiliateUrl %>
       <%= button_to(
         "楽天で見る",
-        @book.item_url,
+        @book.affiliate_url,
         method: :get,
         class: "btn btn-primary",
         id: "rakuten-button"
