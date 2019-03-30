@@ -51,5 +51,9 @@ books = Book
 
 loopCount = 1
 books.each do |book|
+  isbn = book.isbn
   puts "#{loopCount}: isbn = #{book.isbn} を更新します。"
+
+  res = requestToRBOSApiByIsbn(isbn)
+  resJson = JSON.parse(res.read)
 end
