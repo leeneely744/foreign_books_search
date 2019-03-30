@@ -49,6 +49,7 @@ books = Book
 .where("created_at = ? or updated_at < ?", nil, updateLimit)
 .limit(100)
 
+loopCount = 1
 books.each do |book|
-  puts "isbn = #{book.isbn} の更新日: #{book.updated_at}"
+  puts "#{loopCount}: isbn = #{book.isbn} を更新します。"
 end
