@@ -45,9 +45,10 @@ include RakutenHelper
 =end
 
 updateLimit = 3.months.ago
+getNumOnce = 100
 books = Book
 .where("created_at = ? or updated_at < ?", nil, updateLimit)
-.limit(100)
+.limit(getNumOnce)
 
 loopCount = 1
 books.each do |book|
