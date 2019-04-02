@@ -36,6 +36,7 @@ https://webservice.faq.rakuten.co.jp/app/answers/detail/a_id/15555/related/1
 require 'date'
 
 include RakutenHelper
+include BooksHelper
 
 =begin
 楽天ブックス総合検索APIから最新の書籍情報を取得する。
@@ -43,6 +44,9 @@ include RakutenHelper
 まとめて取得するAPIは存在しないので、1件ずつ情報を更新する。
 楽天APIの負荷を考慮して、2秒に1件のペースで問い合わせを行う。
 =end
+
+logPath = Rails.root."/log/batchUpdateBook.log"
+myLogger = Logger.new(logPath)
 
 updateLimit = 3.months.ago
 getNumOnce = 100
@@ -57,4 +61,18 @@ books.each do |book|
 
   res = requestToRBOSApiByIsbn(isbn)
   resJson = JSON.parse(res.read)
+
+  newAttributes = getOneBookAttributesFromResponse(resJson)
+  result = Book.find_by(isbn: isbn).updateBookAttributes(newAttributes)
+
+  if result == true
+    puts "ISBN = #{isbn} の書籍情報の更新に成功しました。"
+  else
+    errMessage = "ISBN = #{isbn} の書籍情報の更新に失敗しました。\n"
+    errMessage += result.message
+    myLogger.error(errMessage)
+  end
+
+  # 楽天APIへの負荷を考えて2秒待つ
+  sleep(2)
 end
