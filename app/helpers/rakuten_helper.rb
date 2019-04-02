@@ -96,4 +96,8 @@ module RakutenHelper
   def getItemInfo(json)
     json["Item"]
   end
+
+  def getOneBookAttributesFromResponse(res)
+    res["Items"][0]["Item"]
+  end
 end
