@@ -52,6 +52,7 @@ updateLimit = 3.months.ago
 getNumOnce = 100
 books = Book
 .where("created_at = ? or updated_at < ?", nil, updateLimit)
+.order('updated_at DESC')
 .limit(getNumOnce)
 
 loopCount = 1
