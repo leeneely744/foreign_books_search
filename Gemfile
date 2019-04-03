@@ -95,3 +95,5 @@ gem 'jquery-turbolinks'
 gem 'jquery-rails'
 
 gem "actionview", ">= 5.2.2.1"
+
+gem 'whenever', require: false
