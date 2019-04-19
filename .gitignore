@@ -67,3 +67,7 @@ yarn-debug.log*
 
 # 環境変数を入れたファイル
 .env
+
+# Ignore master key for decrypting credentials and more.
+# 'EDITOR="vi" bin/rails credentials:edit'コマンドでconfig/master.key を作成できる
+/config/master.key
