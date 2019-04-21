@@ -47,6 +47,15 @@ group :development, :test do
   gem 'guard-rspec', require: false
   gem 'terminal-notifier'
   gem 'terminal-notifier-guard'
+
+  gem 'capistrano'
+  gem 'capistrano-bundler'
+  gem 'capistrano-rails'
+  gem 'capistrano-rbenv'
+end
+
+group :production, :staging do
+  gem 'unicorn'
 end
 
 group :development do
