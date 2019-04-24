@@ -12,17 +12,13 @@
 
 ActiveRecord::Schema.define(version: 2019_03_03_092148) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
-  create_table "books", force: :cascade do |t|
+  create_table "books", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.text "title"
     t.string "author"
     t.string "publisher_name"
     t.string "isbn"
     t.text "item_caption"
     t.date "seles_date"
-    t.date "sales_date_converted"
     t.string "item_url"
     t.string "affiliate_url"
     t.string "small_image_url", default: "no_image_small.png"
@@ -43,7 +39,7 @@ ActiveRecord::Schema.define(version: 2019_03_03_092148) do
     t.string "author_kana"
   end
 
-  create_table "genre_groups", force: :cascade do |t|
+  create_table "genre_groups", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.string "books_genre_id"
     t.string "books_genre_name"
     t.integer "genre_level"
@@ -51,7 +47,7 @@ ActiveRecord::Schema.define(version: 2019_03_03_092148) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "genres", force: :cascade do |t|
+  create_table "genres", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.string "books_genre_id", null: false
     t.string "books_genre_name", null: false
     t.integer "genre_level"
