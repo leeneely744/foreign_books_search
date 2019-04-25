@@ -10,6 +10,7 @@ def createRow(columnNameArray, record)
       data.gsub!(/[\r\n]/,"")
       data.gsub!(/[\r]/,"")
       data.gsub!(/[\n]/,"")
+      data.gsub!(/["]/,"'")
       row += '"' + data + '",'
     else
       row += data.to_s + ','
