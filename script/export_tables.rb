@@ -1,4 +1,4 @@
-include BooksHelper
+puts 'script start'
 
 def createRow(columnNameArray, record)
   row = ''
@@ -10,13 +10,15 @@ def createRow(columnNameArray, record)
       data.gsub!(/[\r\n]/,"")
       data.gsub!(/[\r]/,"")
       data.gsub!(/[\n]/,"")
-      row += data + ','
+      row += '"' + data + '",'
     else
       row += data.to_s + ','
     end
   end
   return row.chop!
 end
+
+puts "books start"
 
 # Book csv
 books = Book.all
@@ -32,6 +34,8 @@ File.open("tmp/all_book.csv", "w") do |f|
   end
 end
 
+puts "genres start"
+
 # Genre csv
 genres = Genre.all
 genreColumnsNameArray = Genre.column_names
@@ -45,6 +49,8 @@ File.open("tmp/all_genre.csv", "w") do |f|
     # break
   end
 end
+
+puts "genreGroups start"
 
 # GenreGrouop csv
 genreGroups = GenreGroup.all
