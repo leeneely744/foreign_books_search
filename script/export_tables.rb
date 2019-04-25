@@ -3,6 +3,10 @@ puts 'script start'
 def createRow(columnNameArray, record)
   row = ''
   columnNameArray.each do |column|
+    if column == 'id' || column == 'created_at' || column == 'updated_at'
+      next
+    end
+
     data = record[column]
     if data.is_a? NilClass
       row += '' + ','
@@ -19,6 +23,18 @@ def createRow(columnNameArray, record)
   return row.chop!
 end
 
+def createHeader(datas)
+  header = ''
+  datas.each do |column|
+    if column == 'id' || column == 'created_at' || column == 'updated_at'
+      next
+    end
+
+    header += column + ','
+  end
+  return header.chop!
+end
+
 puts "books start"
 
 # Book csv
@@ -26,7 +42,7 @@ books = Book.all
 bookColumnNameArray = Book.column_names
 File.open("tmp/all_book.csv", "w") do |f|
   # ヘッダー行
-  f.puts(bookColumnNameArray.to_sentence(words_connector: ","))
+  f.puts(createHeader(bookColumnNameArray))
 
   books.each do |book|
     row = createRow(bookColumnNameArray, book)
@@ -42,7 +58,7 @@ genres = Genre.all
 genreColumnsNameArray = Genre.column_names
 File.open("tmp/all_genre.csv", "w") do |f|
   # ヘッダー行
-  f.puts(genreColumnsNameArray.to_sentence(words_connector: ","))
+  f.puts(createHeader(genreColumnsNameArray))
 
   genres.each do |genre|
     row = createRow(genreColumnsNameArray, genre)
@@ -58,7 +74,7 @@ genreGroups = GenreGroup.all
 genreGroupColumnsNameArray = GenreGroup.column_names
 File.open("tmp/all_genre_group.csv", "w") do |f|
   # ヘッダー行
-  f.puts(genreGroupColumnsNameArray.to_sentence(words_connector: ","))
+  f.puts(createHeader(genreGroupColumnsNameArray))
 
   genreGroups.each do |genreGroup|
     row = createRow(genreGroupColumnsNameArray, genreGroup)
