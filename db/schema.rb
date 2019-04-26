@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 2019_03_03_092148) do
 
-  create_table "books", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
+  create_table "books", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.text "title"
     t.string "author"
     t.string "publisher_name"
@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 2019_03_03_092148) do
     t.string "author_kana"
   end
 
-  create_table "genre_groups", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
+  create_table "genre_groups", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "books_genre_id"
     t.string "books_genre_name"
     t.integer "genre_level"
@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(version: 2019_03_03_092148) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "genres", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
+  create_table "genres", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "books_genre_id", null: false
     t.string "books_genre_name", null: false
     t.integer "genre_level"
