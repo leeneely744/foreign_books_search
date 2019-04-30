@@ -71,3 +71,6 @@ yarn-debug.log*
 # Ignore master key for decrypting credentials and more.
 # 'EDITOR="vi" bin/rails credentials:edit'コマンドでconfig/master.key を作成できる
 /config/master.key
+
+public/assets
+yarn.lock
