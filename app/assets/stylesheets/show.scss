@@ -66,14 +66,14 @@ $right-max-width: 700px;
   width: $button-width;
 }
 
-ul {
+ul#book-options {
   padding: 0%;
   padding-top: 5px;
   border: 1px solid;
   max-width: $right-max-width;
-}
 
-li {
-  float: none;
-  margin-left: 10px;
+  li {
+    float: none;
+    margin-left: 10px;
+  }
 }

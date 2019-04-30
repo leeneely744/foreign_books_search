@@ -1,5 +1,3 @@
-<%= stylesheet_link_tag 'show' %>
-
 <div class='show-page-outer'>
   <div class='show-page-left'>
     <%= image_tag @book.large_image_url, class: 'book-image' %>
@@ -40,7 +38,7 @@
     <div id='update-date'>
       <%= getUpdatedAt @book.created_at, @book.updated_at %>
     </div>
-    <ul>
+    <ul id='book-options'>
       <li><%= getGenre @genreName, @groupName %></li>
       <li><%= getPageNum @book.page %></li>
       <li><%= getReviewAve @book.review_average %></li>
