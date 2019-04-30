@@ -50,7 +50,8 @@ group :development, :test do
 end
 
 group :production, :staging do
-  gem 'unicorn'
+  # 5.4.1 でなければ引数絵エラーが出る
+  gem 'unicorn', '5.4.1'
 end
 
 group :development do
