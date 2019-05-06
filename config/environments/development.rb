@@ -47,7 +47,7 @@ Rails.application.configure do
   # Debug mode disables concatenation and preprocessing of assets.
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
-  # develop環境でも'rake assets:precompile'を必要にする
+  # 以下をコメントアウトすると、develop環境でも'rake assets:precompile'を必要にする
   # config.assets.debug = true
 
   # Suppress logger output for asset requests.

@@ -33,7 +33,7 @@
   .main-contents {
     display: grid; /* グリッドレイアウト */
     // grid-template-rows: 100px 50px; 今回は行は指定しない
-    grid-template-columns: 300px 1fr;
+    grid-template-columns: 30% auto
   }
   
   .search-forms-panel {
