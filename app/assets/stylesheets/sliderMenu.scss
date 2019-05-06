@@ -1,3 +1,5 @@
+$sphone-width: 767px;
+
 #panel-btn{
   position: relative;
   width: 40px;
@@ -12,7 +14,7 @@
 }
 
 // スマホ版の画面でしか見えないようにする
-@media (width > 767px) {
+@media only screen and (min-width: $sphone-width) {
   #panel-btn {visibility: collapse;}
 }
 
@@ -76,7 +78,7 @@
 // メニューの開閉
 ///////////////////////////////
 
-@media (width <= 767px) {
+@media only screen and (max-width: $sphone-width) {
   // 分けて書かないと機能しない
   div.search-forms-panel {
     position: relative;

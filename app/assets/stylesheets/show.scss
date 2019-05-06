@@ -2,14 +2,14 @@ $button-width: 150px;
 $sphone-width: 767px;
 
 $right-max-width: 700px;
-@media (width > $sphone-width) {
+@media only screen and (min-width: $sphone-width) {
   $right-max-width: 500px;
 }
 
 /////////////////////////////////
 // start of grid-layout
 /////////////////////////////////
-@media (width > $sphone-width) {
+@media only screen and (min-width: $sphone-width) {
   .show-page-outer {
     margin-left: 20px;
     display: grid;

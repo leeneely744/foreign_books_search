@@ -1,9 +1,10 @@
+$sphone-width: 767px;
+
 .navbar { height: 60;}
 .navbar-collapse { margin-left: 15px;}
 .container {display: inherit;}
 
 #logo {
-  float: left;
   margin-right: 10px;
   font-size: 1.7em;
   color: white;
@@ -28,7 +29,7 @@
   background-color: linen;
   z-index: 2;
 }
-@media (width > 767px) {
+@media only screen and (min-width: $sphone-width) {
   #logo { visibility: visible;}
   .main-contents {
     display: grid; /* グリッドレイアウト */
@@ -168,6 +169,6 @@ input {
 
 // if device is smart phone, display of sort_link is 'inline'.
 a.sort_link {display: inline;}
-@media (width > 767px) {
+@media only screen and (min-width: $sphone-width) {
   a.sort_link {display: block;}
 }
