@@ -85,8 +85,6 @@ books.each do |book|
     errorLogger.error(errMessage)
   end
 
-  break
-
   # 楽天APIへの負荷を考えて2秒待つ
   sleep(2)
 end
