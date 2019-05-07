@@ -45,8 +45,10 @@ include BooksHelper
 楽天APIの負荷を考慮して、2秒に1件のペースで問い合わせを行う。
 =end
 
-logPath = Rails.root."/log/batchUpdateBook.log"
-myLogger = Logger.new(logPath)
+infoLogPath = Rails.root.join('log', 'batchUpdateBook.log')
+errorLogPath = Rails.root.join('log', 'batchUpdateBook_error.log')
+infoLogger = Logger.new(infoLogPath)
+errorLogger = Logger.new(errorLogPath)
 
 updateLimit = 3.months.ago
 getNumOnce = 100
@@ -63,17 +65,30 @@ books.each do |book|
   res = requestToRBOSApiByIsbn(isbn)
   resJson = JSON.parse(res.read)
 
+  if resJson['count'] == 0
+    errMessage = "ISBN = #{isbn} の書籍情報が0件です\n"
+    puts errMessage
+    errorLogger.error(errMessage)
+    next
+  end
+
   newAttributes = getOneBookAttributesFromResponse(resJson)
   result = Book.find_by(isbn: isbn).updateBookAttributes(newAttributes)
 
   if result == true
-    puts "ISBN = #{isbn} の書籍情報の更新に成功しました。"
+    message = "ISBN = #{isbn} の書籍情報の更新に成功しました。"
+    puts message
+    infoLogger.info(message)
   else
     errMessage = "ISBN = #{isbn} の書籍情報の更新に失敗しました。\n"
     errMessage += result.message
-    myLogger.error(errMessage)
+    errorLogger.error(errMessage)
   end
+
+  break
 
   # 楽天APIへの負荷を考えて2秒待つ
   sleep(2)
 end
+
+infoLogger.info("バッチが完了しました\n")
