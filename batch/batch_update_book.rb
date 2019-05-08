@@ -66,7 +66,7 @@ books.each do |book|
   resJson = JSON.parse(res.read)
 
   if resJson['count'] == 0
-    errMessage = "ISBN = #{isbn} の書籍情報が0件です\n"
+    errMessage = "ISBN = #{isbn} の書籍情報が0件です"
     puts errMessage
     errorLogger.error(errMessage)
     next
@@ -80,7 +80,7 @@ books.each do |book|
     puts message
     infoLogger.info(message)
   else
-    errMessage = "ISBN = #{isbn} の書籍情報の更新に失敗しました。\n"
+    errMessage = "ISBN = #{isbn} の書籍情報の更新に失敗しました。"
     errMessage += result.message
     errorLogger.error(errMessage)
   end
