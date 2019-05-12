@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_03_092148) do
+ActiveRecord::Schema.define(version: 2019_05_12_151517) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 2019_03_03_092148) do
     t.text "title_kana"
     t.text "japanese_title"
     t.string "author_kana"
+    t.boolean "updatable_flg", default: true, null: false
   end
 
   create_table "genre_groups", force: :cascade do |t|
