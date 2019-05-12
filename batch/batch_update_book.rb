@@ -69,10 +69,11 @@ books.each do |book|
     errMessage = "ISBN = #{isbn} の書籍情報が0件です"
     puts errMessage
     errorLogger.error(errMessage)
-    next
+    newAttributes = { "updatable_flg" => false }
+  else
+    newAttributes = getOneBookAttributesFromResponse(resJson)
   end
 
-  newAttributes = getOneBookAttributesFromResponse(resJson)
   result = Book.find_by(isbn: isbn).updateBookAttributes(newAttributes)
 
   if result == true
