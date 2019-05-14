@@ -28,12 +28,15 @@ class BooksController < ApplicationController
     @genreName = Genre.find_by(books_genre_id: genreId).books_genre_name
     @groupName = GenreGroup.find_by(books_genre_id: groupId).books_genre_name
 
-    @existsAffiliateUrl = existsAffiliateUrl(@book)
+    @rakutenUrl = getRakutenUrl(@book)
   end
   
   private
-    def existsAffiliateUrl(book)
-      return !book.affiliate_url.blank?
+    def getRakutenUrl(book)
+      if book.affiliate_url.blank?
+        return book.item_url
+      end
+      return book.affiliate_url
     end
 
     def strong_parameter(params_q)
