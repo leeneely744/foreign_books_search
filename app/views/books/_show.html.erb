@@ -1,15 +1,13 @@
 <div class='show-page-outer'>
   <div class='show-page-left'>
     <%= image_tag @book.large_image_url, class: 'book-image' %>
-    <% if @existsAffiliateUrl %>
-      <%= button_to(
-        "楽天で見る",
-        @book.affiliate_url,
-        method: :get,
-        class: "btn btn-primary",
-        id: "rakuten-button"
-      )%>
-    <% end %>
+    <%= button_to(
+      "楽天で見る",
+      @rakutenUrl,
+      method: :get,
+      class: "btn btn-primary",
+      id: "rakuten-button"
+    )%>
     <%= button_to(
       "検索画面へ戻る",
       search_path,

@@ -22,9 +22,9 @@ feature 'show page' do
   end
 
   context 'if not exists affiliate_url' do
-    it 'not show rakuten-button' do
+    it 'also show rakuten-button' do
       visit book_path(@secondBook.id)
-      expect(page).not_to have_button '楽天で見る'
+      expect(page).to have_button '楽天で見る'
     end
   end
 end
