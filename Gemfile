@@ -74,10 +74,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # seeds.rb でbulk insertを使用する
 gem 'activerecord-import'
 
-# graphqlを使う
-gem 'graphql'
-gem 'graphiql-rails', group: :development
-
 gem 'bootstrap-sass', '~> 3.4.1'
 
 # assert_templateがrails5では非推奨
@@ -102,3 +98,6 @@ gem 'jquery-rails'
 gem "actionview", ">= 5.2.2.1"
 
 gem 'whenever', require: false
+
+gem 'graphql'
+gem 'graphiql-rails', group: :development
