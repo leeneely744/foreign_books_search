@@ -34,11 +34,29 @@ feature "search function" do
     end
   end
 
-  feature 'page num form validate test' do
-    it 'should not put strange number to max page num' do
+  feature 'page num form filled 0' do
+    it 'if put too big number to page num' do
       fill_in '最大ページ数', with: 100000011000
+      fill_in '最小ページ数', with: 100000011000
       click_button '検索'
       expect(page).to have_field '最大ページ数', with: 0
+      expect(page).to have_field '最小ページ数', with: 0
+    end
+
+    it 'if put too small number to page num' do
+      fill_in '最大ページ数', with: -100000011000
+      fill_in '最小ページ数', with: -100000011000
+      click_button '検索'
+      expect(page).to have_field '最大ページ数', with: 0
+      expect(page).to have_field '最小ページ数', with: 0
+    end
+
+    it 'if put string to page num' do
+      fill_in '最大ページ数', with:'asdf'
+      fill_in '最小ページ数', with: 'asdf'
+      click_button '検索'
+      expect(page).to have_field '最大ページ数', with: 0
+      expect(page).to have_field '最小ページ数', with: 0
     end
   end
 
