@@ -53,7 +53,7 @@ class BooksController < ApplicationController
 
     def page_num_check(input_num)
       return "" if input_num.empty?
-      if input_num.to_i < -10000 || 10000 < input_num.to_i || input_num.to_i == 0
+      if input_num.to_i < -9999 || 9999 < input_num.to_i || input_num.to_i == 0
         return 0
       end
       return input_num
