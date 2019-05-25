@@ -42,6 +42,7 @@ class BooksController < ApplicationController
     def strong_parameter(params_q)
       params_q[:q]['page_gteq'] = page_num_check(params_q[:q]['page_gteq'])
       params_q[:q]['page_lteq'] = page_num_check(params_q[:q]['page_lteq'])
+      params_q[:q]['books_genre_id_eq'] = books_genre_id_check(params_q[:q]['books_genre_id_eq'])
       params_q.require(:q).permit(
         :s, # sort_link のパラメータ
         :title_cont,
@@ -56,6 +57,11 @@ class BooksController < ApplicationController
       if input_num.to_i < -9999 || 9999 < input_num.to_i || input_num.to_i == 0
         return 0
       end
+      return input_num
+    end
+
+    def books_genre_id_check(input_num)
+      return "" if input_num.empty? || input_num.size > 9
       return input_num
     end
 
