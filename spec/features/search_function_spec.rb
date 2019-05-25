@@ -34,6 +34,14 @@ feature "search function" do
     end
   end
 
+  feature 'page num form validate test' do
+    it 'should not put strange number to max page num' do
+      fill_in '最大ページ数', with: 100000011000
+      click_button '検索'
+      expect(page).to have_field '最大ページ数', with: 0
+    end
+  end
+
   feature 'genre form test' do
     before do
       select 'first genre', from: 'q[books_genre_id_eq]'
