@@ -20,8 +20,8 @@ describe BooksController, type: :request do
       incorrectParams = ActionController::Parameters.new({
         q: {
           title_cont: "test",
-          page_gteq: 10,
-          page_lteq: 20,
+          page_gteq: "10",
+          page_lteq: "20",
           books_genre_id_eq: "005401001",
           incorrect_parameter: "test"
         }
