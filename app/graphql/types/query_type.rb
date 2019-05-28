@@ -1,7 +1,8 @@
 module Types
   class QueryType < Types::BaseObject
 
-    field :genre_groups, [Types::GenreGroupType], null: false
+    field :genre_groups, [Types::GenreGroupType], null: false,
+      description: 'ジャンルグループをすべて取得する'
     def genre_groups
       GenreGroup.all
     end
@@ -18,6 +19,7 @@ module Types
     end
 
     field :book, Types::BookType, null: false do
+      description "書籍詳細を取得する"
       argument :id, ID, required: true
     end
     def book(id:)
