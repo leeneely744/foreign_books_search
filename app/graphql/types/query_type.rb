@@ -1,5 +1,10 @@
 module Types
   class QueryType < Types::BaseObject
+
+    field :genre_groups, [Types::GenreGroupType], null: false
+    def genre_groups
+      GenreGroup.all
+    end
     
     field :books, [Types::BookType], null: false do
       # "required: false" DocsでNullableと表示されるだけで、
