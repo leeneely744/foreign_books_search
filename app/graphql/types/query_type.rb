@@ -21,6 +21,13 @@ module Types
     field :book, Types::BookType, null: false do
       description "書籍詳細を取得する"
       argument :id, ID, required: true
+
+      # fieldと同名のResolverを用いて値を返す。
+      # :book fieldは#bookメソッドを用いる
+      # fieldブロック内に以下のように書くことでメソッド名をOverride出来る
+      #  method: :oneBook
+      # また、fieldの第3引数ニイカを渡しても同様の動きをする
+      #  resolver_method: :oneBook
     end
     def book(id:)
       Book.find(id)
