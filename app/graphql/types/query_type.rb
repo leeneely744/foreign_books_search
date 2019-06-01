@@ -26,11 +26,15 @@ module Types
       # :book fieldは#bookメソッドを用いる
       # fieldブロック内に以下のように書くことでメソッド名をOverride出来る
       #  method: :oneBook
-      # また、fieldの第3引数ニイカを渡しても同様の動きをする
+      # また、fieldの第3引数に以下を渡しても同様の動きをする
       #  resolver_method: :oneBook
     end
     def book(id:)
-      Book.find(id)
+      begin
+        book = Book.find(id)
+      rescue => e
+        raise GraphQL::ExecutionError, "書籍が見つかりません"
+      end
     end
   end
 end
