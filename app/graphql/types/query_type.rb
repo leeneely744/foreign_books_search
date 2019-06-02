@@ -20,7 +20,7 @@ module Types
 
     field :book, Types::BookType, null: false do
       description "書籍詳細を取得する"
-      argument :id, ID, required: true
+      argument :id, ID, required: true, prepare: :check_num
 
       # fieldと同名のResolverを用いて値を返す。
       # :book fieldは#bookメソッドを用いる
@@ -35,6 +35,13 @@ module Types
       rescue => e
         raise GraphQL::ExecutionError, "書籍が見つかりません"
       end
+    end
+
+
+    # ここから先はprivateとして扱う
+    # 実際にprivateをprepareに渡すとエラーになる
+    def check_num(input)
+      input.to_i
     end
   end
 end
