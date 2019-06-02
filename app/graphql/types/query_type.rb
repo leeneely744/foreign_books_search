@@ -10,8 +10,8 @@ module Types
     field :books, [Types::BookType], null: false do
       # "required: false" DocsでNullableと表示されるだけで、
       # 本当にNullableかどうかはresolveメソッドの引数による
-      argument :page_num_from, Integer, required: false, default_value: 0, prepare: ->(page_num_from, ctx) {[page_num_from, 9999].min}
-      argument :page_num_to, Integer, required: false, default_value: 9999, prepare: ->(page_num_to, ctx) {[page_num_to, 9999].min}
+      argument :page_num_from, Integer, required: false, default_value: 0, prepare: :check_page_num
+      argument :page_num_to, Integer, required: false, default_value: 9999, prepare: :check_page_num
       argument :limit, Integer, required: false, default_value: 10, prepare: ->(limit, ctx) {[limit, 30].min}
     end
     def books(page_num_from: , page_num_to: , limit: )
@@ -40,6 +40,13 @@ module Types
 
     # ここから先はprivateとして扱う
     # 実際にprivateをprepareに渡すとエラーになる
+
+    def check_page_num(page_num)
+      page_num = 9999 if page_num > 9999
+      page_num = 0 if page_num < 0
+      page_num
+    end
+
     def check_num(input)
       input.to_i
     end
