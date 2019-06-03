@@ -4,7 +4,11 @@ module Types
     field :genre_groups, [Types::GenreGroupType], null: false,
       description: 'ジャンルグループをすべて取得する'
     def genre_groups
-      GenreGroup.all
+      begin
+        GenreGroup.all
+      rescue => exception
+        raise GraphQL::ExecutionError, exception.message
+      end
     end
     
     field :books, [Types::BookType], null: false do
@@ -15,7 +19,11 @@ module Types
       argument :limit, Integer, required: false, default_value: 10, prepare: ->(limit, ctx) {[limit, 30].min}
     end
     def books(page_num_from: , page_num_to: , limit: )
-      Book.all.limit(limit)
+      begin
+        Book.all.limit(limit)
+      rescue => exception
+        raise GraphQL::ExecutionError, exception.message
+      end
     end
 
     field :book, Types::BookType, null: false do
