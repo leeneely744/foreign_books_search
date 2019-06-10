@@ -48,10 +48,19 @@ class Board extends React.Component {
 }
 
 class Square extends React.Component {
+  constructor(props) {
+    super(props); // ← This is must be at the first line in the constructor.
+    this.state = {
+      value: null,
+    };
+  }
   render() {
     return (
-      <button className="square">
-        {this.props.value}
+      <button
+       className="square"
+       onClick={() => this.setState({value: 'X'}) }
+      >
+        {this.state.value}
       </button>
     );
   }
