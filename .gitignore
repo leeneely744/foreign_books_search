@@ -74,3 +74,5 @@ yarn-debug.log*
 
 public/assets
 yarn.lock
+
+npm-debug.log
