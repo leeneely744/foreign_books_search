@@ -65,17 +65,18 @@ class Board extends React.Component {
   }
 }
 
-class Square extends React.Component {
-  render() {
-    return (
-      <button
-       className="square"
-       onClick={() => this.props.onClick() }
-      >
-        {this.props.value}
-      </button>
-    );
-  }
+/**
+ * The Square component is written as a function component.
+ * Function components are a simpler way to write components that 
+ * only contain a render method and don't have their own state.
+ * @param {display value} props 
+ */
+function Square(props) {
+  return (
+    <button className="square" onClick={props.onClick} >
+      {props.value}
+    </button>
+  );
 }
 
 export default Game;
