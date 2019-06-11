@@ -21,13 +21,17 @@ class Board extends React.Component {
     super(props); // ← This is must be at the first line in the constructor.
     this.state = {
       squares: Array(9).fill(null),
+      xIsNext: true,
     };
   }
 
   handleClick(i) {
     const squaresTmp = this.state.squares.slice();
-    squaresTmp[i] = 'X';
-    this.setState({squares: squaresTmp});
+    squaresTmp[i] = this.state.xIsNext ? 'X' : 'O';
+    this.setState({
+      squares: squaresTmp,
+      xIsNext: !this.state.xIsNext,
+    });
   }
   
   renderSquare(i) {
@@ -40,7 +44,7 @@ class Board extends React.Component {
   }
 
   render() {
-    const status = 'Next player: X';
+    const status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
 
     return (
       <div>
