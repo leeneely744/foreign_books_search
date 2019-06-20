@@ -15,26 +15,29 @@ class Search extends Component {
 
   handleGetLatAndLng() {
     axios
-      .get(API_ENDPOINT)
-      .then((results) => {
-        const datas = results.data;
-        console.log(datas);
-      },
-      )
-      .catch((error) => {
-        console.log(error);
-      });
-    }
-
-    render() {
-      return (
-        <div className='Search'>
-          <input type='text'></input>
-          <input type='button' value='検索' onClick={() => this.handleGetLatAndLng()}>
-          </input>
-        </div>
-      );
-    }
+    .get(API_ENDPOINT)
+    .then((results) => {
+      const datas = results.data;
+      console.log(datas);
+    },
+    )
+    .catch((error) => {
+      console.log(error);
+    });
+  }
+  
+  render() {
+    return (
+      <div className='Search'>
+        <input type='text' />
+        <input
+         type='button'
+         value='検索'
+         onClick={() => this.handleGetLatAndLng()}
+        />
+      </div>
+    );
+  }
 }
 
 export default Search;
