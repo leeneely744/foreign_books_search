@@ -4,9 +4,13 @@ import './App.css';
 import axios from 'axios';
 import Show from './Show';
 
-// https://qiita.com/api/v2/docs#%E3%82%BF%E3%82%B0
-// このAPIは開発中に使用する仮のAPI
-const API_ENDPOINT = 'https://qiita.com/api/v2/tags?sort=count';
+// 開発中はここを'http://localhost:3001/graphql'に合わせる
+const API_ENDPOINT = 'http://localhost:3001/graphql';
+const myAxios = axios.create({
+  headers: {
+    'Content-Type': 'application/json'
+  }
+});
 
 class App extends Component {
   constructor(props) {
@@ -18,12 +22,15 @@ class App extends Component {
   }
 
   handleGetLatAndLng() {
-    axios
-    .get(API_ENDPOINT)
+    myAxios
+    .post(API_ENDPOINT, {
+      query: "query { genreGroups{ id booksGenreName } }"
+    })
     .then((results) => {
-      const datas = results.data;
-      results = datas.map(data => data.id + "\n");
-      this.updateBooks(results);
+      console.log(results);
+      // const datas = results.data;
+      // results = datas.map(data => data.id + "\n");
+      // this.updateBooks(results);
     },
     )
     .catch((error) => {
