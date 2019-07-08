@@ -2,24 +2,47 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import axios from 'axios';
+import Show from './Show';
 
-// https://qiita.com/api/v2/docs#%E3%82%BF%E3%82%B0
-const API_ENDPOINT = 'https://qiita.com/api/v2/tags';
+// 開発中はここを'http://localhost:3001/graphql'に合わせる
+const API_ENDPOINT = 'http://localhost:3001/graphql';
+const myAxios = axios.create({
+  headers: {
+    'Content-Type': 'application/json'
+  }
+});
 
 class App extends Component {
-  handleGetLatAndLng() {
-    axios
-      .get(API_ENDPOINT)
-      .then((results) => {
-        const datas = results.data;
-        console.log(datas);
-      },
-      )
-      .catch((error) => {
-        console.log(error);
-      });
+  constructor(props) {
+    super(props);
+    this.state = {
+      books: [],
+      searchState: [],
+    };
   }
 
+  handleGetLatAndLng() {
+    myAxios
+    .post(API_ENDPOINT, {
+      query: "query { genreGroups{ id booksGenreName } }"
+    })
+    .then((results) => {
+      console.log(results);
+      // const datas = results.data;
+      // results = datas.map(data => data.id + "\n");
+      // this.updateBooks(results);
+    },
+    )
+    .catch((error) => {
+      console.log(error);
+    });
+  }
+
+  updateBooks(newBooks) {
+    console.log(newBooks);
+    this.setState({books: newBooks});
+  }
+  
   render() {
     return (
       <div className="App">
@@ -27,14 +50,16 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h2>Welcome to React</h2>
         </div>
-        <div className="App-intro">
-          <h1 className="app-title">QiitaタグAPIテスト</h1>
+        <div className='Search'>
           <input
-          type="button"
-          value="タグ一覧を作成日時の降順でコンソールに表示します"
-          onClick={() => this.handleGetLatAndLng()}
-        />
+           type='button'
+           value='検索'
+           onClick={() => this.handleGetLatAndLng()}
+          />
         </div>
+        <Show 
+          books={this.state.books}
+        />
       </div>
     );
   }
