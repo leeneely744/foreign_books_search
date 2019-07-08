@@ -3,6 +3,8 @@ import logo from './logo.svg';
 import './App.css';
 import axios from 'axios';
 import Show from './Show';
+import Button from '@material-ui/core/Button';
+import 'typeface-roboto';
 
 // 開発中はここを'http://localhost:3001/graphql'に合わせる
 const API_ENDPOINT = 'http://localhost:3001/graphql';
@@ -51,11 +53,14 @@ class App extends Component {
           <h2>Welcome to React</h2>
         </div>
         <div className='Search'>
-          <input
-           type='button'
-           value='検索'
-           onClick={() => this.handleGetLatAndLng()}
-          />
+          <Button
+            variant='contained'
+            color='primary'
+            size='large'
+            onClick={() => this.handleGetLatAndLng()}
+          >
+            検索
+          </Button>
         </div>
         <Show 
           books={this.state.books}
