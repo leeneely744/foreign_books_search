@@ -23,7 +23,7 @@ class App extends Component {
       title: '',
     };
 
-    this.handleChangeTitleField = this.handleChangeTitleField.bind(this);
+    this.handleChangeTitleField = this.handleChange.bind(this);
   }
 
   handleGetLatAndLng() {
@@ -43,7 +43,7 @@ class App extends Component {
     });
   }
 
-  handleChangeTitleField(event) {
+  handleChange(event) {
     this.setState({title: event.target.value});
   }
 
@@ -65,6 +65,7 @@ class App extends Component {
             id='title'
             name='titleForm'
             label='タイトル'
+            // onChange={this.handleChangeTitleField}
             onChange={this.handleChangeTitleField}
             inputProps={{ maxLength: 20 }}
           />
