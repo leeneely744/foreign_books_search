@@ -20,9 +20,11 @@ class App extends Component {
     this.state = {
       books: [],
       title: '',
+      pageFrom: '',
     };
 
     this.handleChangeTitleField = this.handleChange.bind(this);
+    this.handleChangePageFromField = this.handleChange.bind(this);
   }
 
   handleGetLatAndLng() {
@@ -67,6 +69,13 @@ class App extends Component {
             // onChange={this.handleChangeTitleField}
             onChange={this.handleChangeTitleField}
             inputProps={{ maxLength: 20 }}
+          />
+          <TextField
+            id='page-from'
+            name='pageFrom'
+            label='最小ページ数'
+            type='number'
+            onChange={this.handleChangePageFromField}
           />
         </form>
 
