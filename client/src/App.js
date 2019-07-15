@@ -21,10 +21,12 @@ class App extends Component {
       books: [],
       title: '',
       pageFrom: '',
+      pageTo: '',
     };
 
     this.handleChangeTitleField = this.handleChange.bind(this);
     this.handleChangePageFromField = this.handleChange.bind(this);
+    this.handleChangePageToField = this.handleChange.bind(this);
   }
 
   handleGetLatAndLng() {
@@ -76,6 +78,13 @@ class App extends Component {
             label='最小ページ数'
             type='number'
             onChange={this.handleChangePageFromField}
+          />
+          <TextField
+            id='page-to'
+            name='pageTo'
+            label='最大ページ数'
+            type='number'
+            onChange={this.handleChangePageToField}
           />
         </form>
 
