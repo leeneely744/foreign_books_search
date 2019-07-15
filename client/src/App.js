@@ -43,7 +43,8 @@ class App extends Component {
   }
 
   handleChange(event) {
-    this.setState({title: event.target.value});
+    let stateName = event.target.name;
+    this.setState({[stateName]: event.target.value});
   }
 
   updateBooks(newBooks) {
@@ -61,7 +62,7 @@ class App extends Component {
         <form onSubmit={this.handleGetLatAndLng}>
           <TextField
             id='title'
-            name='titleForm'
+            name='title'
             label='タイトル'
             // onChange={this.handleChangeTitleField}
             onChange={this.handleChangeTitleField}
