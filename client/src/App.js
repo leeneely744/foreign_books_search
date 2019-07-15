@@ -4,6 +4,7 @@ import './App.css';
 import axios from 'axios';
 import Show from './Show';
 import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
 import 'typeface-roboto';
 
 // 開発中はここを'http://localhost:3001/graphql'に合わせる
@@ -19,8 +20,10 @@ class App extends Component {
     super(props);
     this.state = {
       books: [],
-      searchState: [],
+      title: '',
     };
+
+    this.handleChangeTitleField = this.handleChangeTitleField.bind(this);
   }
 
   handleGetLatAndLng() {
@@ -40,6 +43,10 @@ class App extends Component {
     });
   }
 
+  handleChangeTitleField(event) {
+    this.setState({title: event.target.value});
+  }
+
   updateBooks(newBooks) {
     console.log(newBooks);
     this.setState({books: newBooks});
@@ -52,6 +59,17 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h2>Welcome to React</h2>
         </div>
+
+        <form onSubmit={this.handleGetLatAndLng}>
+          <TextField
+            id='title'
+            name='titleForm'
+            label='タイトル'
+            onChange={this.handleChangeTitleField}
+            inputProps={{ maxLength: 20 }}
+          />
+        </form>
+
         <div className='Search'>
           <Button
             variant='contained'
