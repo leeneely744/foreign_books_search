@@ -13,6 +13,7 @@ const myAxios = axios.create({
     'Content-Type': 'application/json'
   }
 });
+const QUERY_FOR_GENGE = "query { genreGroups { id booksGenreName genres { booksGenreId booksGenreName }}}";
 
 class App extends Component {
   constructor(props) {
@@ -22,11 +23,26 @@ class App extends Component {
       title: '',
       pageFrom: '',
       pageTo: '',
+      GenreGroups: this.initializeGenreGroups(),
     };
 
     this.handleChangeTitleField = this.handleChange.bind(this);
     this.handleChangePageFromField = this.handleChange.bind(this);
     this.handleChangePageToField = this.handleChange.bind(this);
+  }
+
+  initializeGenreGroups() {
+    myAxios
+    .post(API_ENDPOINT, {
+      query: QUERY_FOR_GENGE
+    })
+    .then((results) => {
+      return results.data.data.genreGroups;
+    },
+    )
+    .catch((error) => {
+      return [];
+    });
   }
 
   handleGetLatAndLng() {
