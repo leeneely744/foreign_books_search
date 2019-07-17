@@ -10,7 +10,7 @@ const myAxios = axios.create({
   }
 });
 
-export function requestBooks() {
+export const requestBooks = () => {
   myAxios
   .post(API_ENDPOINT, {
     query: "query { genreGroups{ id booksGenreName } }"
@@ -24,5 +24,19 @@ export function requestBooks() {
   )
   .catch((error) => {
     console.log(error);
+  });
+}
+
+export const initializeGenreGroups = () => {
+  myAxios
+  .post(API_ENDPOINT, {
+    query: QUERY_FOR_GENGE
+  })
+  .then((results) => {
+    return results.data.data.genreGroups;
+  },
+  )
+  .catch((error) => {
+    return [];
   });
 }

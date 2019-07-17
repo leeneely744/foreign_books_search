@@ -1,20 +1,10 @@
 import React, { Component } from 'react';
 import './App.css';
-import axios from 'axios';
-import { requestBooks } from './Request';
+import { requestBooks, initializeGenreGroups } from './Request';
 import Show from './Show';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import 'typeface-roboto';
-
-// 開発中はここを'http://localhost:3001/graphql'に合わせる
-const API_ENDPOINT = 'http://localhost:3001/graphql';
-const myAxios = axios.create({
-  headers: {
-    'Content-Type': 'application/json'
-  }
-});
-const QUERY_FOR_GENGE = "query { genreGroups { id booksGenreName genres { booksGenreId booksGenreName }}}";
 
 class App extends Component {
   constructor(props) {
@@ -24,26 +14,12 @@ class App extends Component {
       title: '',
       pageFrom: '',
       pageTo: '',
-      GenreGroups: this.initializeGenreGroups(),
+      GenreGroups: initializeGenreGroups(),
     };
 
     this.handleChangeTitleField = this.handleChange.bind(this);
     this.handleChangePageFromField = this.handleChange.bind(this);
     this.handleChangePageToField = this.handleChange.bind(this);
-  }
-
-  initializeGenreGroups() {
-    myAxios
-    .post(API_ENDPOINT, {
-      query: QUERY_FOR_GENGE
-    })
-    .then((results) => {
-      return results.data.data.genreGroups;
-    },
-    )
-    .catch((error) => {
-      return [];
-    });
   }
 
   handleGetLatAndLng() {
