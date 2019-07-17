@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import axios from 'axios';
+import { requestBooks } from './Request';
 import Show from './Show';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
@@ -46,20 +47,7 @@ class App extends Component {
   }
 
   handleGetLatAndLng() {
-    myAxios
-    .post(API_ENDPOINT, {
-      query: "query { genreGroups{ id booksGenreName } }"
-    })
-    .then((results) => {
-      console.log(results);
-      // const datas = results.data;
-      // results = datas.map(data => data.id + "\n");
-      // this.updateBooks(results);
-    },
-    )
-    .catch((error) => {
-      console.log(error);
-    });
+    requestBooks();
   }
 
   handleChange(event) {
