@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import { requestBooks, initializeGenreGroups } from './Request';
+import { requestBooks, initGenreGroupsPromise } from './Request';
 import Show from './Show';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
@@ -15,12 +15,23 @@ class App extends Component {
       title: '',
       pageFrom: '',
       pageTo: '',
-      GenreGroups: initializeGenreGroups(),
+      genreGroups: [],
     };
 
     this.handleChangeTitleField = this.handleChange.bind(this);
     this.handleChangePageFromField = this.handleChange.bind(this);
     this.handleChangePageToField = this.handleChange.bind(this);
+
+    initGenreGroupsPromise()
+      .then((result) => {
+        // "result"'s type is object
+        this.setState({genreGroups: result})
+      })
+      .catch((error) => {
+        console.log("error occured");
+      });
+  }
+
   static getDerivedStateFromError(error) {
     // Update state so the next render will show the fallback UI.
     return { hasError: true };

@@ -27,16 +27,18 @@ export const requestBooks = () => {
   });
 }
 
-export const initializeGenreGroups = () => {
-  myAxios
-  .post(API_ENDPOINT, {
-    query: QUERY_FOR_GENGE
-  })
-  .then((results) => {
-    return results.data.data.genreGroups;
-  },
-  )
-  .catch((error) => {
-    return [];
+export const initGenreGroupsPromise = () => {
+  return  new Promise((resolve, reject) => {
+    myAxios
+    .post(API_ENDPOINT, {
+      query: QUERY_FOR_GENGE
+    })
+    .then((results) => {
+      resolve(results.data.data.genreGroups);
+    })
+    .catch((error) => {
+      console.log(error);
+      reject([]);
+    });
   });
 }
