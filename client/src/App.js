@@ -10,6 +10,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      hasError: false,
       books: [],
       title: '',
       pageFrom: '',
@@ -20,7 +21,15 @@ class App extends Component {
     this.handleChangeTitleField = this.handleChange.bind(this);
     this.handleChangePageFromField = this.handleChange.bind(this);
     this.handleChangePageToField = this.handleChange.bind(this);
+  static getDerivedStateFromError(error) {
+    // Update state so the next render will show the fallback UI.
+    return { hasError: true };
   }
+
+  // componentDidCatch(error, info) {
+  //   // You can also log the error to an error reporting service
+  //   logErrorToMyService(error, info);
+  // }
 
   handleGetLatAndLng() {
     requestBooks();
@@ -37,6 +46,11 @@ class App extends Component {
   }
   
   render() {
+    if (this.state.hasError) {
+      // You can render any custom fallback UI
+      return <h1>Something went wrong.</h1>;
+    }
+
     return (
       <div className="App">
         <div className="App-header">
