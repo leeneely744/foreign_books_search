@@ -41,6 +41,64 @@ export default class GenreGroupForm extends Component {
   }
 }
 
+const genreGroupStyles = makeStyles(theme => ({
+  root: {
+    width: '100%',
+  },
+  heading: {
+    fontSize: theme.typography.pxToRem(15),
+    flexBasis: '33.33%',
+    flexShrink: 0,
+  },
+  secondaryHeading: {
+    fontSize: theme.typography.pxToRem(15),
+    color: theme.palette.text.secondary,
+  },
+  list: {
+    backgroundColor: theme.palette.background.paper,
+  }
+}));
+
+/**
+ * props の例
+ *  [
+ *    id: 1,
+ *    booksGenreName: "Travel（旅行）",
+ *    genres: [
+ *      0: [
+ *        booksGenreId: "005409001",
+ *        booksGenreName: "Transportation"
+ *      ],
+ *      1: ...
+ *    ]
+ *  ]
+ */
+function GenreGroup(props) {
+  const classes = genreGroupStyles();
+  const [expanded, setExpanded] = React.useState(false);
+  const genres = props.genres;
+
+  const handleChange = panel => (event, isExpanded) => {
+    setExpanded(isExpanded ? panel : false);
+  };
+
+  return (
+    <ExpansionPanel
+     expanded={expanded === `genre-group-${props.id}`}
+     onChange={handleChange(`genre-group-${props.id}`)}
+    >
+      <Typography className={classes.heading}>${props.booksGenreName}</Typography>
+      <ExpansionPanelDetails>
+        <List className={classes.list}>
+          {genres.map((genre, id) => {
+            <Genre genre={genre} id={id} />
+          })}
+        </List>
+      </ExpansionPanelDetails>
+    </ExpansionPanel>
+  );
+}
+
 
 /**
  * props の例
