@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import { requestBooks, initGenreGroupsPromise } from './Request';
 import Show from './Show';
-import GenreGroup from './form/GenreGroups';
+import GenreGroupForm from './form/GenreGroupsForm';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import 'typeface-roboto';
@@ -92,7 +92,7 @@ class App extends Component {
             type='number'
             onChange={this.handleChangePageToField}
           />
-          <GenreGroup
+          <GenreGroupForm
             genreGroups={this.state.genreGroups}
           />
         </form>

@@ -8,7 +8,7 @@ import Collapse from '@material-ui/core/Collapse';
 import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 
-export default class GenreGroup extends Component {
+export default class GenreGroupForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
