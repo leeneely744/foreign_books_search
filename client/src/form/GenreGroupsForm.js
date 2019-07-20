@@ -40,6 +40,14 @@ export default class GenreGroupForm extends Component {
   }
 }
 
+
+/**
+ * props の例
+ *  [
+ *    booksGenreId"005409001",
+ *    booksGenreName: "Transportation"
+ *  ]
+ */
 function Genre(props) {
   return (
     <div className="Genre">
