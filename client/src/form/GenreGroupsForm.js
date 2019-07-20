@@ -8,6 +8,19 @@ import ExpandLess from '@material-ui/icons/ExpandLess';
 import ExpandMore from '@material-ui/icons/ExpandMore';
 import { ExpansionPanel, Typography, ExpansionPanelDetails, ListItemSecondaryAction } from '@material-ui/core';
 
+/**
+ * props の例
+ *  [
+ *    0: [
+ *      id: 1,
+ *      booksGenreName: "Travel（旅行）",
+ *      genres: [
+ *        （略）
+ *      ]
+ *    ],
+ *    1: [] ...
+ *  ]
+ */
 export default class GenreGroupForm extends Component {
   constructor(props) {
     super(props);
