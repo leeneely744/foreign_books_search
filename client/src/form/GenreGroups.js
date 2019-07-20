@@ -40,3 +40,26 @@ export default class GenreGroup extends Component {
   }
 }
 
+class Genre extends Comment {
+  constructor(params) {
+    super(params);
+  }
+
+  render() {
+    return (
+      <div className="Genre">
+        <Checkbox
+          edge="start"
+          tabIndex={-1}
+          inputProps={{
+            'aria-labelledby': 'test'
+          }}
+        />
+        <ListItemText
+          id="testId"
+          primary={this.props.booksGenreName}
+        />
+      </div>
+    );
+  }
+}
