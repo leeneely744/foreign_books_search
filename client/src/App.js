@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import { requestBooks, initGenreGroupsPromise } from './Request';
 import Show from './Show';
+import GenreGroup from './form/GenreGroups';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import 'typeface-roboto';
@@ -90,6 +91,9 @@ class App extends Component {
             label='最大ページ数'
             type='number'
             onChange={this.handleChangePageToField}
+          />
+          <GenreGroup
+            genreGroups={this.state.genreGroups}
           />
         </form>
 
