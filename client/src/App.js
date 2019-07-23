@@ -22,7 +22,9 @@ class App extends Component {
     this.handleChangeTitleField = this.handleChange.bind(this);
     this.handleChangePageFromField = this.handleChange.bind(this);
     this.handleChangePageToField = this.handleChange.bind(this);
+  }
 
+  componentDidMount() {
     initGenreGroupsPromise()
       .then((result) => {
         // "result"'s type is object

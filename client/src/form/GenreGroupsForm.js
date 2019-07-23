@@ -4,9 +4,9 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Checkbox from '@material-ui/core/Checkbox';
-import ExpandLess from '@material-ui/icons/ExpandLess';
-import ExpandMore from '@material-ui/icons/ExpandMore';
 import { ExpansionPanel, Typography, ExpansionPanelDetails, ListItemSecondaryAction } from '@material-ui/core';
+import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 /**
  * props の例
@@ -29,23 +29,18 @@ export default class GenreGroupForm extends Component {
     };
   }
 
-  handleClick = () => this.setState({open: !open});
-
   render() {
     const genreGroups = Object.values(this.props.genreGroups);
 
+    if (genreGroups.length === 0) {
+      return <div />;
+    }
+
     return (
       <List className="GenreGroup">
-        {genreGroups.map(genreGroup => {
-          const labelId = `genreGroup-list-label`;
-
+        {genreGroups.map((genreGroup, id) => {
           return (
-            <div>
-              <ListItem button onClick={this.handleClick}>
-                <ListItemText primary={genreGroup.booksGenreName}/>
-                {open ? <ExpandLess /> : <ExpandMore />}
-              </ListItem>
-            </div>
+            <GenreGroup key={id} genreGroup={genreGroup} id={id} />
           );
         })}
       </List>
@@ -86,23 +81,24 @@ const genreGroupStyles = makeStyles(theme => ({
  */
 function GenreGroup(props) {
   const classes = genreGroupStyles();
-  const [expanded, setExpanded] = React.useState(false);
-  const genres = props.genres;
-
-  const handleChange = panel => (event, isExpanded) => {
-    setExpanded(isExpanded ? panel : false);
-  };
+  const genres = props.genreGroup.genres;
+  const id = props.id;
 
   return (
-    <ExpansionPanel
-     expanded={expanded === `genre-group-${props.id}`}
-     onChange={handleChange(`genre-group-${props.id}`)}
-    >
-      <Typography className={classes.heading}>${props.booksGenreName}</Typography>
+    <ExpansionPanel id={`genre-group-${id}`}>
+      <ExpansionPanelSummary
+        expandIcon={<ExpandMoreIcon />}
+        aria-controls="panel1a-content"
+        id={`panel1a-header-${id}`}
+      >
+        <Typography className={classes.heading}>{props.genreGroup.booksGenreName}</Typography>
+      </ExpansionPanelSummary>
       <ExpansionPanelDetails>
         <List className={classes.list}>
           {genres.map((genre, id) => {
-            <Genre genre={genre} id={id} />
+            return (
+              <Genre key={id} genre={genre} id={id} />
+            );
           })}
         </List>
       </ExpansionPanelDetails>
@@ -128,12 +124,12 @@ function Genre(props) {
     <ListItem key={id}>
       <ListItemText
        id={`genre${id}`}
-       primary={props.booksGenreName}
+       primary={props.genre.booksGenreName}
       />
       <ListItemSecondaryAction>
         <Checkbox
           edge="end"
-          onChange={handleToggle(id)}
+          onChange={handleToggle}
           checked={checked}
           inputProps={{
             'aria-labelledby': id
