@@ -84,6 +84,15 @@ function GenreGroup(props) {
   const genres = props.genreGroup.genres;
   const id = props.id;
 
+  let shapeTitle = (title) => {
+    let start = title.indexOf('（');
+    let end = title.lastIndexOf('）');
+    if (start === -1 || end === -1) {
+      return title;
+    }
+    return title.substring(start + 1, end);
+  }
+
   return (
     <ExpansionPanel id={`genre-group-${id}`}>
       <ExpansionPanelSummary
@@ -91,7 +100,7 @@ function GenreGroup(props) {
         aria-controls="panel1a-content"
         id={`panel1a-header-${id}`}
       >
-        <Typography className={classes.heading}>{props.genreGroup.booksGenreName}</Typography>
+        <Typography className={classes.heading}>{shapeTitle(props.genreGroup.booksGenreName)}</Typography>
       </ExpansionPanelSummary>
       <ExpansionPanelDetails>
         <List className={classes.list}>
