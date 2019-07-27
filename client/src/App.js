@@ -5,7 +5,9 @@ import Show from './Show';
 import GenreGroupForm from './form/GenreGroupsForm';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 import 'typeface-roboto';
+import { Switch, Collapse } from '@material-ui/core';
 
 class App extends Component {
   constructor(props) {
@@ -17,11 +19,13 @@ class App extends Component {
       pageFrom: '',
       pageTo: '',
       genreGroups: [],
+      usedGenres: false,
     };
 
     this.handleChangeTitleField = this.handleChange.bind(this);
     this.handleChangePageFromField = this.handleChange.bind(this);
     this.handleChangePageToField = this.handleChange.bind(this);
+    this.handleChangeToggleGenre = this.handleChangeToggle.bind(this);
   }
 
   componentDidMount() {
@@ -52,6 +56,11 @@ class App extends Component {
   handleChange(event) {
     let stateName = event.target.name;
     this.setState({[stateName]: event.target.value});
+  }
+
+  handleChangeToggle(event) {
+    let nowState = this.state.usedGenres;
+    this.setState({usedGenres: !nowState});
   }
 
   updateBooks(newBooks) {
@@ -94,9 +103,20 @@ class App extends Component {
             type='number'
             onChange={this.handleChangePageToField}
           />
-          <GenreGroupForm
-            genreGroups={this.state.genreGroups}
+
+          <FormControlLabel
+            control={
+              <Switch
+                checked={this.state.usedGenres}
+                onChange={this.handleChangeToggleGenre}
+                color="secondary"
+              />
+            }
+            label="ジャンルを使用する"
           />
+          <Collapse in={this.state.usedGenres}>
+            <GenreGroupForm genreGroups={this.state.genreGroups} />
+          </Collapse>
         </form>
 
         <div className='Search'>
