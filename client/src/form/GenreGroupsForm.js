@@ -4,7 +4,7 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Checkbox from '@material-ui/core/Checkbox';
-import { ExpansionPanel, Typography, ExpansionPanelDetails, ListItemSecondaryAction } from '@material-ui/core';
+import { ExpansionPanel, Typography, ExpansionPanelDetails, ListItemSecondaryAction, ListSubheader } from '@material-ui/core';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
@@ -37,7 +37,14 @@ export default class GenreGroupForm extends Component {
     }
 
     return (
-      <List className="GenreGroup">
+      <List
+       className="GenreGroup"
+       subheader={
+          <ListSubheader component="div" id="nested-list-subheader">
+           ジャンル
+          </ListSubheader>
+       }
+      >
         {genreGroups.map((genreGroup, id) => {
           return (
             <GenreGroup key={id} genreGroup={genreGroup} id={id} />
