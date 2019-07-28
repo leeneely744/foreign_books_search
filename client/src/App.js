@@ -19,16 +19,20 @@ class App extends Component {
       pageFrom: '',
       pageTo: '',
       genreGroups: [],
+      checkedGenres: [],
       usedGenres: false,
     };
 
     initGenreGroupsPromise()
       .then((result) => {
         const genreGroups = Object.values(result);
-        this.setState({genreGroups: genreGroups,});
+        this.setState({
+          genreGroups: genreGroups,
+          checkedGenres: initCheckedGenres(genreGroups),
+        });
       })
       .catch((error) => {
-        console.log("error occured");
+        console.log("error occured = " + error);
       });
 
     this.handleChangeTitleField = this.handleChange.bind(this);
@@ -133,6 +137,21 @@ class App extends Component {
       </div>
     );
   }
+}
+
+let CheckForm = function(booksGenreId, checked) {
+  this.booksGenreId = booksGenreId;
+  this.checked = checked;
+}
+
+function initCheckedGenres(genreGroups) {
+  let checkboxs = [];
+  genreGroups.forEach(genreGroup => {
+    genreGroup['genres'].forEach(genre => {
+      checkboxs.push(new CheckForm(genre.booksGenreId, false));
+    });
+  });
+  return checkboxs;
 }
 
 export default App;

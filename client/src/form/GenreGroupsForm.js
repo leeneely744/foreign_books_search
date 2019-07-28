@@ -118,7 +118,7 @@ function GenreGroup(props) {
  */
 function Genre(props) {
   const id = props.id;
-  const [checked, setChecked] = React.useState(true);
+  const [checked, setChecked] = React.useState(false);
 
   const handleToggle = () => setChecked(!checked);
 
