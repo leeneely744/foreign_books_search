@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -21,38 +21,25 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
  *    1: [] ...
  *  ]
  */
-export default class GenreGroupForm extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      open: false
-    };
-  }
-
-  render() {
-    const genreGroups = Object.values(this.props.genreGroups);
-
-    if (genreGroups.length === 0) {
-      return <div />;
-    }
-
-    return (
-      <List
-       className="GenreGroup"
-       subheader={
-          <ListSubheader component="div" id="nested-list-subheader">
-           ジャンル
-          </ListSubheader>
-       }
-      >
-        {genreGroups.map((genreGroup, id) => {
-          return (
-            <GenreGroup key={id} genreGroup={genreGroup} id={id} />
-          );
-        })}
-      </List>
-    );
-  }
+export default function GenreGroupForm(props) {
+  let genreGroups = props.genreGroups;
+  
+  return (
+    <List
+     className="GenreGroup"
+     subheader={
+        <ListSubheader component="div" id="nested-list-subheader">
+         ジャンル
+        </ListSubheader>
+     }
+    >
+      {genreGroups.map((genreGroup, id) => {
+        return (
+          <GenreGroup key={id} genreGroup={genreGroup} id={id} />
+        );
+      })}
+    </List>
+  );
 }
 
 const genreGroupStyles = makeStyles(theme => ({
