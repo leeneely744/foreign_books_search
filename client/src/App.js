@@ -22,21 +22,19 @@ class App extends Component {
       usedGenres: false,
     };
 
-    this.handleChangeTitleField = this.handleChange.bind(this);
-    this.handleChangePageFromField = this.handleChange.bind(this);
-    this.handleChangePageToField = this.handleChange.bind(this);
-    this.handleChangeToggleGenre = this.handleChangeToggle.bind(this);
-  }
-
-  componentDidMount() {
     initGenreGroupsPromise()
       .then((result) => {
-        // "result"'s type is object
-        this.setState({genreGroups: result})
+        const genreGroups = Object.values(result);
+        this.setState({genreGroups: genreGroups,});
       })
       .catch((error) => {
         console.log("error occured");
       });
+
+    this.handleChangeTitleField = this.handleChange.bind(this);
+    this.handleChangePageFromField = this.handleChange.bind(this);
+    this.handleChangePageToField = this.handleChange.bind(this);
+    this.handleChangeToggleGenre = this.handleChangeToggle.bind(this);
   }
 
   static getDerivedStateFromError(error) {
