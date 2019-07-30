@@ -139,16 +139,11 @@ class App extends Component {
   }
 }
 
-let CheckForm = function(booksGenreId, checked) {
-  this.booksGenreId = booksGenreId;
-  this.checked = checked;
-}
-
 function initCheckedGenres(genreGroups) {
   let checkboxs = [];
   genreGroups.forEach(genreGroup => {
     genreGroup['genres'].forEach(genre => {
-      checkboxs.push(new CheckForm(genre.booksGenreId, false));
+      checkboxs[genre.booksGenreId] = false;
     });
   });
   return checkboxs;
