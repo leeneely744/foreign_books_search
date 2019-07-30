@@ -65,6 +65,12 @@ class App extends Component {
     this.setState({usedGenres: !nowState});
   }
 
+  handleCheck(booksGenreId, isChecked) {
+    const checkboxs = this.state.checkedGenres.slice();
+    checkboxs[booksGenreId] = isChecked;
+    this.setState({checkedGenres: checkboxs});
+  }
+
   updateBooks(newBooks) {
     console.log(newBooks);
     this.setState({books: newBooks});
