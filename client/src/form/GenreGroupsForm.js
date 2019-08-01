@@ -24,6 +24,13 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 export default function GenreGroupForm(props) {
   let genreGroups = props.genreGroups;
   
+  let renderGenre = (key) => {
+    let genres = props.genreGroups[key].genres;
+    return genres.map((genre, id) => {
+      return <Genre key={id} genre={genre} id={id} />;
+    });
+  }
+
   return (
     <List
      className="GenreGroup"
@@ -35,7 +42,9 @@ export default function GenreGroupForm(props) {
     >
       {genreGroups.map((genreGroup, id) => {
         return (
-          <GenreGroup key={id} genreGroup={genreGroup} id={id} />
+          <GenreGroup key={id} genreGroup={genreGroup} id={id} >
+            {renderGenre(id)}
+          </GenreGroup>
         );
       })}
     </List>
@@ -74,7 +83,6 @@ const genreGroupStyles = makeStyles(theme => ({
  */
 function GenreGroup(props) {
   const classes = genreGroupStyles();
-  const genres = props.genreGroup.genres;
   const id = props.id;
 
   let shapeTitle = (title) => {
@@ -97,11 +105,7 @@ function GenreGroup(props) {
       </ExpansionPanelSummary>
       <ExpansionPanelDetails>
         <List className={classes.list}>
-          {genres.map((genre, id) => {
-            return (
-              <Genre key={id} genre={genre} id={id} />
-            );
-          })}
+          {props.children}
         </List>
       </ExpansionPanelDetails>
     </ExpansionPanel>
