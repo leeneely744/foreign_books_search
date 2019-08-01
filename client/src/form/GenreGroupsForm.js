@@ -9,7 +9,7 @@ import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 /**
- * props の例
+ * genreGroups の例
  *  [
  *    0: [
  *      id: 1,
@@ -68,7 +68,7 @@ const genreGroupStyles = makeStyles(theme => ({
 }));
 
 /**
- * props の例
+ * GenreGroup の例
  *  [
  *    id: 1,
  *    booksGenreName: "Travel（旅行）",
@@ -114,7 +114,7 @@ function GenreGroup(props) {
 
 
 /**
- * props の例
+ * Genre の例
  *  [
  *    booksGenreId"005409001",
  *    booksGenreName: "Transportation"
