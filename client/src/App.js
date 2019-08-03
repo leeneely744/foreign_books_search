@@ -67,9 +67,9 @@ class App extends Component {
   }
 
   handleCheck(booksGenreId, isChecked) {
-    const checkboxs = this.state.checkedGenres.slice();
-    checkboxs[booksGenreId] = isChecked;
-    this.setState({checkedGenres: checkboxs});
+    const checkboxes = this.state.checkedGenres;
+    checkboxes[booksGenreId] = isChecked;
+    this.setState({checkedGenres: checkboxes});
   }
 
   updateBooks(newBooks) {
@@ -151,13 +151,13 @@ class App extends Component {
 }
 
 function initCheckedGenres(genreGroups) {
-  let checkboxs = [];
+  let checkboxes = [];
   genreGroups.forEach(genreGroup => {
     genreGroup['genres'].forEach(genre => {
-      checkboxs[genre.booksGenreId] = false;
+      checkboxes[genre.booksGenreId] = false;
     });
   });
-  return checkboxs;
+  return checkboxes;
 }
 
 export default App;
