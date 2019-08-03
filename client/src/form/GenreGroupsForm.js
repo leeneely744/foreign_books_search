@@ -27,7 +27,17 @@ export default function GenreGroupForm(props) {
   let renderGenre = (key) => {
     let genres = props.genreGroups[key].genres;
     return genres.map((genre, id) => {
-      return <Genre key={id} genre={genre} id={id} />;
+      let booksGenreId = genre.booksGenreId;
+      let checked = props.checkState[booksGenreId];
+      return (
+        <Genre
+          id={id}
+          key={id}
+          genre={genre}
+          checked={checked}
+          onClick={() => props.onClick(booksGenreId, !checked)}
+        />
+      );
     });
   }
 
@@ -122,9 +132,6 @@ function GenreGroup(props) {
  */
 function Genre(props) {
   const id = props.id;
-  const [checked, setChecked] = React.useState(false);
-
-  const handleToggle = () => setChecked(!checked);
 
   return (
     <ListItem key={id}>
@@ -135,8 +142,8 @@ function Genre(props) {
       <ListItemSecondaryAction>
         <Checkbox
           edge="end"
-          onChange={handleToggle}
-          checked={checked}
+          onChange={props.onClick}
+          checked={props.checked}
           inputProps={{
             'aria-labelledby': id
           }}

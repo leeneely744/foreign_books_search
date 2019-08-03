@@ -39,6 +39,7 @@ class App extends Component {
     this.handleChangePageFromField = this.handleChange.bind(this);
     this.handleChangePageToField = this.handleChange.bind(this);
     this.handleChangeToggleGenre = this.handleChangeToggle.bind(this);
+    this.handleCheckGenre = this.handleCheck.bind(this);
   }
 
   static getDerivedStateFromError(error) {
@@ -123,7 +124,11 @@ class App extends Component {
             label="ジャンルを使用する"
           />
           <Collapse in={this.state.usedGenres}>
-            <GenreGroupForm genreGroups={this.state.genreGroups} />
+            <GenreGroupForm
+              genreGroups={this.state.genreGroups}
+              checkState={this.state.checkedGenres}
+              onClick={this.handleCheckGenre}
+            />
           </Collapse>
         </form>
 
