@@ -13,6 +13,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
  *  [
  *    0: [
  *      id: 1,
+ *      booksGenreId: "005401",
  *      booksGenreName: "Travel（旅行）",
  *      genres: [
  *        （略）
@@ -28,14 +29,14 @@ export default function GenreGroupForm(props) {
     let genres = props.genreGroups[key].genres;
     return genres.map((genre, id) => {
       let booksGenreId = genre.booksGenreId;
-      let checked = props.checkState[booksGenreId];
+      let checked = props.checkedGenreState[booksGenreId];
       return (
         <Genre
           id={id}
           key={id}
           genre={genre}
           checked={checked}
-          onClick={() => props.onClick(booksGenreId, !checked)}
+          onClick={() => props.onClick(booksGenreId, checked)}
         />
       );
     });
@@ -51,8 +52,15 @@ export default function GenreGroupForm(props) {
      }
     >
       {genreGroups.map((genreGroup, id) => {
+        let booksGenreId = genreGroup.booksGenreId;
+        let checked = props.checkedGenreGroupState[booksGenreId];
         return (
-          <GenreGroup key={id} genreGroup={genreGroup} id={id} >
+          <GenreGroup
+            id={id}
+            key={id}
+            genreGroup={genreGroup}
+            onClick={() => props.onClick(booksGenreId, checked)}
+          >
             {renderGenre(id)}
           </GenreGroup>
         );
@@ -112,6 +120,14 @@ function GenreGroup(props) {
         id={`panel1a-header-${id}`}
       >
         <Typography className={classes.heading}>{shapeTitle(props.genreGroup.booksGenreName)}</Typography>
+        <Checkbox
+          edge="end"
+          onChange={props.onClick}
+          checked={props.checked}
+          inputProps={{
+            'aria-labelledby': id
+          }}
+        />
       </ExpansionPanelSummary>
       <ExpansionPanelDetails>
         <List className={classes.list}>

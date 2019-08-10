@@ -19,6 +19,7 @@ class App extends Component {
       pageFrom: '',
       pageTo: '',
       genreGroups: [],
+      checkedGenreGroups: [],
       checkedGenres: [],
       usedGenres: false,
     };
@@ -29,6 +30,7 @@ class App extends Component {
         this.setState({
           genreGroups: genreGroups,
           checkedGenres: initCheckedGenres(genreGroups),
+          checkedGenreGroups: initCheckedGenreGroups(genreGroups),
         });
       })
       .catch((error) => {
@@ -66,10 +68,26 @@ class App extends Component {
     this.setState({usedGenres: !nowState});
   }
 
-  handleCheck(booksGenreId, isChecked) {
-    const checkboxes = this.state.checkedGenres;
-    checkboxes[booksGenreId] = isChecked;
-    this.setState({checkedGenres: checkboxes});
+  handleCheck(clickedBooksGenreId, isChecked) {
+    let genreCheckboxes = this.state.checkedGenres;
+    console.log(isChecked);
+    Object.keys(genreCheckboxes).forEach((booksGenreId) => {
+      if (booksGenreId.startsWith(clickedBooksGenreId)) {
+        genreCheckboxes[booksGenreId] = !isChecked;
+      }
+    });
+
+    let genreGroupCheckboxes = this.state.checkedGenreGroups;
+    Object.keys(genreGroupCheckboxes).forEach((booksGenreId) => {
+      if(booksGenreId === clickedBooksGenreId) {
+        genreGroupCheckboxes[booksGenreId] = !isChecked;
+      }
+    });
+
+    this.setState({
+      checkedGenres: genreCheckboxes,
+      checkedGenreGroups: genreGroupCheckboxes,
+    });
   }
 
   updateBooks(newBooks) {
@@ -126,7 +144,8 @@ class App extends Component {
           <Collapse in={this.state.usedGenres}>
             <GenreGroupForm
               genreGroups={this.state.genreGroups}
-              checkState={this.state.checkedGenres}
+              checkedGenreState={this.state.checkedGenres}
+              checkedGenreGroupState={this.state.checkedGenreGroups}
               onClick={this.handleCheckGenre}
             />
           </Collapse>
@@ -156,6 +175,14 @@ function initCheckedGenres(genreGroups) {
     genreGroup['genres'].forEach(genre => {
       checkboxes[genre.booksGenreId] = false;
     });
+  });
+  return checkboxes;
+}
+
+function initCheckedGenreGroups(genreGroups) {
+  let checkboxes = [];
+  genreGroups.forEach(genreGroup => {
+    checkboxes[genreGroup.booksGenreId] = false;
   });
   return checkboxes;
 }
