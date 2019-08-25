@@ -10,6 +10,8 @@
     "typeface-roboto": "0.0.54"
   },
   "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
     "axios": "^0.19.0",
     "babel-plugin-react-css-modules": "^5.2.6",
     "gulp": "^4.0.2",
