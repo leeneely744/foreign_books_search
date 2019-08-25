@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
+import './App.scss';
 import { requestBooks, initGenreGroupsPromise } from './Request';
 import Show from './Show';
 import GenreGroupForm from './form/GenreGroupsForm';
@@ -70,7 +70,6 @@ class App extends Component {
 
   handleCheck(clickedBooksGenreId, isChecked) {
     let genreCheckboxes = this.state.checkedGenres;
-    console.log(isChecked);
     Object.keys(genreCheckboxes).forEach((booksGenreId) => {
       if (booksGenreId.startsWith(clickedBooksGenreId)) {
         genreCheckboxes[booksGenreId] = !isChecked;
