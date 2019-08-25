@@ -55,14 +55,23 @@ export default function GenreGroupForm(props) {
         let booksGenreId = genreGroup.booksGenreId;
         let checked = props.checkedGenreGroupState[booksGenreId];
         return (
-          <GenreGroup
-            id={id}
-            key={id}
-            genreGroup={genreGroup}
-            onClick={() => props.onClick(booksGenreId, checked)}
-          >
-            {renderGenre(id)}
-          </GenreGroup>
+          <div>
+            <GenreGroup
+              id={id}
+              key={id}
+              genreGroup={genreGroup}
+            >
+              {renderGenre(id)}
+            </GenreGroup>
+            <Checkbox
+              edge="end"
+              onChange={() => props.onClick(booksGenreId, checked)}
+              checked={props.checked}
+              inputProps={{
+                'aria-labelledby': id
+              }}
+            />
+          </div>
         );
       })}
     </List>
@@ -120,14 +129,6 @@ function GenreGroup(props) {
         id={`panel1a-header-${id}`}
       >
         <Typography className={classes.heading}>{shapeTitle(props.genreGroup.booksGenreName)}</Typography>
-        <Checkbox
-          edge="end"
-          onChange={props.onClick}
-          checked={props.checked}
-          inputProps={{
-            'aria-labelledby': id
-          }}
-        />
       </ExpansionPanelSummary>
       <ExpansionPanelDetails>
         <List className={classes.list}>
