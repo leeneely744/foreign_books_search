@@ -1,5 +1,6 @@
 .genre-group-container {
   display: grid;
+  grid-template-columns: 350px 1fr;
   grid-template-areas: 
     'panel checkbox';
 }
@@ -9,5 +10,9 @@
 }
 
 .genre-group-checkbox {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto;
   grid-area: 'checkbox';
 }
