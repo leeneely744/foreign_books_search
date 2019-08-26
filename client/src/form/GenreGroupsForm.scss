@@ -1,0 +1,13 @@
+.genre-group-container {
+  display: grid;
+  grid-template-areas: 
+    'panel checkbox';
+}
+
+.genre-group-panel {
+  grid-area: 'panel';
+}
+
+.genre-group-checkbox {
+  grid-area: 'checkbox';
+}

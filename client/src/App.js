@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './App.scss';
+import './css/App.css';
 import { requestBooks, initGenreGroupsPromise } from './Request';
 import Show from './Show';
 import GenreGroupForm from './form/GenreGroupsForm';

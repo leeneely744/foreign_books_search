@@ -7,6 +7,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 import { ExpansionPanel, Typography, ExpansionPanelDetails, ListItemSecondaryAction, ListSubheader } from '@material-ui/core';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import '../css/form/GenreGroupsForm.css';
 
 /**
  * genreGroups の例
@@ -55,7 +56,7 @@ export default function GenreGroupForm(props) {
         let booksGenreId = genreGroup.booksGenreId;
         let checked = props.checkedGenreGroupState[booksGenreId];
         return (
-          <div>
+          <div className='genre-group-container'>
             <GenreGroup
               id={id}
               key={id}
@@ -67,6 +68,7 @@ export default function GenreGroupForm(props) {
               edge="end"
               onChange={() => props.onClick(booksGenreId, checked)}
               checked={props.checked}
+              className='genre-group-checkbox'
               inputProps={{
                 'aria-labelledby': id
               }}
@@ -122,7 +124,7 @@ function GenreGroup(props) {
   }
 
   return (
-    <ExpansionPanel id={`genre-group-${id}`}>
+    <ExpansionPanel id={`genre-group-${id}`} className='genre-group-panel'>
       <ExpansionPanelSummary
         expandIcon={<ExpandMoreIcon />}
         aria-controls="panel1a-content"
