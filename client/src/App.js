@@ -106,7 +106,7 @@ class App extends Component {
           <h2>洋書おすすめ検索</h2>
         </div>
 
-        <form onSubmit={this.handleGetLatAndLng}>
+        <form onSubmit={this.handleGetLatAndLng} className={"books-search-form"}>
           <TextField
             id='title'
             name='title'
@@ -148,9 +148,6 @@ class App extends Component {
               onClick={this.handleCheckGenre}
             />
           </Collapse>
-        </form>
-
-        <div className='Search'>
           <Button
             variant='contained'
             color='primary'
@@ -159,7 +156,8 @@ class App extends Component {
           >
             検索
           </Button>
-        </div>
+        </form>
+        
         <Show 
           books={this.state.books}
         />
