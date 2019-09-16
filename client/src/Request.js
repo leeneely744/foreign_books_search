@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // 開発中はここを'http://localhost:3001/graphql'に合わせる
 const API_ENDPOINT = 'http://localhost:3001/graphql';
-const QUERY_FOR_GENGE = "query { genreGroups { id booksGenreName genres { booksGenreId booksGenreName }}}";
+const QUERY_FOR_GENGE = "query { genreGroups { id booksGenreId booksGenreName genres { booksGenreId booksGenreName }}}";
 
 const myAxios = axios.create({
   headers: {

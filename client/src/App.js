@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
+import './css/App.css';
 import { requestBooks, initGenreGroupsPromise } from './Request';
 import Show from './Show';
 import GenreGroupForm from './form/GenreGroupsForm';
@@ -19,6 +19,7 @@ class App extends Component {
       pageFrom: '',
       pageTo: '',
       genreGroups: [],
+      checkedGenreGroups: [],
       checkedGenres: [],
       usedGenres: false,
     };
@@ -29,6 +30,7 @@ class App extends Component {
         this.setState({
           genreGroups: genreGroups,
           checkedGenres: initCheckedGenres(genreGroups),
+          checkedGenreGroups: initCheckedGenreGroups(genreGroups),
         });
       })
       .catch((error) => {
@@ -39,6 +41,7 @@ class App extends Component {
     this.handleChangePageFromField = this.handleChange.bind(this);
     this.handleChangePageToField = this.handleChange.bind(this);
     this.handleChangeToggleGenre = this.handleChangeToggle.bind(this);
+    this.handleCheckGenre = this.handleCheck.bind(this);
   }
 
   static getDerivedStateFromError(error) {
@@ -65,10 +68,25 @@ class App extends Component {
     this.setState({usedGenres: !nowState});
   }
 
-  handleCheck(booksGenreId, isChecked) {
-    const checkboxs = this.state.checkedGenres.slice();
-    checkboxs[booksGenreId] = isChecked;
-    this.setState({checkedGenres: checkboxs});
+  handleCheck(clickedBooksGenreId, isChecked) {
+    let genreCheckboxes = this.state.checkedGenres;
+    Object.keys(genreCheckboxes).forEach((booksGenreId) => {
+      if (booksGenreId.startsWith(clickedBooksGenreId)) {
+        genreCheckboxes[booksGenreId] = !isChecked;
+      }
+    });
+
+    let genreGroupCheckboxes = this.state.checkedGenreGroups;
+    Object.keys(genreGroupCheckboxes).forEach((booksGenreId) => {
+      if(booksGenreId === clickedBooksGenreId) {
+        genreGroupCheckboxes[booksGenreId] = !isChecked;
+      }
+    });
+
+    this.setState({
+      checkedGenres: genreCheckboxes,
+      checkedGenreGroups: genreGroupCheckboxes,
+    });
   }
 
   updateBooks(newBooks) {
@@ -88,7 +106,7 @@ class App extends Component {
           <h2>洋書おすすめ検索</h2>
         </div>
 
-        <form onSubmit={this.handleGetLatAndLng}>
+        <form onSubmit={this.handleGetLatAndLng} className={"books-search-form"}>
           <TextField
             id='title'
             name='title'
@@ -123,11 +141,13 @@ class App extends Component {
             label="ジャンルを使用する"
           />
           <Collapse in={this.state.usedGenres}>
-            <GenreGroupForm genreGroups={this.state.genreGroups} />
+            <GenreGroupForm
+              genreGroups={this.state.genreGroups}
+              checkedGenreState={this.state.checkedGenres}
+              checkedGenreGroupState={this.state.checkedGenreGroups}
+              onClick={this.handleCheckGenre}
+            />
           </Collapse>
-        </form>
-
-        <div className='Search'>
           <Button
             variant='contained'
             color='primary'
@@ -136,7 +156,8 @@ class App extends Component {
           >
             検索
           </Button>
-        </div>
+        </form>
+        
         <Show 
           books={this.state.books}
         />
@@ -146,13 +167,21 @@ class App extends Component {
 }
 
 function initCheckedGenres(genreGroups) {
-  let checkboxs = [];
+  let checkboxes = [];
   genreGroups.forEach(genreGroup => {
     genreGroup['genres'].forEach(genre => {
-      checkboxs[genre.booksGenreId] = false;
+      checkboxes[genre.booksGenreId] = false;
     });
   });
-  return checkboxs;
+  return checkboxes;
+}
+
+function initCheckedGenreGroups(genreGroups) {
+  let checkboxes = [];
+  genreGroups.forEach(genreGroup => {
+    checkboxes[genreGroup.booksGenreId] = false;
+  });
+  return checkboxes;
 }
 
 export default App;

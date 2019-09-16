@@ -7,12 +7,14 @@ import Checkbox from '@material-ui/core/Checkbox';
 import { ExpansionPanel, Typography, ExpansionPanelDetails, ListItemSecondaryAction, ListSubheader } from '@material-ui/core';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import '../css/form/GenreGroupsForm.css';
 
 /**
- * props の例
+ * genreGroups の例
  *  [
  *    0: [
  *      id: 1,
+ *      booksGenreId: "005401",
  *      booksGenreName: "Travel（旅行）",
  *      genres: [
  *        （略）
@@ -27,7 +29,17 @@ export default function GenreGroupForm(props) {
   let renderGenre = (key) => {
     let genres = props.genreGroups[key].genres;
     return genres.map((genre, id) => {
-      return <Genre key={id} genre={genre} id={id} />;
+      let booksGenreId = genre.booksGenreId;
+      let checked = props.checkedGenreState[booksGenreId];
+      return (
+        <Genre
+          id={id}
+          key={id}
+          genre={genre}
+          checked={checked}
+          onClick={() => props.onClick(booksGenreId, checked)}
+        />
+      );
     });
   }
 
@@ -41,10 +53,27 @@ export default function GenreGroupForm(props) {
      }
     >
       {genreGroups.map((genreGroup, id) => {
+        let booksGenreId = genreGroup.booksGenreId;
+        let checked = props.checkedGenreGroupState[booksGenreId];
         return (
-          <GenreGroup key={id} genreGroup={genreGroup} id={id} >
-            {renderGenre(id)}
-          </GenreGroup>
+          <div className='genre-group-container'>
+            <GenreGroup
+              id={id}
+              key={id}
+              genreGroup={genreGroup}
+            >
+              {renderGenre(id)}
+            </GenreGroup>
+            <Checkbox
+              edge="end"
+              onChange={() => props.onClick(booksGenreId, checked)}
+              checked={props.checked}
+              className='genre-group-checkbox'
+              inputProps={{
+                'aria-labelledby': id
+              }}
+            />
+          </div>
         );
       })}
     </List>
@@ -68,7 +97,7 @@ const genreGroupStyles = makeStyles(theme => ({
 }));
 
 /**
- * props の例
+ * GenreGroup の例
  *  [
  *    id: 1,
  *    booksGenreName: "Travel（旅行）",
@@ -95,7 +124,7 @@ function GenreGroup(props) {
   }
 
   return (
-    <ExpansionPanel id={`genre-group-${id}`}>
+    <ExpansionPanel id={`genre-group-${id}`} className='genre-group-panel'>
       <ExpansionPanelSummary
         expandIcon={<ExpandMoreIcon />}
         aria-controls="panel1a-content"
@@ -114,7 +143,7 @@ function GenreGroup(props) {
 
 
 /**
- * props の例
+ * Genre の例
  *  [
  *    booksGenreId"005409001",
  *    booksGenreName: "Transportation"
@@ -122,9 +151,6 @@ function GenreGroup(props) {
  */
 function Genre(props) {
   const id = props.id;
-  const [checked, setChecked] = React.useState(false);
-
-  const handleToggle = () => setChecked(!checked);
 
   return (
     <ListItem key={id}>
@@ -135,8 +161,8 @@ function Genre(props) {
       <ListItemSecondaryAction>
         <Checkbox
           edge="end"
-          onChange={handleToggle}
-          checked={checked}
+          onChange={props.onClick}
+          checked={props.checked}
           inputProps={{
             'aria-labelledby': id
           }}
