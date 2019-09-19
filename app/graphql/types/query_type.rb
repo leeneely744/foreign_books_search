@@ -14,11 +14,12 @@ module Types
     field :books, [Types::BookType], null: false do
       # "required: false" DocsでNullableと表示されるだけで、
       # 本当にNullableかどうかはresolveメソッドの引数による
+      argument :title, String, required: false, default_value: '', prepare: :check_title
       argument :page_num_from, Integer, required: false, default_value: 0, prepare: :check_page_num
       argument :page_num_to, Integer, required: false, default_value: 9999, prepare: :check_page_num
       argument :limit, Integer, required: false, default_value: 10, prepare: ->(limit, ctx) {[limit, 30].min}
     end
-    def books(page_num_from: , page_num_to: , limit: )
+    def books(title: , page_num_from: , page_num_to: , limit: )
       begin
         Book.all.limit(limit)
       rescue => exception
@@ -48,6 +49,11 @@ module Types
 
     # ここから先はprivateとして扱う
     # 実際にprivateをprepareに渡すとエラーになる
+
+    def check_title(title)
+      result = Regexp.escape(title)
+      result[0, 20]
+    end
 
     def check_page_num(page_num)
       page_num = 9999 if page_num > 9999
