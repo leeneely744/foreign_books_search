@@ -1,4 +1,5 @@
 import axios from 'axios';
+import * as gql from 'gql-query-builder'
 
 // 開発中はここを'http://localhost:3001/graphql'に合わせる
 const API_ENDPOINT = 'http://localhost:3001/graphql';
@@ -9,6 +10,10 @@ const myAxios = axios.create({
     'Content-Type': 'application/json'
   }
 });
+
+export const queryBuilder = (params) => {
+  gql.query(params)
+}
 
 export const requestBooks = () => {
   myAxios

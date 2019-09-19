@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './css/App.css';
-import { requestBooks, initGenreGroupsPromise } from './Request';
+import { queryBuilder, requestBooks, initGenreGroupsPromise } from './Request';
 import Show from './Show';
 import GenreGroupForm from './form/GenreGroupsForm';
 import Button from '@material-ui/core/Button';
