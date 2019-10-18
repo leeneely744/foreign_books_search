@@ -15,14 +15,16 @@ module Types
       # "required: false" DocsでNullableと表示されるだけで、
       # 本当にNullableかどうかはresolveメソッドの引数による
       argument :title, String, required: false, default_value: '', prepare: :check_title
+      argument :books_genre_id, [String], required: false, default_value: [], prepare: :check_books_genre_id
       argument :page_num_from, Integer, required: false, default_value: 0, prepare: :check_page_num
       argument :page_num_to, Integer, required: false, default_value: 9999, prepare: :check_page_num
       argument :limit, Integer, required: false, default_value: 10, prepare: ->(limit, ctx) {[limit, 30].min}
     end
-    def books(title: , page_num_from: , page_num_to: , limit: )
+    def books(title: , books_genre_id: , page_num_from: , page_num_to: , limit: )
       begin
         query_hash = {
           title: add_percent(title),
+          books_genre_id: books_genre_id,
           page: page_num_from..page_num_to
         }
         search_books_with_query(query_hash, limit)
@@ -85,6 +87,10 @@ module Types
     def check_title(title)
       result = Regexp.escape(title)
       result[0, 20]
+    end
+
+    def check_books_genre_id(books_genre_ids)
+      books_genre_ids.map{|id| id.slice(0, 9)}
     end
 
     def check_page_num(page_num)
