@@ -22,7 +22,7 @@ module Types
     def books(title: , page_num_from: , page_num_to: , limit: )
       begin
         query_hash = {
-          title: "%#{title}%",
+          title: add_percent(title),
           page: page_num_from..page_num_to
         }
         search_books_with_query(query_hash, limit)
@@ -53,6 +53,13 @@ module Types
 
     # ここから先はprivateとして扱う
     # 実際にprivateをprepareに渡すとエラーになる
+
+    def add_percent(value)
+      if value != ''
+        return "%#{value}%"
+      end
+      return value
+    end
     
     def search_books_with_query(query_array, limit)
       if query_array.length == 0
