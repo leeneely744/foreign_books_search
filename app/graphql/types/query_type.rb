@@ -21,7 +21,11 @@ module Types
     end
     def books(title: , page_num_from: , page_num_to: , limit: )
       begin
-        Book.all.limit(limit)
+        query_hash = {
+          title: "%#{title}%",
+          page: page_num_from..page_num_to
+        }
+        search_books_with_query(query_hash, limit)
       rescue => exception
         raise GraphQL::ExecutionError, exception.message
       end
@@ -49,6 +53,27 @@ module Types
 
     # ここから先はprivateとして扱う
     # 実際にprivateをprepareに渡すとエラーになる
+    
+    def search_books_with_query(query_array, limit)
+      if query_array.length == 0
+        return Book.limit(limit)
+      end
+      books = Book.all
+
+      # titleはLIKE検索したいので、ここでWHEREに付け足す
+      books, query_array = add_like_argument(books, query_array, "title")
+      books.where(query_array).limit(limit)
+    end
+
+    def add_like_argument(model, query_array, argument_string)
+      value = query_array[argument_string.to_sym]
+      if value != ''
+        model = model.where("#{argument_string} like ? ", value)
+      end
+      query_array.delete(argument_string.to_sym)
+
+      return model, query_array
+    end
 
     def check_title(title)
       result = Regexp.escape(title)
