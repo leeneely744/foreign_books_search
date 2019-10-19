@@ -19,19 +19,12 @@ class App extends Component {
       pageFrom: '',
       pageTo: '',
       genreGroups: [],
-      checkedGenreGroups: [],
-      checkedGenres: [],
       usedGenres: false,
     };
 
     initGenreGroupsPromise()
       .then((result) => {
-        const genreGroups = Object.values(result);
-        this.setState({
-          genreGroups: genreGroups,
-          checkedGenres: initCheckedGenres(genreGroups),
-          checkedGenreGroups: initCheckedGenreGroups(genreGroups),
-        });
+        this.setState({genreGroups: addCheckedField(Object.values(result))});
       })
       .catch((error) => {
         console.log("error occured = " + error);
@@ -69,24 +62,18 @@ class App extends Component {
   }
 
   handleCheck(clickedBooksGenreId, isChecked) {
-    let genreCheckboxes = this.state.checkedGenres;
-    Object.keys(genreCheckboxes).forEach((booksGenreId) => {
-      if (booksGenreId.startsWith(clickedBooksGenreId)) {
-        genreCheckboxes[booksGenreId] = !isChecked;
+    let newGenreGroups = this.state.genreGroups
+    newGenreGroups.forEach(genreGroup => {
+      if (genreGroup['booksGenreId'].startsWith(clickedBooksGenreId)) {
+        genreGroup['isChecked'] = !isChecked;
       }
+      genreGroup['genres'].forEach(genre => {
+        if (genre['booksGenreId'].startsWith(clickedBooksGenreId)) {
+          genre['isChecked'] = !isChecked;
+        }
+      });
     });
-
-    let genreGroupCheckboxes = this.state.checkedGenreGroups;
-    Object.keys(genreGroupCheckboxes).forEach((booksGenreId) => {
-      if(booksGenreId === clickedBooksGenreId) {
-        genreGroupCheckboxes[booksGenreId] = !isChecked;
-      }
-    });
-
-    this.setState({
-      checkedGenres: genreCheckboxes,
-      checkedGenreGroups: genreGroupCheckboxes,
-    });
+    this.setState({ genreGroups: newGenreGroups });
   }
 
   updateBooks(newBooks) {
@@ -143,8 +130,6 @@ class App extends Component {
           <Collapse in={this.state.usedGenres}>
             <GenreGroupForm
               genreGroups={this.state.genreGroups}
-              checkedGenreState={this.state.checkedGenres}
-              checkedGenreGroupState={this.state.checkedGenreGroups}
               onClick={this.handleCheckGenre}
             />
           </Collapse>
@@ -166,22 +151,14 @@ class App extends Component {
   }
 }
 
-function initCheckedGenres(genreGroups) {
-  let checkboxes = [];
+function addCheckedField(genreGroups) {
   genreGroups.forEach(genreGroup => {
+    genreGroup['isChecked'] = false
     genreGroup['genres'].forEach(genre => {
-      checkboxes[genre.booksGenreId] = false;
+      genre['isChecked'] = false;
     });
   });
-  return checkboxes;
-}
-
-function initCheckedGenreGroups(genreGroups) {
-  let checkboxes = [];
-  genreGroups.forEach(genreGroup => {
-    checkboxes[genreGroup.booksGenreId] = false;
-  });
-  return checkboxes;
+  return genreGroups;
 }
 
 export default App;

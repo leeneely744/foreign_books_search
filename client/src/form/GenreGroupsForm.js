@@ -16,6 +16,7 @@ import '../css/form/GenreGroupsForm.css';
  *      id: 1,
  *      booksGenreId: "005401",
  *      booksGenreName: "Travel（旅行）",
+ *      isChecked: false,
  *      genres: [
  *        （略）
  *      ]
@@ -26,15 +27,14 @@ import '../css/form/GenreGroupsForm.css';
 export default function GenreGroupForm(props) {
   let genreGroups = props.genreGroups;
   
-  let renderGenre = (key) => {
-    let genres = props.genreGroups[key].genres;
-    return genres.map((genre, id) => {
+  let renderGenre = (genres) => {
+    return genres.map((genre) => {
       let booksGenreId = genre.booksGenreId;
-      let checked = props.checkedGenreState[booksGenreId];
+      let checked = genre.isChecked;
       return (
         <Genre
-          id={id}
-          key={id}
+          id={booksGenreId}
+          key={booksGenreId}
           genre={genre}
           checked={checked}
           onClick={() => props.onClick(booksGenreId, checked)}
@@ -52,17 +52,17 @@ export default function GenreGroupForm(props) {
         </ListSubheader>
      }
     >
-      {genreGroups.map((genreGroup, id) => {
+      {genreGroups.map((genreGroup) => {
         let booksGenreId = genreGroup.booksGenreId;
-        let checked = props.checkedGenreGroupState[booksGenreId];
+        let checked = genreGroup.isChecked;
         return (
           <div className='genre-group-container'>
             <GenreGroup
-              id={id}
-              key={id}
+              id={booksGenreId}
+              key={booksGenreId}
               genreGroup={genreGroup}
             >
-              {renderGenre(id)}
+              {renderGenre(genreGroup.genres)}
             </GenreGroup>
             <Checkbox
               edge="end"
@@ -70,7 +70,7 @@ export default function GenreGroupForm(props) {
               checked={props.checked}
               className='genre-group-checkbox'
               inputProps={{
-                'aria-labelledby': id
+                'aria-labelledby': booksGenreId
               }}
             />
           </div>
@@ -101,10 +101,12 @@ const genreGroupStyles = makeStyles(theme => ({
  *  [
  *    id: 1,
  *    booksGenreName: "Travel（旅行）",
+ *    isChecked: false,
  *    genres: [
  *      0: [
  *        booksGenreId: "005409001",
- *        booksGenreName: "Transportation"
+ *        booksGenreName: "Transportation",
+ *        isChecked: false,
  *      ],
  *      1: ...
  *    ]
@@ -146,7 +148,8 @@ function GenreGroup(props) {
  * Genre の例
  *  [
  *    booksGenreId"005409001",
- *    booksGenreName: "Transportation"
+ *    booksGenreName: "Transportation",
+ *    isChecked: false,
  *  ]
  */
 function Genre(props) {
