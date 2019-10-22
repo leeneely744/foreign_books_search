@@ -10,11 +10,9 @@ const myAxios = axios.create({
   }
 });
 
-export const requestBooks = () => {
+export const requestBooks = (params) => {
   myAxios
-  .post(API_ENDPOINT, {
-    query: "query { genreGroups{ id booksGenreName } }"
-  })
+  .post(API_ENDPOINT, {query: params})
   .then((results) => {
     console.log(results);
     // const datas = results.data;
