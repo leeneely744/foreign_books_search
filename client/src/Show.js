@@ -1,14 +1,18 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class Show extends Component {
-  render() {
+export default function Show(props) {
+  const booksNum = Object.keys(props.books).length;
+  if (booksNum === 0) {
+    return <NoBooks/>
+  } else {
     return (
       <div style={{whiteSpace: 'pre-line'}}>
-        this is tag list from Qiita sorted by item count.
         <ul>{this.props.books}</ul>
       </div>
     );
   }
 }
 
-export default Show;
+function NoBooks(props) {
+  return <h1>書籍がありません。</h1>
+}

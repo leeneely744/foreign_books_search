@@ -14,10 +14,7 @@ export const requestBooks = (params) => {
   myAxios
   .post(API_ENDPOINT, {query: params})
   .then((results) => {
-    console.log(results);
-    // const datas = results.data;
-    // results = datas.map(data => data.id + "\n");
-    // this.updateBooks(results);
+    return results.data.data.books;
   },
   )
   .catch((error) => {

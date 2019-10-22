@@ -90,7 +90,8 @@ class App extends Component {
         pageNumTo: this.getPageNum(this.state.pageTo, 9999)
       }
     })
-    requestBooks(requestParams);
+    let newBooks = requestBooks(requestParams);
+    this.updateBooks(newBooks);
   }
 
   handleChange(event) {
@@ -119,7 +120,6 @@ class App extends Component {
   }
 
   updateBooks(newBooks) {
-    console.log(newBooks);
     this.setState({books: newBooks});
   }
   
