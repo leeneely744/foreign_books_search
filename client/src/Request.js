@@ -1,5 +1,4 @@
 import axios from 'axios';
-import * as gql from 'gql-query-builder'
 
 // 開発中はここを'http://localhost:3001/graphql'に合わせる
 const API_ENDPOINT = 'http://localhost:3001/graphql';
@@ -11,15 +10,9 @@ const myAxios = axios.create({
   }
 });
 
-export const queryBuilder = (params) => {
-  gql.query(params)
-}
-
-export const requestBooks = () => {
+export const requestBooks = (params) => {
   myAxios
-  .post(API_ENDPOINT, {
-    query: "query { genreGroups{ id booksGenreName } }"
-  })
+  .post(API_ENDPOINT, {query: params})
   .then((results) => {
     console.log(results);
     // const datas = results.data;

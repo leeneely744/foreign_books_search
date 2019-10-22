@@ -67,8 +67,12 @@ module Types
       if query_array.length == 0
         return Book.limit(limit)
       end
-      books = Book.all
 
+      if query_array[:books_genre_id] == []
+        query_array.delete(:books_genre_id)
+      end
+      
+      books = Book.all
       # titleはLIKE検索したいので、ここでWHEREに付け足す
       books, query_array = add_like_argument(books, query_array, "title")
       books.where(query_array).limit(limit)
@@ -90,12 +94,13 @@ module Types
     end
 
     def check_books_genre_id(books_genre_ids)
-      books_genre_ids.map{|id| id.slice(0, 9)}
+      return books_genre_ids.map{|id| id.slice(0, 9)}
     end
 
     def check_page_num(page_num)
       page_num = 9999 if page_num > 9999
       page_num = 0 if page_num < 0
+      page_num = 0 if page_num ===nil
       page_num
     end
 

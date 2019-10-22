@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './css/App.css';
-import { queryBuilder, requestBooks, initGenreGroupsPromise } from './Request';
+import { requestBooks, initGenreGroupsPromise } from './Request';
+import { booksQuery } from './QueryBuilder';
 import Show from './Show';
 import GenreGroupForm from './form/GenreGroupsForm';
 import Button from '@material-ui/core/Button';
@@ -42,13 +43,54 @@ class App extends Component {
     return { hasError: true };
   }
 
-  // componentDidCatch(error, info) {
-  //   // You can also log the error to an error reporting service
-  //   logErrorToMyService(error, info);
-  // }
+  // チェックされているGenreのbooksGenreIdを配列で返す
+  getCheckedGenreIds(genreGroups) {
+    let allGenreGroups = genreGroups.map(genreGroup => genreGroup['genres'])
+    let allTrueGenres = [];
+    allGenreGroups.forEach((genreGroup) => {
+      genreGroup.forEach((genre) => {
+        if (genre.isChecked === true) {
+          allTrueGenres.push(genre.booksGenreId);
+        }
+      })
+    })
+    return allTrueGenres;
+  }
+
+  // ["value1", "value2"]という形の文字列にする必要がある。
+  getCheckedGenreIdsForQuery(genreGroups, isUseGenres) {
+    let allTrueGenres = this.getCheckedGenreIds(genreGroups);
+    if (isUseGenres === false || allTrueGenres === []) {
+      return "[]";
+    }
+    let tmpStr = allTrueGenres.toString().replace(/,/g, '","');
+    return `["${tmpStr}"]`;
+  }
+
+  getPageNum(pageNum, defaultValue = 0) {
+    if (pageNum === null || pageNum === '') {
+      return defaultValue;
+    } else {
+      return parseInt(pageNum, 10)
+    }
+  }
+
+  getTitle(title) {
+    return title === '' ? `""` : title
+  }
 
   handleGetLatAndLng() {
-    requestBooks();
+    let checkedGenreId = this.getCheckedGenreIdsForQuery(this.state.genreGroups, this.state.usedGenres);
+    const requestParams = booksQuery({
+      fields: ['title'],
+      variables: {
+        title: this.getTitle(this.state.title),
+        booksGenreId: checkedGenreId,
+        pageNumFrom: this.getPageNum(this.state.pageFrom, 0),
+        pageNumTo: this.getPageNum(this.state.pageTo, 9999)
+      }
+    })
+    requestBooks(requestParams);
   }
 
   handleChange(event) {
