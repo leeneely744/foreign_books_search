@@ -79,7 +79,7 @@ class App extends Component {
     return title === '' ? `""` : title
   }
 
-  handleGetLatAndLng() {
+  handleSearchBooks() {
     let checkedGenreId = this.getCheckedGenreIdsForQuery(this.state.genreGroups, this.state.usedGenres);
     const requestParams = booksQuery({
       fields: ['title'],
@@ -135,7 +135,7 @@ class App extends Component {
           <h2>洋書おすすめ検索</h2>
         </div>
 
-        <form onSubmit={this.handleGetLatAndLng} className={"books-search-form"}>
+        <form onSubmit={this.handleSearchBooks} className={"books-search-form"}>
           <TextField
             id='title'
             name='title'
@@ -179,7 +179,7 @@ class App extends Component {
             variant='contained'
             color='primary'
             size='large'
-            onClick={() => this.handleGetLatAndLng()}
+            onClick={() => this.handleSearchBooks()}
           >
             検索
           </Button>
