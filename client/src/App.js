@@ -82,7 +82,16 @@ class App extends Component {
   handleSearchBooks() {
     let checkedGenreId = this.getCheckedGenreIdsForQuery(this.state.genreGroups, this.state.usedGenres);
     const requestParams = booksQuery({
-      fields: ['title', 'booksGenreId'],
+      fields: [
+        'title'
+        , 'booksGenreId'
+        , 'mediumImageUrl'
+        , 'largeImageUrl'
+        , 'reviewCount'
+        , 'reviewAverage'
+        , 'vocabulary'
+        , 'page'
+      ],
       variables: {
         title: this.getTitle(this.state.title),
         booksGenreId: checkedGenreId,
