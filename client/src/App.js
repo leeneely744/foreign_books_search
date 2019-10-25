@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './css/App.css';
-import { requestBooks, initGenreGroupsPromise } from './Request';
+import { requestBooksPromise, initGenreGroupsPromise } from './Request';
 import { booksQuery } from './QueryBuilder';
 import Show from './Show';
 import GenreGroupForm from './form/GenreGroupsForm';
@@ -82,7 +82,7 @@ class App extends Component {
   handleSearchBooks() {
     let checkedGenreId = this.getCheckedGenreIdsForQuery(this.state.genreGroups, this.state.usedGenres);
     const requestParams = booksQuery({
-      fields: ['title'],
+      fields: ['title', 'booksGenreId'],
       variables: {
         title: this.getTitle(this.state.title),
         booksGenreId: checkedGenreId,
@@ -90,8 +90,10 @@ class App extends Component {
         pageNumTo: this.getPageNum(this.state.pageTo, 9999)
       }
     })
-    let newBooks = requestBooks(requestParams);
-    this.updateBooks(newBooks);
+    requestBooksPromise(requestParams)
+      .then((result) => {
+        this.updateBooks(result);
+      })
   }
 
   handleChange(event) {

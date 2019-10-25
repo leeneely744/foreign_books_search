@@ -10,16 +10,19 @@ const myAxios = axios.create({
   }
 });
 
-export const requestBooks = (params) => {
-  myAxios
-  .post(API_ENDPOINT, {query: params})
-  .then((results) => {
-    return results.data.data.books;
-  },
-  )
-  .catch((error) => {
-    console.log(error);
-  });
+export const requestBooksPromise = (params) => {
+  return new Promise((resolve, reject) => {
+    myAxios
+    .post(API_ENDPOINT, {query: params})
+    .then((results) => {
+      resolve(results.data.data.books);
+    },
+    )
+    .catch((error) => {
+      console.log(error);
+      reject(error)
+    });
+  })
 }
 
 export const initGenreGroupsPromise = () => {
