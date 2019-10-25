@@ -15,7 +15,11 @@ export const requestBooksPromise = (params) => {
     myAxios
     .post(API_ENDPOINT, {query: params})
     .then((results) => {
-      resolve(results.data.data.books);
+      if (results.data.errors) {
+        console.log(results.data.errors)
+      } else {
+        resolve(results.data.data.books);
+      }
     },
     )
     .catch((error) => {
