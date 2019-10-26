@@ -3,6 +3,7 @@ import { For } from 'react-loops'
 import Card from '@material-ui/core/Card'
 import CardMedia from '@material-ui/core/CardMedia'
 import { makeStyles } from '@material-ui/styles';
+import { CardContent, Typography } from '@material-ui/core';
 
 export default function Show(props) {
   let books = Object.values(props.books)
@@ -10,7 +11,7 @@ export default function Show(props) {
     <For of={books} ifEmpty={<h1>書籍がありません。</h1>}>
       {book =>
         <button onClick={() => props.onClickBookLink(true)}>
-          <Book books={book} />
+          <Book book={book} />
         </button>
       }
     </For>
@@ -33,9 +34,12 @@ function Book(props) {
     <Card className={classes.card}>
       <CardMedia
         className={classes.media}
-        children={<BookImage title={props.title} imageUrl={props.largeImageUrl}/>}
-        title={props.title}
+        children={<BookImage title={props.book.title} imageUrl={props.book.largeImageUrl}/>}
+        title={props.book.title}
       />
+      <CardContent>
+        <Typography variant='body1' component='p'>{props.book.title}</Typography>
+      </CardContent>
     </Card>
   )
 }
