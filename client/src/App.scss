@@ -18,11 +18,6 @@
   font-size: large;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
 .books-search-form {
   margin-bottom: 10px;
   @media all and (min-width: 580px) {
