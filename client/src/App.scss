@@ -22,3 +22,12 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+.books-search-form {
+  margin-bottom: 10px;
+  @media all and (min-width: 580px) {
+    width: 35%;
+    height: 100vh;
+    float: left;
+  }
+}
