@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import './css/App.css';
-import { requestBooks, initGenreGroupsPromise } from './Request';
+import { requestBooksPromise, initGenreGroupsPromise } from './Request';
 import { booksQuery } from './QueryBuilder';
 import Show from './Show';
+import Detail from './Detail';
 import GenreGroupForm from './form/GenreGroupsForm';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
@@ -21,6 +22,7 @@ class App extends Component {
       pageTo: '',
       genreGroups: [],
       usedGenres: false,
+      showDetailPageFlg: false,
     };
 
     initGenreGroupsPromise()
@@ -36,6 +38,7 @@ class App extends Component {
     this.handleChangePageToField = this.handleChange.bind(this);
     this.handleChangeToggleGenre = this.handleChangeToggle.bind(this);
     this.handleCheckGenre = this.handleCheck.bind(this);
+    this.updateShowDetailPageFlg = this.updateShowDetailPageFlg.bind(this);
   }
 
   static getDerivedStateFromError(error) {
@@ -80,9 +83,19 @@ class App extends Component {
   }
 
   handleSearchBooks() {
+    this.updateShowDetailPageFlg(false);
     let checkedGenreId = this.getCheckedGenreIdsForQuery(this.state.genreGroups, this.state.usedGenres);
     const requestParams = booksQuery({
-      fields: ['title'],
+      fields: [
+        'title'
+        , 'booksGenreId'
+        , 'mediumImageUrl'
+        , 'largeImageUrl'
+        , 'reviewCount'
+        , 'reviewAverage'
+        , 'vocabulary'
+        , 'page'
+      ],
       variables: {
         title: this.getTitle(this.state.title),
         booksGenreId: checkedGenreId,
@@ -90,7 +103,10 @@ class App extends Component {
         pageNumTo: this.getPageNum(this.state.pageTo, 9999)
       }
     })
-    requestBooks(requestParams);
+    requestBooksPromise(requestParams)
+      .then((result) => {
+        this.updateBooks(result);
+      })
   }
 
   handleChange(event) {
@@ -119,8 +135,11 @@ class App extends Component {
   }
 
   updateBooks(newBooks) {
-    console.log(newBooks);
     this.setState({books: newBooks});
+  }
+
+  updateShowDetailPageFlg(showDetailPage = true) {
+    this.setState({showDetailPageFlg: showDetailPage});
   }
   
   render() {
@@ -185,9 +204,13 @@ class App extends Component {
           </Button>
         </form>
         
-        <Show 
-          books={this.state.books}
-        />
+        { this.state.showDetailPageFlg ?
+          <Detail /> :
+          <Show 
+            books={this.state.books}
+            onClickBookLink={this.updateShowDetailPageFlg}
+          />
+        }
       </div>
     );
   }
