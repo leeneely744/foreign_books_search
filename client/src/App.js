@@ -29,6 +29,7 @@ class App extends Component {
       .then((result) => {
         this.setState({genreGroups: addCheckedField(Object.values(result))});
       })
+      .then(() => this.handleSearchBooks())
       .catch((error) => {
         console.log("error occured = " + error);
       });
