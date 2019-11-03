@@ -30,12 +30,7 @@ const useStyles = makeStyles(theme => ({
 function Book(props) {
   const classes = useStyles()
 
-  const getShowString = (data) => {
-    if (data === '' || data === null) {
-      return '不明'
-    }
-    return data
-  }
+  const getShowString = (data) => ((data === '' || data === null) ? '不明' : data)
 
   const pageString = getShowString(props.book.page)
   const vocabularyString = getShowString(props.book.vocabulary)
