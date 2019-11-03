@@ -25,6 +25,14 @@ const useStyles = makeStyles(theme => ({
   },
   media: {
   },
+  title: {
+    height: 72,
+    marginBottom: 10,
+  },
+  detail: {
+    display: 'inline-flex',
+    width: 110, // card.width の1/3 より少し小さく
+  }
 }))
 
 const Book = (props) => {
@@ -44,10 +52,10 @@ const Book = (props) => {
         title={props.book.title}
       />
       <CardContent>
-        <Typography variant='body1' component='p'>{props.book.title}</Typography>
-        <Typography variant='body2' component='p'>{`ページ数：${pageString}`}</Typography>
-        <Typography variant='body2' component='p'>{`語彙数：${vocabularyString}`}</Typography>
-        <Typography variant='body2' component='p'>{`平均レビュー：${reviewAverageString}`}</Typography>
+        <Typography variant='body1' className={classes.title} component='p'>{props.book.title}</Typography>
+        <Typography variant='body2' className={classes.detail} component='p'>{`ページ数：${pageString}`}</Typography>
+        <Typography variant='body2' className={classes.detail} component='p'>{`語彙数：${vocabularyString}`}</Typography>
+        <Typography variant='body2' className={classes.detail} component='p'>{`平均レビュー：${reviewAverageString}`}</Typography>
       </CardContent>
     </Card>
   )
