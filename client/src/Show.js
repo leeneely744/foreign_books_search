@@ -23,13 +23,23 @@ const useStyles = makeStyles(theme => ({
     maxWidth: 345,
   },
   media: {
-    height: 0,
-    paddingTop: '56.25%',
   },
 }))
 
 function Book(props) {
   const classes = useStyles()
+
+  const getShowString = (data) => {
+    if (data === '' || data === null) {
+      return '不明'
+    }
+    return data
+  }
+
+  const pageString = getShowString(props.book.page)
+  const vocabularyString = getShowString(props.book.vocabulary)
+  const reviewAverageString = getShowString(props.book.reviewAverage)
+
   return (
     <Card className={classes.card}>
       <CardMedia
@@ -39,6 +49,9 @@ function Book(props) {
       />
       <CardContent>
         <Typography variant='body1' component='p'>{props.book.title}</Typography>
+        <Typography variant='body2' component='p'>{`ページ数：${pageString}`}</Typography>
+        <Typography variant='body2' component='p'>{`語彙数：${vocabularyString}`}</Typography>
+        <Typography variant='body2' component='p'>{`平均レビュー：${reviewAverageString}`}</Typography>
       </CardContent>
     </Card>
   )
