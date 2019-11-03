@@ -20,7 +20,8 @@ export default function Show(props) {
 
 const useStyles = makeStyles(theme => ({
   card: {
-    maxWidth: 345,
+    width: 345,
+    height: 351,
   },
   media: {
   },
