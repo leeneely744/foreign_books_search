@@ -27,7 +27,7 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-function Book(props) {
+const Book = (props) => {
   const classes = useStyles()
 
   const getShowString = (data) => ((data === '' || data === null) ? '不明' : data)
@@ -53,7 +53,7 @@ function Book(props) {
   )
 }
 
-function BookImage(props) {
+const BookImage = (props) => {
   return (
     <img src={props.imageUrl} alt={props.title} />
   )
