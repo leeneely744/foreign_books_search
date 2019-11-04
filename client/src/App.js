@@ -24,8 +24,6 @@ class App extends Component {
       usedGenres: false,
       showDetailPageFlg: false,
       showPageSet: {
-        booksPerPage: 10,
-        nowPage: 0,
         totalBooksNum: 0,
       },
     };

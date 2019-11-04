@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { For } from 'react-loops'
 import Card from '@material-ui/core/Card'
 import CardMedia from '@material-ui/core/CardMedia'
@@ -31,20 +31,33 @@ export default function Show(props) {
   const classes = useStyles()
   let books = Object.values(props.books)
 
+  let [showFrom, setShowFrom] = useState(0)
+  let [booksPerPage, setBooksPerPage] = useState(10)
+  let [nowPage, setNowPage] = useState(0)
+
   const renderPagination = (pageSet) => {
     return <TablePagination
       className={classes.pagination}
       component="div"
-      rowsPerPage={pageSet.booksPerPage}
-      page={pageSet.nowPage}
+      rowsPerPage={booksPerPage}
+      page={nowPage}
       count={pageSet.totalBooksNum}
+      onChangeRowsPerPage={(e) => changeRowsPerPage(e)}
+      onChangePage={(e, page) => changePage(e, page)}
     />
+  }
+
+  const showBooksArray = (books) => books.slice(showFrom, showFrom + booksPerPage)
+  const changeRowsPerPage = (event) => setBooksPerPage(event.target.value)
+  const changePage = (e, page) => {
+    setShowFrom(page * booksPerPage)
+    setNowPage(page)
   }
 
   return (
     <div className='show-panel'>
       {renderPagination(props.showPageSet)}
-      <For of={books} ifEmpty={<h1>書籍がありません。</h1>}>
+      <For of={showBooksArray(books)} ifEmpty={<h1>書籍がありません。</h1>}>
         {book =>
           <button onClick={() => props.onClickBookLink(true)}>
             <Book book={book} />
