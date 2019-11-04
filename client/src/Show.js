@@ -35,9 +35,9 @@ export default function Show(props) {
     return <TablePagination
       className={classes.pagination}
       component="div"
-      rowsPerPage={props.showPageSet.booksPerPage}
-      page={props.showPageSet.nowPage}
-      count={props.showPageSet.totalBooksNum}
+      rowsPerPage={pageSet.booksPerPage}
+      page={pageSet.nowPage}
+      count={pageSet.totalBooksNum}
     />
   }
 
