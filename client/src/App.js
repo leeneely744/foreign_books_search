@@ -23,6 +23,11 @@ class App extends Component {
       genreGroups: [],
       usedGenres: false,
       showDetailPageFlg: false,
+      showPageSet: {
+        booksPerPage: 10,
+        nowPage: 0,
+        totalBooksNum: 0,
+      },
     };
 
     initGenreGroupsPromise()
@@ -107,6 +112,9 @@ class App extends Component {
     requestBooksPromise(requestParams)
       .then((result) => {
         this.updateBooks(result);
+        let newState = this.state.showPageSet
+        newState['totalBooksNum'] = Object.keys(result).length
+        this.setState({showPageSet: newState})
       })
   }
 
@@ -205,13 +213,16 @@ class App extends Component {
           </Button>
         </form>
         
-        { this.state.showDetailPageFlg ?
-          <Detail /> :
-          <Show 
-            books={this.state.books}
-            onClickBookLink={this.updateShowDetailPageFlg}
-          />
-        }
+        <div className='right-panel'>
+          { this.state.showDetailPageFlg ?
+            <Detail /> :
+            <Show 
+              books={this.state.books}
+              onClickBookLink={this.updateShowDetailPageFlg}
+              showPageSet={this.state.showPageSet}
+            />
+          }
+        </div>
       </div>
     );
   }

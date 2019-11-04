@@ -3,20 +3,7 @@ import { For } from 'react-loops'
 import Card from '@material-ui/core/Card'
 import CardMedia from '@material-ui/core/CardMedia'
 import { makeStyles } from '@material-ui/styles';
-import { CardContent, Typography } from '@material-ui/core';
-
-export default function Show(props) {
-  let books = Object.values(props.books)
-  return (
-    <For of={books} ifEmpty={<h1>書籍がありません。</h1>}>
-      {book =>
-        <button onClick={() => props.onClickBookLink(true)}>
-          <Book book={book} />
-        </button>
-      }
-    </For>
-  );
-}
+import { CardContent, Typography, TablePagination } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
   card: {
@@ -32,8 +19,43 @@ const useStyles = makeStyles(theme => ({
   detail: {
     display: 'inline-flex',
     width: 110, // card.width の1/3 より少し小さく
-  }
+  },
+  pagination: {
+    display: 'block',
+    marginRight: '25%',
+    border: 'none',
+  },
 }))
+
+export default function Show(props) {
+  const classes = useStyles()
+  let books = Object.values(props.books)
+
+  const renderPagination = (pageSet) => {
+    console.log(pageSet)
+    return <TablePagination
+      className={classes.pagination}
+      component="div"
+      rowsPerPage={props.showPageSet.booksPerPage}
+      page={props.showPageSet.nowPage}
+      count={props.showPageSet.totalBooksNum}
+    />
+  }
+
+  return (
+    <div className='show-panel'>
+      {renderPagination(props.showPageSet)}
+      <For of={books} ifEmpty={<h1>書籍がありません。</h1>}>
+        {book =>
+          <button onClick={() => props.onClickBookLink(true)}>
+            <Book book={book} />
+          </button>
+        }
+      </For>
+      {renderPagination(props.showPageSet)}
+    </div>
+  );
+}
 
 const Book = (props) => {
   const classes = useStyles()

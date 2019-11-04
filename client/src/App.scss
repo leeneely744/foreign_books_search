@@ -26,3 +26,14 @@
     float: left;
   }
 }
+
+div.right-panel {
+  width: 65%; // 100 - .books-search-form
+  display: block;
+  float: right;
+  @media all and (max-width: 580px) {
+    width: 100%; // 100 - .books-search-form
+    display: block;
+    float: right;
+  }
+}
