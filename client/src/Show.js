@@ -32,7 +32,6 @@ export default function Show(props) {
   let books = Object.values(props.books)
 
   const renderPagination = (pageSet) => {
-    console.log(pageSet)
     return <TablePagination
       className={classes.pagination}
       component="div"
