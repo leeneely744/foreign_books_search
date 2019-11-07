@@ -23,12 +23,16 @@ class App extends Component {
       genreGroups: [],
       usedGenres: false,
       showDetailPageFlg: false,
+      showPageSet: {
+        totalBooksNum: 0,
+      },
     };
 
     initGenreGroupsPromise()
       .then((result) => {
         this.setState({genreGroups: addCheckedField(Object.values(result))});
       })
+      .then(() => this.handleSearchBooks())
       .catch((error) => {
         console.log("error occured = " + error);
       });
@@ -106,6 +110,9 @@ class App extends Component {
     requestBooksPromise(requestParams)
       .then((result) => {
         this.updateBooks(result);
+        let newState = this.state.showPageSet
+        newState['totalBooksNum'] = Object.keys(result).length
+        this.setState({showPageSet: newState})
       })
   }
 
@@ -204,13 +211,16 @@ class App extends Component {
           </Button>
         </form>
         
-        { this.state.showDetailPageFlg ?
-          <Detail /> :
-          <Show 
-            books={this.state.books}
-            onClickBookLink={this.updateShowDetailPageFlg}
-          />
-        }
+        <div className='right-panel'>
+          { this.state.showDetailPageFlg ?
+            <Detail /> :
+            <Show 
+              books={this.state.books}
+              onClickBookLink={this.updateShowDetailPageFlg}
+              showPageSet={this.state.showPageSet}
+            />
+          }
+        </div>
       </div>
     );
   }

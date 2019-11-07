@@ -18,7 +18,7 @@ module Types
       argument :books_genre_id, [String], required: false, default_value: [], prepare: :check_books_genre_id
       argument :page_num_from, Integer, required: false, default_value: 0, prepare: :check_page_num
       argument :page_num_to, Integer, required: false, default_value: 9999, prepare: :check_page_num
-      argument :limit, Integer, required: false, default_value: 10, prepare: ->(limit, ctx) {[limit, 30].min}
+      argument :limit, Integer, required: false, default_value: 100
     end
     def books(title: , books_genre_id: , page_num_from: , page_num_to: , limit: )
       begin

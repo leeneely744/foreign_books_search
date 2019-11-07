@@ -18,7 +18,22 @@
   font-size: large;
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.books-search-form {
+  margin-bottom: 10px;
+  @media all and (min-width: 580px) {
+    width: 35%;
+    height: 100vh;
+    float: left;
+  }
+}
+
+div.right-panel {
+  width: 65%; // 100 - .books-search-form
+  display: block;
+  float: right;
+  @media all and (max-width: 580px) {
+    width: 100%; // 100 - .books-search-form
+    display: block;
+    float: right;
+  }
 }
