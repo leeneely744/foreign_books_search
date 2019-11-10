@@ -1,3 +1,12 @@
+export const bookQuery = (params) => {
+  return `
+    query {
+      book(${makeVariables(params.variables)}) {
+        ${params.fields.toString()}
+      }
+    }`
+}
+
 export const booksQuery = (params) => {
   return `
     query { 

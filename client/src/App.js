@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './css/App.css';
-import { requestBooksPromise, initGenreGroupsPromise } from './Request';
-import { booksQuery } from './QueryBuilder';
+import { requestBooksPromise, requestBookPromise, initGenreGroupsPromise } from './Request';
+import { booksQuery, bookQuery } from './QueryBuilder';
 import Show from './Show';
 import Detail from './Detail';
 import GenreGroupForm from './form/GenreGroupsForm';
@@ -26,6 +26,7 @@ class App extends Component {
       showPageSet: {
         totalBooksNum: 0,
       },
+      book: [],
     };
 
     initGenreGroupsPromise()
@@ -43,6 +44,7 @@ class App extends Component {
     this.handleChangeToggleGenre = this.handleChangeToggle.bind(this);
     this.handleCheckGenre = this.handleCheck.bind(this);
     this.updateShowDetailPageFlg = this.updateShowDetailPageFlg.bind(this);
+    this.handleClickBookLink = this.handleClickBookLink.bind(this);
   }
 
   static getDerivedStateFromError(error) {
@@ -145,6 +147,39 @@ class App extends Component {
     this.setState({books: newBooks});
   }
 
+  updateBook(newBook) {
+    this.setState({book: newBook});
+  }
+
+  handleClickBookLink(booksGenreId) {
+    this.searchBookDetail(booksGenreId);
+    this.updateShowDetailPageFlg(true);
+  }
+
+  getBooksGenreId(searchValue) {
+    return `"${searchValue}"`;
+  }
+
+  searchBookDetail(booksGenreId) {
+    const requestParams = bookQuery({
+      fields: [
+        'title'
+        , 'largeImageUrl'
+        , 'reviewCount'
+        , 'reviewAverage'
+        , 'vocabulary'
+        , 'page'
+      ],
+      variables: {
+        booksGenreId: this.getBooksGenreId(booksGenreId)
+      }
+    })
+    requestBookPromise(requestParams)
+      .then((result) => {
+        this.updateBook(result);
+      })
+  }
+
   updateShowDetailPageFlg(showDetailPage = true) {
     this.setState({showDetailPageFlg: showDetailPage});
   }
@@ -213,10 +248,10 @@ class App extends Component {
         
         <div className='right-panel'>
           { this.state.showDetailPageFlg ?
-            <Detail /> :
+            <Detail book={this.state.book} /> :
             <Show 
               books={this.state.books}
-              onClickBookLink={this.updateShowDetailPageFlg}
+              onClickBookLink={this.handleClickBookLink}
               showPageSet={this.state.showPageSet}
             />
           }
