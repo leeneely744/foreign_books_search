@@ -15,5 +15,6 @@ module Types
     field :review_average, String, null: false
     field :vocabulary, Integer, null: true
     field :page, Integer, null: true
+    field :updated_at, String, null: true
   end
 end

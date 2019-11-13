@@ -166,7 +166,7 @@ class App extends Component {
       fields: [
         'title', 'largeImageUrl', 'reviewCount', 'reviewAverage', 'vocabulary'
         , 'page', 'author', 'publisherName', 'itemCaption'
-        , 'itemUrl', 'affiliateUrl'
+        , 'itemUrl', 'affiliateUrl', 'updatedAt'
       ],
       variables: {
         id: id
