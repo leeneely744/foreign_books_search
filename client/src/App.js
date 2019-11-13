@@ -163,12 +163,9 @@ class App extends Component {
   searchBookDetail(booksGenreId) {
     const requestParams = bookQuery({
       fields: [
-        'title'
-        , 'largeImageUrl'
-        , 'reviewCount'
-        , 'reviewAverage'
-        , 'vocabulary'
-        , 'page'
+        'title', 'largeImageUrl', 'reviewCount', 'reviewAverage', 'vocabulary'
+        , 'page', 'author', 'publisherName', 'itemCaption'
+        , 'itemUrl', 'affiliateUrl'
       ],
       variables: {
         booksGenreId: this.getBooksGenreId(booksGenreId)
