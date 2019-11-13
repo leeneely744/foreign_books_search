@@ -101,6 +101,7 @@ class App extends Component {
         , 'reviewAverage'
         , 'vocabulary'
         , 'page'
+        , 'id'
       ],
       variables: {
         title: this.getTitle(this.state.title),
@@ -160,7 +161,7 @@ class App extends Component {
     return `"${searchValue}"`;
   }
 
-  searchBookDetail(booksGenreId) {
+  searchBookDetail(id) {
     const requestParams = bookQuery({
       fields: [
         'title', 'largeImageUrl', 'reviewCount', 'reviewAverage', 'vocabulary'
@@ -168,7 +169,7 @@ class App extends Component {
         , 'itemUrl', 'affiliateUrl'
       ],
       variables: {
-        booksGenreId: this.getBooksGenreId(booksGenreId)
+        id: id
       }
     })
     requestBookPromise(requestParams)

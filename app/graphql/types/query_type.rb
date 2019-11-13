@@ -35,7 +35,7 @@ module Types
 
     field :book, Types::BookType, null: false do
       description "書籍詳細を取得する"
-      argument :books_genre_id, String, required: true, prepare: :check_books_genre_id
+      argument :id, Integer, required: true, prepare: :check_num
 
       # fieldと同名のResolverを用いて値を返す。
       # :book fieldは#bookメソッドを用いる
@@ -44,9 +44,9 @@ module Types
       # また、fieldの第3引数に以下を渡しても同様の動きをする
       #  resolver_method: :oneBook
     end
-    def book(books_genre_id:)
+    def book(id:)
       begin
-        book = Book.find_by(books_genre_id: books_genre_id)
+        book = Book.find(id)
       rescue => e
         raise GraphQL::ExecutionError, "書籍が見つかりません"
       end
