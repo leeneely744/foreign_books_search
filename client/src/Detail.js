@@ -1,7 +1,15 @@
 import React from 'react';
+import { makeStyles, Button } from '@material-ui/core';
+
+const useStyles = makeStyles(theme => ({
+  button: {
+    margin: theme.spacing(1),
+  },
+}))
 
 export default function Detail(props) {
   const book = props.book
+  const classes = useStyles()
 
   const getBookUrl = (theBook) => {
     if (theBook.affiliateUrl !== '') {
@@ -37,6 +45,9 @@ export default function Detail(props) {
           </tr>
         </tbody>
       </table>
+      <Button variant="contained" href={getBookUrl(book)} color="primary" className={classes.button} >
+        楽天で見る
+      </Button>
     </div>
   )
 }
