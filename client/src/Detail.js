@@ -12,7 +12,7 @@ export default function Detail(props) {
 
   return (
     <div id='detail-book'>
-      <h1 id='detail-book-title'>{book.title}</h1>
+      <div id='detail-book-title'>{book.title}</div>
       <div id='detail-author'>著者名：{book.author}</div>
       <img id='detail-image' alt={book.title} src={book.largeImageUrl} />
       <div id='detail-item-caption'>{book.itemCaption}</div>
