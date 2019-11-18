@@ -37,3 +37,42 @@ div.right-panel {
     float: right;
   }
 }
+
+///////////////////////////////////////////////////
+// Detail page start
+///////////////////////////////////////////////////
+
+#detail-book {
+  margin-top: 5%;
+  margin-right: 3%;
+  display: grid;
+  grid-template-areas:
+    "bookImage title"
+    "bookImage author"
+    "bookImage bookUpdateDate"
+    "bookImage bookInfo"
+    "bookCaption bookCaption"
+    "rakutenButton rakutenButton";
+}
+
+#detail-book-title { grid-area: title; text-align: left; font-size: 24px; }
+#detail-author { grid-area: author; margin-bottom: 3%; text-align: right; }
+#detail-image { grid-area: bookImage; margin-right: 15px; }
+#detail-updated-at { grid-area: bookUpdateDate; text-align: right; }
+#detail-table { grid-area: bookInfo; border: 1px solid; padding: 0%; table-layout: fixed; }
+
+.detail-table-head { text-align: right; }
+.detail-table-value { text-align: left; }
+
+#detail-item-caption {
+  grid-area: bookCaption;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  max-width: 600px;
+  text-align: left;
+}
+#rakuten-button { grid-area: rakutenButton; }
+
+///////////////////////////////////////////////////
+// Detail page end
+///////////////////////////////////////////////////
