@@ -27,20 +27,20 @@ export default function Detail(props) {
       <table id='detail-table'>
         <tbody>
           <tr id='detail-genre'>
-            <td id='detail-genre-head' class='detail-table-head'>ジャンル：</td>
-            <td id='detail-genre-value' class='detail-table-value'>test</td>
+            <td id='detail-genre-head' className='detail-table-head'>ジャンル：</td>
+            <td id='detail-genre-value' className='detail-table-value'>test</td>
           </tr>
           <tr id='detail-page'>
-            <td id='detail-page-head' class='detail-table-head'>ページ数：</td>
-            <td id='detail-page-value' class='detail-table-value'>{book.page}</td>
+            <td id='detail-page-head' className='detail-table-head'>ページ数：</td>
+            <td id='detail-page-value' className='detail-table-value'>{book.page}</td>
           </tr>
           <tr id='detail-review-average'>
-            <td id='detail-review-average-head' class='detail-table-head'>レビュー平均：</td>
-            <td id='detail-review-average-value' class='detail-table-value'>{book.reviewAverage}</td>
+            <td id='detail-review-average-head' className='detail-table-head'>レビュー平均：</td>
+            <td id='detail-review-average-value' className='detail-table-value'>{book.reviewAverage}</td>
           </tr>
           <tr id='detail-review-count'>
-            <td id='detail-review-count-head' class='detail-table-head'>レビュー数：</td>
-            <td id='detail-review-count-value' class='detail-table-value'>{book.reviewCount}</td>
+            <td id='detail-review-count-head' className='detail-table-head'>レビュー数：</td>
+            <td id='detail-review-count-value' className='detail-table-value'>{book.reviewCount}</td>
           </tr>
         </tbody>
       </table>
