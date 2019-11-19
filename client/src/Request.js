@@ -10,6 +10,33 @@ const myAxios = axios.create({
   }
 });
 
+/**
+ * book fieldsにリクエストを行う
+ * @param {'query'キーの値として設定する文字列} params
+ */
+export const requestBookPromise = (params) => {
+  return new Promise((resolve, reject) => {
+    myAxios
+    .post(API_ENDPOINT, {query: params})
+    .then((results) => {
+      if (results.data.errors) {
+        console.log(results.data.errors)
+      } else {
+        resolve(results.data.data.book);
+      }
+    },
+    )
+    .catch((error) => {
+      console.log(error);
+      reject(error)
+    });
+  })
+}
+
+/**
+ * books fieldsにリクエストを行う。
+ * @param {'query'キーの値として設定する文字列} params 
+ */
 export const requestBooksPromise = (params) => {
   return new Promise((resolve, reject) => {
     myAxios

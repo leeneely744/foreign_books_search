@@ -59,7 +59,7 @@ export default function Show(props) {
       {renderPagination(props.showPageSet)}
       <For of={showBooksArray(books)} ifEmpty={<h1>書籍がありません。</h1>}>
         {book =>
-          <button onClick={() => props.onClickBookLink(true)}>
+          <button onClick={() => props.onClickBookLink(book.id)}>
             <Book book={book} />
           </button>
         }

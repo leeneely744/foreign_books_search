@@ -1,6 +1,8 @@
 class Book < ApplicationRecord
   validates :isbn, presence: true
 
+  belongs_to :genre, primary_key: "books_genre_id", foreign_key: "books_genre_id"
+
   # 書籍を更新する。
   # updateに成功したらtrueを返す。
   # updateで例外が発生したら、Exceptionインスタンスを返す

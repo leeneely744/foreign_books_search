@@ -15,7 +15,7 @@ module Types
       # "required: false" DocsでNullableと表示されるだけで、
       # 本当にNullableかどうかはresolveメソッドの引数による
       argument :title, String, required: false, default_value: '', prepare: :check_title
-      argument :books_genre_id, [String], required: false, default_value: [], prepare: :check_books_genre_id
+      argument :books_genre_id, [String], required: false, default_value: [], prepare: :check_books_genre_ids
       argument :page_num_from, Integer, required: false, default_value: 0, prepare: :check_page_num
       argument :page_num_to, Integer, required: false, default_value: 9999, prepare: :check_page_num
       argument :limit, Integer, required: false, default_value: 100
@@ -35,7 +35,7 @@ module Types
 
     field :book, Types::BookType, null: false do
       description "書籍詳細を取得する"
-      argument :id, ID, required: true, prepare: :check_num
+      argument :id, Integer, required: true, prepare: :check_num
 
       # fieldと同名のResolverを用いて値を返す。
       # :book fieldは#bookメソッドを用いる
@@ -93,8 +93,12 @@ module Types
       result[0, 20]
     end
 
-    def check_books_genre_id(books_genre_ids)
+    def check_books_genre_ids(books_genre_ids)
       return books_genre_ids.map{|id| id.slice(0, 9)}
+    end
+
+    def check_books_genre_id(books_genre_id)
+      return books_genre_id.slice(0, 9)
     end
 
     def check_page_num(page_num)
