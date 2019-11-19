@@ -1,7 +1,8 @@
 import axios from 'axios';
+import config from './env.js';
 
-// 開発中はここを'http://localhost:3001/graphql'に合わせる
-const API_ENDPOINT = 'http://localhost:3001/graphql';
+// client/src/env.js を読み込む
+const API_ENDPOINT = config.API_URL;
 const QUERY_FOR_GENGE = "query { genreGroups { id booksGenreId booksGenreName genres { booksGenreId booksGenreName }}}";
 
 const myAxios = axios.create({
