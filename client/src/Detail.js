@@ -18,6 +18,13 @@ export default function Detail(props) {
     return `${theBook.itemUrl}`
   }
 
+  const getGenreName = (theBook) => {
+    if (theBook.genre === undefined) {
+      return '不明'
+    }
+    return theBook.genre.booksGenreName
+  }
+
   return (
     <div id='detail-book'>
       <div id='detail-book-title'>{book.title}</div>
@@ -28,7 +35,7 @@ export default function Detail(props) {
         <tbody>
           <tr id='detail-genre'>
             <td id='detail-genre-head' className='detail-table-head'>ジャンル：</td>
-            <td id='detail-genre-value' className='detail-table-value'>test</td>
+            <td id='detail-genre-value' className='detail-table-value'>{getGenreName(book)}</td>
           </tr>
           <tr id='detail-page'>
             <td id='detail-page-head' className='detail-table-head'>ページ数：</td>

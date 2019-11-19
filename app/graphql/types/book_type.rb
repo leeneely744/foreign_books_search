@@ -16,5 +16,6 @@ module Types
     field :vocabulary, Integer, null: true
     field :page, Integer, null: true
     field :updated_at, String, null: true
+    field :genre, GenreType, 'ジャンル', null: true
   end
 end

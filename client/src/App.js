@@ -167,6 +167,7 @@ class App extends Component {
         'title', 'largeImageUrl', 'reviewCount', 'reviewAverage', 'vocabulary'
         , 'page', 'author', 'publisherName', 'itemCaption'
         , 'itemUrl', 'affiliateUrl', 'updatedAt'
+        , 'genre { booksGenreName }'
       ],
       variables: {
         id: id
